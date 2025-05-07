@@ -1,0 +1,49 @@
+{
+	"folders": [
+        {
+            "path": "C:\\Developer\\PERSONAL\\portfolio"
+        }
+    ],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+        "files.eol": "\n",
+        "editor.tabSize": 4,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+        },
+        "files.trimFinalNewlines": true,
+        "files.trimTrailingWhitespace": true,
+        "eslint.enable": true,
+        "eslint.format.enable": true,
+        "eslint.run": "onSave",
+        "eslint.options": {
+            "configFile": "C:\\Developer\\PERSONAL\\portfolio\\source\\.eslintrc.js"
+        },
+        "files.exclude": {
+            "**/.map": true
+        },
+        "search.exclude": {
+            "**/static/*": true
+        },
+        "workbench.editor.titleScrollbarSizing": "large",
+        "workbench.colorCustomizations" : {
+            "tab.activeBackground": "#3e3e42",
+            "tab.hoverBackground": "#2d2d30"
+        },
+        "workbench.editor.enablePreview": false,
+        "workbench.editor.enablePreviewFromQuickOpen": false,
+        "npm.enableRunFromFolder": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.stickyScroll.enabled": true,
+        "debug.toolBarLocation": "commandCenter",
+        "editor.linkedEditing": true,
+        "editor.guides.bracketPairs": true,
+        "editor.cursorBlinking": "expand",
+        "editor.cursorSmoothCaretAnimation": "on",
+        "workbench.tree.enableStickyScroll": true,
+        "gitlens.launchpad.indicator.enabled": false,
+        "github.copilot.advanced": {
+            "authProvider": "github"
+        }
+	}
+}
