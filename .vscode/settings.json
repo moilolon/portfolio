@@ -1,0 +1,28 @@
+{
+    "files.eol": "\n",
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "eslint.enable": true,
+    "eslint.format.enable": true,
+    "eslint.run": "onSave",
+    "eslint.options": {
+        "configFile": "C:\\Developer\\PERSONAL\\portfolio\\source\\.eslintrc.js"
+    },
+    "files.exclude": {
+        "**/.map": true
+    },
+    "search.exclude": {
+        "**/static/*": true
+    },
+    "npm.enableRunFromFolder": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.stickyScroll.enabled": true,
+    "editor.linkedEditing": true,
+    "editor.guides.bracketPairs": true,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on"
+}
