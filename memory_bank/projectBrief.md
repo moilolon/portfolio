@@ -7,7 +7,7 @@ Building a perfect portfolio for developers with all sections and essential info
 ## Core Features
 
 - The key sections and information will be:
-  - Avatar, main data (name, main skill and location), contact information (email), CV (PDF document) and social networks (GitHub and LinkedIn)
+  - Information
   - Technologies
   - Experience
   - Projects
@@ -16,6 +16,11 @@ Building a perfect portfolio for developers with all sections and essential info
 - Menu at the top that links to the sections technologies, experience, projects, training and about me
 - The contact information, CV and networks will be buttons with their respective icons to access the information
 - All sections, technologies, company names, project names, centre names, social networks, etc. will be accompanied by their respective icons
+- The information section will consist of:
+  - avatar
+  - name
+  - main skill and location
+  - contact information (email), CV (PDF document) and social networks (GitHub and LinkedIn)
 - The experience will consist of:
   - company name
   - job title
