@@ -26,15 +26,41 @@
 ### Project Structure
 
 ```text
-/src
-  /app         # Next.js App Router pages
-  /components  # React components
-  /lib         # Utility functions
-  /types       # TypeScript types
-/supabase
-  /migrations  # SQL migration files
-  /seed        # Seed data files
-/public        # Static assets
+portfolio/
+├── .github/
+│   └── workflows/                # CI/CD workflows
+├── memory_bank/                  # Cline Memory Bank
+├── public/                       # Static assets
+├── src/
+│   ├── app/                      # Next.js App Router pages
+│   │   ├── api/                  # API routes
+│   │   ├── dashboard/            # Dashboard pages
+│   │   ├── layout.tsx            # Root layout
+│   │   └── page.tsx              # Home page
+│   ├── components/               # React components
+│   │   ├── ui/                   # UI components
+│   │   ├── forms/                # Form components
+│   │   └── layouts/              # Layout components
+│   ├── lib/                      # Utility functions
+│   │   ├── supabase/             # Supabase client
+│   │   ├── utils/                # Helper functions
+│   │   └── constants/            # Constants
+│   └── types/                    # TypeScript types
+├── supabase/
+│   ├── migrations/               # SQL migration files
+│   └── seed/                     # Seed data files
+├── .clinerules                   # Cline rules
+├── .env.local                    # Local environment variables
+├── .env.example                  # Example environment variables
+├── .eslintrc.json                # ESLint configuration
+├── .gitignore                    # Git ignore rules
+├── cline-guide.md                # Cline Project Guide
+├── next.config.js                # Next.js configuration
+├── package.json                  # Project dependencies
+├── postcss.config.js             # PostCSS configuration
+├── README.md                     # Project documentation
+├── tailwind.config.js            # Tailwind configuration
+└── tsconfig.json                 # TypeScript configuration
 ```
 
 ### Database Migrations
