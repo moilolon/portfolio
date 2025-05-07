@@ -8,12 +8,52 @@
 4. **Deployment**: Vercel for hosting and continuous deployment.
 5. **Version Control**: GitHub for source code management.
 
-## Development Setup
+## Development
+
+### Setup
 
 1. **Node.js**: Ensure the latest LTS version is installed for compatibility with Next.js.
 2. **Package Manager**: Use npm or yarn for dependency management.
 3. **IDE**: Visual Studio Code with recommended extensions for React, Tailwind CSS, and Supabase.
 4. **Local Development**: Run the development server using `npm run dev` or `yarn dev`.
+
+### Workflow
+
+1. Cline helps write and review code changes
+2. Vercel automatically deploys from main branch
+3. Database migrations reviewed by Cline before execution
+
+### Project Structure
+
+```text
+/src
+  /app         # Next.js App Router pages
+  /components  # React components
+  /lib         # Utility functions
+  /types       # TypeScript types
+/supabase
+  /migrations  # SQL migration files
+  /seed        # Seed data files
+/public        # Static assets
+```
+
+### Database Migrations
+
+SQL files in /supabase/migrations should:
+
+- Use sequential numbering: 001, 002, etc.
+- Include descriptive names
+- Be reviewed by Cline before execution
+
+Example: 001_create_users_table.sql
+
+### Security
+
+DO NOT read or modify:
+
+- .env files
+- **/config/secrets.*
+- Any file containing API keys or credentials
 
 ## Technical Constraints
 
