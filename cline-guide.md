@@ -107,7 +107,7 @@ The Memory Bank is Cline's way of understanding your project context, enabling i
    touch .clinerules
    ```
 
-5. Add the tech stack and project structure rules (template below)
+5. Add the memory bank custom instructions to the file (template below)
 
 6. Initialize the memory bank by telling Cline:
 
@@ -136,47 +136,9 @@ Building a [type of application] that will [main purpose].
 - Any specific requirements or constraints
 ```
 
-### .clinerules Template
+### Memory Bank Custom Instructions Template
 
-```markdown
-# Project Configuration
-
-## Tech Stack
-- Next.js 14+ with App Router
-- Tailwind CSS for styling
-- Supabase for backend
-- Vercel for deployment
-- GitHub for version control
-
-## Project Structure
-/src
-  /app         # Next.js App Router pages
-  /components  # React components
-  /lib         # Utility functions
-  /types       # TypeScript types
-/supabase
-  /migrations  # SQL migration files
-  /seed        # Seed data files
-/public        # Static assets
-
-## Database Migrations
-SQL files in /supabase/migrations should:
-- Use sequential numbering: 001, 002, etc.
-- Include descriptive names
-- Be reviewed by Cline before execution
-- Example file name 001_create_users_table.sql
-
-## Development Workflow
-- Cline helps write and review code changes
-- Vercel automatically deploys from main branch
-- Database migrations reviewed by Cline before execution
-
-## Security
-DO NOT read or modify:
-- .env files
-- **/config/secrets.*
-- Any file containing API keys or credentials
-```
+[The Complete Guide to Cline Memory Bank](https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank)
 
 ## Project Structure and Organization
 
