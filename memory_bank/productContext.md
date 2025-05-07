@@ -2,13 +2,13 @@
 
 ## Purpose
 
-The portfolio aims to provide developers with a professional and visually appealing platform to showcase their skills, experience, and projects. It serves as a tool for finding job opportunities and promoting personal style.
+The portfolio aims to help developers showcase their skills, experience, and personal style to potential employers or clients. It serves as a tool for finding job opportunities and promoting personal branding.
 
 ## Problems Solved
 
-1. Lack of a centralized platform for developers to present their work and experience effectively.
-2. Difficulty in standing out to potential employers or clients in a competitive job market.
-3. Challenges in maintaining a professional and consistent online presence.
+1. Provides a centralized platform for developers to present their professional profile.
+2. Simplifies the process of sharing key information like skills, experience, and projects.
+3. Enhances visibility to potential employers and clients.
 
 ## User Experience Goals
 
