@@ -13,6 +13,11 @@
 
 </div>
 
+## 📚 Resources
+
+- [Cline Documentation](https://docs.cline.bot)
+- [Cline Project Guide](https://github.com/mgesteban/cline_project_guide)
+
 ## 🫂 Contributors
 
 <a href="https://github.com/moilolon/portfolio/graphs/contributors">

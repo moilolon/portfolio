@@ -35,5 +35,6 @@ next-env.d.ts
 # IDE
 .idea
 .vscode/*
+!.vscode/portfolio.code-workspace
 !.vscode/extensions.json
 !.vscode/settings.json
