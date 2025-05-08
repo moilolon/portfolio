@@ -1,27 +1,28 @@
-# Technical Context
+# Tech Context
 
 ## Technologies Used
 
-1. **Frontend**: Next.js 14+ with App Router for server-side rendering and routing.
-2. **Styling**: Tailwind CSS for utility-first, responsive design.
-3. **Backend**: Supabase for database and authentication services.
-4. **Deployment**: Vercel for hosting and continuous deployment.
-5. **Version Control**: GitHub for source code management.
+- **Frontend**: Next.js 14+ with App Router for server-side rendering and routing.
+- **Styling**: Tailwind CSS for utility-first, responsive design.
+- **Backend**: Supabase for database and authentication services.
+- **Deployment**: Vercel for hosting and continuous deployment.
+- **Version Control**: GitHub for source code management.
 
 ## Development
 
 ### Setup
 
-1. **Node.js**: Ensure the latest LTS version is installed for compatibility with Next.js.
-2. **Package Manager**: Use npm or yarn for dependency management.
-3. **IDE**: Visual Studio Code with recommended extensions for React, Tailwind CSS, and Supabase.
-4. **Local Development**: Run the development server using `npm run dev` or `yarn dev`.
+- **Node.js**: Ensure the latest LTS version is installed for compatibility with Next.js.
+- **Code Quality**: ESLint and Prettier are configured for code quality and formatting.
+- **Package Manager**: Use npm or yarn for dependency management.
+- **IDE**: Visual Studio Code with recommended extensions for React, Tailwind CSS, and Supabase.
+- **Local Development**: Run the development server using `npm run dev` or `yarn dev`.
 
 ### Workflow
 
-1. Cline helps write and review code changes
-2. Vercel automatically deploys from main branch
-3. Database migrations reviewed by Cline before execution
+- Cline helps write and review code changes
+- Vercel automatically deploys from main branch
+- Database migrations reviewed by Cline before execution
 
 ### Project Structure
 
