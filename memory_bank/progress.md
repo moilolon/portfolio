@@ -2,25 +2,23 @@
 
 ## Current Status
 
-1. Memory bank initialization is nearly complete, with all core files created and aligned with the project's goals and structure.
-2. Documentation reflects the project's foundation, technical context, and system patterns.
+- The Memory Bank structure has been established with the creation of all required core files.
+- Initial content has been populated in each file based on the `projectBrief.md` and project requirements.
+
+## What Works
+
+- Clear documentation of the project's purpose, context, system patterns, and technical setup.
+- Alignment with the project's goals and technical preferences.
+
+## What's Left to Build
+
+- Implementation of the portfolio's core features:
+  - Information section with avatar, name, main skill, location, contact details, CV, and social links.
+  - Menu linking to Technologies, Experience, Projects, Training, and About Me sections.
+  - Individual sections for Experience, Projects, Training, and About Me.
+- Integration with Supabase for backend services.
+- Deployment on Vercel.
 
 ## Known Issues
 
-None identified at this stage.
-
-## Remaining Tasks
-
-1. Begin implementing the portfolio's core features as outlined in the project brief.
-2. Develop the frontend using Next.js and Tailwind CSS.
-3. Integrate Supabase for backend services.
-4. Deploy the portfolio on Vercel.
-5. Test for performance, accessibility, and responsiveness.
-
-## Completed Tasks
-
-1. Created `projectBrief.md` to define the project's foundation.
-2. Created `productContext.md` to outline the purpose, problems solved, and user experience goals.
-3. Created `systemPatterns.md` to document the system architecture and design patterns.
-4. Created `techContext.md` to detail the technologies used and development setup.
-5. Created `activeContext.md` to track the current work focus and next steps.
+- None identified at this stage.
