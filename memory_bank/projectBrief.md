@@ -23,7 +23,7 @@ Building a perfect portfolio for developers with all sections and essential info
   - company name
   - job title
   - job description
-  - starting and ending year
+  - starting and ending month and year
 - The projects will be made up of:
   - name
   - owner
