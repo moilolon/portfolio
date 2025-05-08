@@ -2,29 +2,58 @@
 
 ## System Architecture
 
-- The portfolio will be built using a modern web stack with a focus on performance, scalability, and maintainability.
-- The architecture will follow a component-based design, leveraging Next.js's App Router for routing and dynamic rendering.
 - The portfolio is built using Next.js 14+ with the App Router for efficient routing and rendering.
+- TypeScript is used for type safety and better developer experience.
 - Tailwind CSS is used for styling, ensuring a consistent and responsive design.
-- Supabase serves as the backend for managing data and authentication.
-- The project is deployed on Vercel for fast and reliable hosting.
+- The architecture follows a component-based design with clear separation of concerns.
+- Custom CSS variables are used for theming with dark mode support.
 
 ## Key Technical Decisions
 
 - Use of Next.js App Router for modern and scalable routing.
+- TypeScript for type safety and better code quality.
 - Tailwind CSS for rapid UI development and customization.
-- Supabase for seamless backend integration and database management.
-- Vercel for optimized deployment and performance.
+- Geist font family for modern typography.
+- CSS variables for theming and dark mode support.
+- Component-based architecture for better maintainability.
 
 ## Design Patterns
 
 - Component-based architecture for modular and reusable UI elements.
-- Icon-based visual representation for enhanced user experience.
-- Separation of concerns between frontend, backend, and deployment layers.
+- Section-based layout for clear content organization.
 - Responsive design principles to ensure compatibility across devices.
+- Progressive disclosure pattern for experience and project details.
+- Custom animations for enhanced user experience.
+- CSS-in-JS for component-specific styling.
 
 ## Component Relationships
 
-- The top menu links to key sections: Technologies, Experience, Projects, Training, and About Me.
-- Each section is a self-contained component, ensuring maintainability and scalability.
-- Shared components (e.g., buttons, icons) will be used across multiple sections to maintain consistency.
+```mermaid
+flowchart TD
+    Layout[RootLayout] --> Page[HomePage]
+    Page --> Navbar
+    Page --> Information
+    Page --> Technologies
+    Page --> Experience
+    Page --> Projects
+    Page --> Training
+    Page --> AboutMe
+    Page --> Footer
+
+    Technologies --> TechCategory[Technology Categories]
+    Technologies --> TechCard[Technology Cards]
+
+    Experience --> ExpItem[Experience Items]
+
+    Projects --> ProjCard[Project Cards]
+
+    Training --> TrainItem[Training Items]
+```
+
+- The Navbar component provides navigation to all sections.
+- Each section (Information, Technologies, Experience, Projects, Training, AboutMe) is a self-contained component.
+- The Technologies section contains categorized technology cards with proficiency levels.
+- The Experience and Training sections contain expandable items with details.
+- The Projects section contains project cards with details, links, and technology tags.
+- The AboutMe section provides personal information and approach.
+- All components use shared styling through Tailwind CSS classes.
