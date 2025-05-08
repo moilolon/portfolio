@@ -2,18 +2,19 @@
 
 ## Purpose
 
-The portfolio aims to help developers showcase their skills, experience, and personal style to potential employers or clients. It serves as a tool for finding job opportunities and promoting personal branding.
+The portfolio aims to help developers showcase their skills and experience effectively to potential employers or clients, facilitating job opportunities and personal branding.
 
 ## Problems Solved
 
-1. Provides a centralized platform for developers to present their professional profile.
-2. Simplifies the process of sharing key information like skills, experience, and projects.
-3. Enhances visibility to potential employers and clients.
+- Lack of a centralized platform to display professional achievements.
+- Difficulty in presenting skills and experience in a visually appealing and organized manner.
+- Limited tools for developers to promote their personal style and expertise.
 
 ## User Experience Goals
 
-1. Intuitive navigation with a top menu linking to key sections (technologies, experience, projects, training, and about me).
-2. Visually appealing design with icons accompanying key information (e.g., technologies, company names, project names, etc.).
-3. Easy access to contact information, CV, and social networks through buttons with respective icons.
-4. Clear and concise presentation of experience, projects, and training details.
-5. Responsive design optimized for various devices and screen sizes.
+- Intuitive navigation with a top menu linking to key sections.
+- Clear and concise presentation of experience, projects, and training details.
+- Responsive design optimized for various devices and screen sizes.
+- Visually appealing design using Tailwind CSS.
+- Seamless integration of backend services with Supabase.
+- Fast and reliable deployment via Vercel.

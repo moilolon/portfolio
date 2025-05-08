@@ -14,8 +14,6 @@ Building a perfect portfolio for developers with all sections and essential info
   - Training
   - About me
 - Menu at the top that links to the sections technologies, experience, projects, training and about me
-- The contact information, CV and networks will be buttons with their respective icons to access the information
-- All sections, technologies, company names, project names, centre names, social networks, etc. will be accompanied by their respective icons
 - The information section will consist of:
   - avatar
   - name
@@ -25,7 +23,7 @@ Building a perfect portfolio for developers with all sections and essential info
   - company name
   - job title
   - job description
-  - starting and ending year right aligned
+  - starting and ending year
 - The projects will be made up of:
   - name
   - owner
@@ -35,7 +33,7 @@ Building a perfect portfolio for developers with all sections and essential info
 - The training will consist of:
   - name of the center
   - qualification
-  - year of completion aligned to the right
+  - year of completion
 - The about me section will be a text to provide more information
 
 ## Target Users

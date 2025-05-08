@@ -13,6 +13,7 @@
 
 # Misc
 *.pem
+/mockups
 
 # Debug
 npm-debug.log*
