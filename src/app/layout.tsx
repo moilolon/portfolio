@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Developer Portfolio",
+  title: "Moisés López López | Portfolio",
   description: "A professional portfolio showcasing skills, experience, and projects",
   keywords: ["developer", "portfolio", "web development", "frontend", "backend", "full stack"],
-  authors: [{ name: "Your Name" }],
-  creator: "Your Name",
+  authors: [{ name: "moilolon" }],
+  creator: "Moisés López López",
 };
 
 export default function RootLayout({
