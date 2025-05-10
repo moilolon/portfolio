@@ -25,7 +25,7 @@ export default function AboutMe() {
 
             <p className="mb-4 text-lg">
               In 2020, I seized an opportunity to work as a Salesforce Developer Analyst with the Salesforce Commerce Cloud platform.
-              This role presented a new challenge, as it involved migrating Guess's online sales to a platform I had never previously encountered.
+              This role presented a new challenge, as it involved migrating Guess{'\''}s online sales to a platform I had never previously encountered.
             </p>
 
             <p className="mb-4 text-lg">
@@ -48,13 +48,13 @@ export default function AboutMe() {
             <h3 className="text-xl font-semibold mt-8 mb-4">Hobbies</h3>
 
             <p className="mb-4 text-lg">
-              It's essential to remember to enjoy what you do, both at work and in your personal life.
+              It{'\''}s essential to remember to enjoy what you do, both at work and in your personal life.
               My passions revolve around the sun and the beach; whenever I get the chance, I seize the opportunity to escape to a beach in Galicia with my wife or friends.
             </p>
 
             <p className="mb-4 text-lg">
               Sports play a significant role in my life, providing me with a way to unwind and instilling a sense of perseverance in my work.
-              I relish participating in various sports; throughout my life, I've played football, completed a couple of marathons, and engaged in swimming, CrossFit, yoga, and more.
+              I relish participating in various sports; throughout my life, I{'\''}ve played football, completed a couple of marathons, and engaged in swimming, CrossFit, yoga, and more.
             </p>
 
             <p className="mb-4 text-lg">
@@ -70,10 +70,10 @@ export default function AboutMe() {
               And, of course, I always enjoy sharing a few beers with friends!
             </p>
 
-            <h3 className="text-xl font-semibold mt-8 mb-4">Let's Connect</h3>
+            <h3 className="text-xl font-semibold mt-8 mb-4">Let{'\''}s Connect</h3>
 
             <p className="text-lg">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              I{'\''}m always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
               Feel free to reach out through any of the contact methods in the information section above.
             </p>
           </div>
