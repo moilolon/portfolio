@@ -2,28 +2,28 @@ export default function Training() {
   // Define training data
   const trainings = [
     {
-      institution: 'University of Technology',
-      qualification: 'Master of Computer Science',
-      year: '2017',
-      description: 'Specialized in Software Engineering and Web Technologies. Graduated with honors.',
-    },
-    {
-      institution: 'Tech Academy',
-      qualification: 'Full Stack Web Development Bootcamp',
-      year: '2016',
-      description: 'Intensive 12-week program covering modern web development technologies and practices.',
-    },
-    {
-      institution: 'City College',
-      qualification: 'Bachelor of Science in Computer Science',
-      year: '2015',
-      description: 'Focused on programming fundamentals, algorithms, and data structures.',
+      institution: 'Trailhead Academy',
+      qualification: 'B2C Commerce Developer with SFRA',
+      year: '2020',
+      description: 'Intensive week program covering the fundamentals of Salesforce B2C Commerce and the SFRA framework.',
     },
     {
       institution: 'Online Learning Platform',
-      qualification: 'Advanced React and Redux Certification',
-      year: '2018',
-      description: 'Comprehensive course on building complex applications with React and Redux.',
+      qualification: 'J2EE Platform',
+      year: '2016',
+      description: 'Comprehensive courses on building complex applications with Java EE, J2EE Patterns, Spring MVC Web Applications, Spring Boot, Spring Batch, Hibernate, Oracle11g PL/SQL, Microservices, REST, JavaScript and HTML5&CSS3.',
+    },
+    {
+      institution: 'University of A Coruña',
+      qualification: 'Engineering in Computer Science',
+      year: '2014',
+      description: 'Project: Design and implementation of a Java EE Web application with MVC architecture, for PDF generation of electronic tickets.',
+    },
+    {
+      institution: 'University of A Coruña',
+      qualification: 'Technical Engineering in Computer Systems',
+      year: '2012',
+      description: 'Project: Design and implementation of a .NET Web application with MVC architecture for the exchange of experiences and resources of the In-TIC project.',
     },
   ];
 

@@ -9,9 +9,13 @@ export default function Information() {
           {/* Avatar */}
           <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-foreground/10">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 animate-gradient-xy">
-              {/* Placeholder for avatar - replace with actual image */}
               <div className="flex items-center justify-center h-full text-white text-6xl font-bold">
-                MP
+                <Image
+                  src="/avatar.jpg"
+                  alt="Avatar"
+                  fill
+                  className="object-cover rounded-full"
+                />
               </div>
             </div>
           </div>
@@ -19,16 +23,16 @@ export default function Information() {
           {/* Information */}
           <div className="text-center md:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-2">
-              Your Name
+              Moisés López López
             </h1>
             <h2 className="text-xl md:text-2xl text-foreground/80 mb-4">
-              Full Stack Developer | Madrid, Spain
+              Salesforce Full Stack Developer | A Coruña, Spain
             </h2>
 
             {/* Contact Information */}
             <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6">
               <Link
-                href="mailto:your.email@example.com"
+                href="mailto:moiseslopezlopez@gmail.com"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -39,7 +43,7 @@ export default function Information() {
               </Link>
 
               <Link
-                href="/resume.pdf"
+                href="/cv/curriculum_en.pdf"
                 target="_blank"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
               >
@@ -50,7 +54,7 @@ export default function Information() {
               </Link>
 
               <Link
-                href="https://github.com/yourusername"
+                href="https://github.com/moilolon"
                 target="_blank"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
               >
@@ -61,7 +65,7 @@ export default function Information() {
               </Link>
 
               <Link
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/moilolon"
                 target="_blank"
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
               >
@@ -74,8 +78,7 @@ export default function Information() {
 
             {/* Brief Introduction */}
             <p className="text-lg max-w-2xl">
-              Passionate full-stack developer with expertise in modern web technologies.
-              Dedicated to creating elegant, efficient, and user-friendly applications.
+              Passionate software engineer and full-stack developer with expertise in Salesforce.
             </p>
           </div>
         </div>
