@@ -1,12 +1,12 @@
 name: "Code Review Assistant"
 
 on:
-    pull_request:
-        branches:
+    push:
+        branches-ignore:
             - "main"
 
 jobs:
-    run-lint-js:
+    run-lint:
         name: Run Lint
         runs-on: "ubuntu-latest"
         steps:
