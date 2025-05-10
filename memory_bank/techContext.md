@@ -33,8 +33,6 @@ portfolio/
 │   ├── systemPatterns.md         # System architecture
 │   └── techContext.md            # Technical context
 ├── public/                       # Static assets
-│   ├── next.svg                  # Next.js logo
-│   └── vercel.svg                # Vercel logo
 ├── src/
 │   ├── app/                      # Next.js App Router pages
 │   │   ├── api/                  # API routes
@@ -44,21 +42,21 @@ portfolio/
 │   │   ├── layout.tsx            # Root layout
 │   │   └── page.tsx              # Home page
 │   ├── components/               # React components
-│   │   ├── ui/                   # UI components
 │   │   ├── forms/                # Form components
 │   │   ├── layouts/              # Layout components
 │   │   │   └── Navbar.tsx        # Navigation bar
-│   │   └── sections/             # Section components
+│   │   ├── sections/             # Section components
 │   │   │   ├── AboutMe.tsx       # About Me section
 │   │   │   ├── Experience.tsx    # Experience section
 │   │   │   ├── Information.tsx   # Information section
 │   │   │   ├── Projects.tsx      # Projects section
 │   │   │   ├── Technologies.tsx  # Technologies section
 │   │   │   └── Training.tsx      # Training section
+│   │   └── ui/                   # UI components
 │   ├── lib/                      # Utility functions
+│   │   ├── constants/            # Constants
 │   │   ├── supabase/             # Supabase client
-│   │   ├── utils/                # Helper functions
-│   │   └── constants/            # Constants
+│   │   └── utils/                # Helper functions
 │   └── types/                    # TypeScript types
 ├── supabase/
 │   ├── migrations/               # SQL migration files

@@ -5,25 +5,32 @@ import { useState } from 'react';
 // Define experience data
 const experiences = [
   {
-    company: 'Tech Innovations Inc.',
-    title: 'Senior Frontend Developer',
-    period: 'Jan 2022 - Present',
-    description: 'Led the development of a complex SPA using React, Next.js, and TypeScript. Implemented CI/CD pipelines and improved performance by 40%. Mentored junior developers and conducted code reviews.',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Jest'],
+    company: '3MT Global Services',
+    title: 'Salesforce Developer Analyst',
+    period: 'Dec 2019 - Present',
+    description: 'Analysis and software development on the Salesforce Commerce Cloud (SFCC) platform for the clothing line brand Guess. Led the creation and development of a sophisticated SFCC site and management of integrations with various systems and applications through API services. Mentored junior developers and conducting thorough code reviews to ensure high-quality standards.',
+    technologies: ['Salesforce Commerce Cloud', 'Node.js', 'JavaScript', 'jQuery', 'HTML5', 'CSS3'],
   },
   {
-    company: 'Digital Solutions Ltd.',
-    title: 'Full Stack Developer',
-    period: 'Mar 2019 - Dec 2021',
-    description: 'Developed and maintained multiple web applications using the MERN stack. Collaborated with UX/UI designers to implement responsive designs. Optimized database queries and API endpoints.',
-    technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'Redux', 'SCSS'],
+    company: 'Altia',
+    title: 'Java Developer Analyst',
+    period: 'Feb 2019 - Nov 2019',
+    description: 'Analysis and software development in the realm of public administration, involving conducting analytical tasks by leveraging expertise in object-oriented design and software design patterns. The software development was accomplished using technologies from the J2EE platform.',
+    technologies: ['Java', 'Spring', 'JSP', 'JavaScript', 'Web Services'],
   },
   {
-    company: 'WebCraft Agency',
-    title: 'Junior Web Developer',
-    period: 'Jun 2017 - Feb 2019',
-    description: 'Created responsive websites for clients across various industries. Implemented frontend designs using HTML, CSS, and JavaScript. Assisted in the development of WordPress themes and plugins.',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'WordPress', 'PHP', 'jQuery'],
+    company: 'atSistemas',
+    title: 'Senior Software Engineer',
+    period: 'Aug 2016 - Jan 2019',
+    description: 'Analysis and software development in the checkout sector for stores within the Inditex group focuses on integration projects, involving conducting analytical tasks leveraging expertise in object-oriented design and software patterns. Additionally, software development was accomplished using technologies from the J2EE platform.',
+    technologies: ['Java', 'Spring', 'Hibernate', 'JSP', 'JavaScript', 'Maven', 'Web Services'],
+  },
+  {
+    company: 'Indra',
+    title: 'Software Engineer',
+    period: 'May 2014 - Jul 2016',
+    description: 'Software development leveraging J2EE platform technologies that encompasses a range of powerful tools and frameworks which facilitate dependency injection and transaction management. The development process also utilized JavaScript and Maven for project management. Furthermore, SOAP Web Services, alongside Oracle, SQL, and PL/SQL, play crucial roles in data handling and integration within applications.',
+    technologies: ['Java', 'JPA', 'Hibernate', 'Spring', 'JSP', 'JavaScript', 'Maven', 'Web Services', 'Oracle', 'SQL'],
   },
 ];
 
