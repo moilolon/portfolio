@@ -13,26 +13,49 @@
 
 </div>
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) to develop portfolio for developers.
+A modern, responsive portfolio website built with Next.js 14+ and TypeScript, designed to help developers showcase their professional journey. Features server-side rendering for optimal performance, responsive design, and a clean interface to present your skills, projects, and achievements effectively.
 
-## 📚 Getting Started
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Information Section** - Display your avatar, name, main skills, location, and contact details
+- **Technologies Section** - Showcase your technical skills with proficiency levels
+- **Experience Section** - Present your work history with detailed job descriptions
+- **Projects Section** - Highlight your projects with descriptions and tech stacks
+- **Training Section** - List your education and certifications
+- **About Me Section** - Share your personal story and approach
 
-### Learn More
+## 🛠 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: [Next.js 14+](https://nextjs.org) with App Router for optimized rendering
+- **Language**: [TypeScript](https://www.typescriptlang.org/) for type-safe development
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) for responsive design
+- **Database**: [Supabase](https://supabase.com/) for backend services
+- **Deployment**: [Vercel](https://vercel.com) for seamless deployment
+- **Font**: [Geist](https://vercel.com/font) for modern typography
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+portfolio/
+├── src/
+│   ├── app/                # Next.js App Router pages
+│   ├── components/         # React components
+│   │   ├── forms/          # Form components
+│   │   ├── layouts/        # Layout components
+│   │   ├── sections/       # Main section components
+│   │   └── ui/             # UI components
+│   ├── lib/                # Utility functions
+│   └── types/              # TypeScript types
+├── public/                 # Static assets
+└── supabase/               # Database migrations
+```
 
-### Deploy on Vercel
+## 🔜 Upcoming Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Contact form functionality
+- Dark mode toggle
+- Project filtering capabilities
+- Blog section
 
 ## 🤖 Cline Resources
 
