@@ -64,7 +64,6 @@ portfolio/
 ├── .clinerules                   # Cline rules
 ├── .env.local                    # Local environment variables
 ├── .env.example                  # Example environment variables
-├── .eslintrc.json                # ESLint configuration
 ├── .gitignore                    # Git ignore rules
 ├── cline-guide.md                # Cline Project Guide
 ├── eslint.config.mjs             # ESLint configuration
@@ -104,9 +103,8 @@ Example: 001_create_users_table.sql
 
 DO NOT read or modify:
 
-- .env files
-- **/config/secrets.*
 - Any file containing API keys or credentials
+- Any sensitive configuration files
 
 ## Technical Constraints
 
