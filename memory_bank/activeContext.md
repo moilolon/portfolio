@@ -4,9 +4,12 @@
 
 - Portfolio website implementation is complete with all required sections.
 - The development server is running and the portfolio is fully functional.
+- Production build has been verified successfully.
+- Manual deployment through Vercel dashboard.
 
 ## Recent Changes
 
+- Deployment via Vercel dashboard
 - Implemented all portfolio sections:
   - Navbar with navigation links
   - Information section with avatar, name, location, and contact details
@@ -26,7 +29,6 @@
 2. Implement dark mode toggle
 3. Add filtering capabilities to the projects section
 4. Consider adding a blog section
-5. Deploy the portfolio to Vercel
 
 ## Active Decisions
 
@@ -38,3 +40,4 @@
 6. Used Tailwind CSS for styling to ensure consistency and responsiveness
 7. Organized sections in separate components for better code organization
 8. Used Geist font family for better typography
+9. Deployed manually through Vercel dashboard for better control over the deployment process
