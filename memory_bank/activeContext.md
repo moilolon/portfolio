@@ -9,6 +9,9 @@
 
 ## Recent Changes
 
+- Implemented contact form functionality as a modal with animations
+- Added toast notifications for form submission feedback
+- Enhanced contact modal styling with gradients and icons to match site design
 - Deployment via Vercel dashboard
 - Implemented all portfolio sections:
   - Navbar with navigation links
@@ -25,10 +28,9 @@
 
 ## Next Steps
 
-1. Consider adding a contact form functionality
-2. Implement dark mode toggle
-3. Add filtering capabilities to the projects section
-4. Consider adding a blog section
+1. Implement dark mode toggle
+2. Add filtering capabilities to the projects section
+3. Consider adding a blog section
 
 ## Active Decisions
 
