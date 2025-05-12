@@ -48,12 +48,17 @@ flowchart TD
     Projects --> ProjCard[Project Cards]
 
     Training --> TrainItem[Training Items]
+
+    Navbar --> ContactModal[Contact Modal]
+    ContactModal --> ContactForm[Contact Form]
 ```
 
-- The Navbar component provides navigation to all sections.
+- The Navbar component provides navigation to all sections and contains a Contact button that opens a modal.
 - Each section (Information, Technologies, Experience, Projects, Training, AboutMe) is a self-contained component.
 - The Technologies section contains categorized technology cards with proficiency levels.
 - The Experience and Training sections contain expandable items with details.
 - The Projects section contains project cards with details, links, and technology tags.
 - The AboutMe section provides personal information and approach.
+- The ContactModal contains a form with reCAPTCHA protection for sending messages and animated transitions.
+- Toast notifications provide feedback for form submissions.
 - All components use shared styling through Tailwind CSS classes.
