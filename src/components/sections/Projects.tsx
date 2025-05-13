@@ -11,7 +11,7 @@ const projects = [
     owner: 'Personal Project',
     summary: 'A personal portfolio website to showcase skills, experience, and projects.',
     description: 'A responsive portfolio website to showcase skills, experience, and projects. Features smooth scrolling, dark mode, and contact form integration.',
-    technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Vercel'],
+    technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Supabase', 'Resend', 'Google reCAPTCHA', 'Vercel'],
     image: '/projects/portfolio.png',
     links: {
       github: 'https://github.com/moilolon/portfolio',
