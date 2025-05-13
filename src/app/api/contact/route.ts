@@ -76,7 +76,7 @@ export async function POST(request: Request) {
     }
 
     // Send email with Resend
-    const { data, error: emailError } = await resend.emails.send({
+    const { error: emailError } = await resend.emails.send({
       from: 'My Portfolio <portfolio@moilolon.com>',
       to: process.env.NOTIFICATION_EMAIL!,
       subject: `New Contact Message: ${subject}`,
