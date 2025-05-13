@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import ContactModal from '@/components/modals/ContactModal';
 
 const navItems = [
   { name: 'Technologies', href: '#technologies' },
@@ -13,6 +14,7 @@ const navItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +57,12 @@ export default function Navbar() {
                   {item.name}
                 </Link>
               ))}
+              <button
+                onClick={() => setIsContactModalOpen(true)}
+                className="px-3 py-2 rounded-md text-sm font-medium hover:bg-foreground/10 transition-colors"
+              >
+                Contact
+              </button>
             </div>
           </div>
           <div className="md:hidden">
@@ -62,12 +70,18 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </nav>
   );
 }
 
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <div>
@@ -107,9 +121,23 @@ function MobileMenu() {
                 {item.name}
               </Link>
             ))}
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                setIsContactModalOpen(true);
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-foreground/10"
+            >
+              Contact
+            </button>
           </div>
         </div>
       )}
+
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
     </div>
   );
 }

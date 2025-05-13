@@ -19,7 +19,7 @@ export default function Home() {
 
       <footer className="py-8 text-center text-foreground/60 text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} <a href="https://github.com/moilolon">moilolon</a>. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} <a href="https://moilolon.com">moilolon</a>. All rights reserved.</p>
         </div>
       </footer>
     </div>
