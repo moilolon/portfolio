@@ -36,6 +36,8 @@ portfolio/
 ├── src/
 │   ├── app/                      # Next.js App Router pages
 │   │   ├── api/                  # API routes
+│   │   │   └── contact/          # Contact form API
+│   │   │       └── route.ts      # Contact form endpoint
 │   │   ├── dashboard/            # Dashboard pages
 │   │   ├── favicon.ico           # Favicon
 │   │   ├── globals.css           # Global styles
@@ -43,8 +45,11 @@ portfolio/
 │   │   └── page.tsx              # Home page
 │   ├── components/               # React components
 │   │   ├── forms/                # Form components
+│   │   │   └── ContactForm.tsx   # Contact form component
 │   │   ├── layouts/              # Layout components
 │   │   │   └── Navbar.tsx        # Navigation bar
+│   │   ├── modals/               # Modal components
+│   │   │   └── ContactModal.tsx  # Contact modal component
 │   │   ├── sections/             # Section components
 │   │   │   ├── AboutMe.tsx       # About Me section
 │   │   │   ├── Experience.tsx    # Experience section
@@ -53,8 +58,11 @@ portfolio/
 │   │   │   ├── Technologies.tsx  # Technologies section
 │   │   │   └── Training.tsx      # Training section
 │   │   └── ui/                   # UI components
+│   │       ├── Modal.tsx         # Modal component
+│   │       └── Toast.tsx         # Toast notification component
 │   ├── lib/                      # Utility functions
 │   │   ├── constants/            # Constants
+│   │   ├── resend/               # Resend client
 │   │   ├── supabase/             # Supabase client
 │   │   └── utils/                # Helper functions
 │   └── types/                    # TypeScript types
@@ -63,7 +71,6 @@ portfolio/
 │   └── seed/                     # Seed data files
 ├── .clinerules                   # Cline rules
 ├── .env.local                    # Local environment variables
-├── .env.example                  # Example environment variables
 ├── .gitignore                    # Git ignore rules
 ├── cline-guide.md                # Cline Project Guide
 ├── eslint.config.mjs             # ESLint configuration
@@ -119,3 +126,5 @@ DO NOT read or modify:
 2. **TypeScript**: For type safety and better developer experience.
 3. **Tailwind CSS**: Styling library for responsive design.
 4. **Geist Font**: Typography from Vercel for modern look and feel.
+5. **Resend**: Email delivery service for contact form submissions.
+6. **React Google reCAPTCHA**: Anti-spam protection for the contact form.

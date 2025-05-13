@@ -15,7 +15,7 @@ const projects = [
     image: '/projects/portfolio.png',
     links: {
       github: 'https://github.com/moilolon/portfolio',
-      live: 'https://portfolio-moilolon-projects.vercel.app',
+      live: 'https://portfolio.moilolon.com',
     },
   },
   {

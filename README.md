@@ -23,6 +23,8 @@ A modern, responsive portfolio website built with Next.js 14+ and TypeScript, de
 - **Projects Section** - Highlight your projects with descriptions and tech stacks
 - **Training Section** - List your education and certifications
 - **About Me Section** - Share your personal story and approach
+- **Contact** - Styled contact form with gradient UI, animations, and toast notifications
+- **Responsive Design** - Optimized for all screen sizes with custom animations
 
 ## 🛠 Tech Stack
 
@@ -32,30 +34,40 @@ A modern, responsive portfolio website built with Next.js 14+ and TypeScript, de
 - **Database**: [Supabase](https://supabase.com/) for backend services
 - **Deployment**: [Vercel](https://vercel.com) for seamless deployment
 - **Font**: [Geist](https://vercel.com/font) for modern typography
+- **Email**: [Resend](https://resend.com) for reliable email delivery
+- **Security**: [React Google reCAPTCHA](https://www.google.com/recaptcha) for form protection
 
 ## 🏗 Project Structure
 
 ```
 portfolio/
 ├── src/
-│   ├── app/                # Next.js App Router pages
-│   ├── components/         # React components
-│   │   ├── forms/          # Form components
-│   │   ├── layouts/        # Layout components
-│   │   ├── sections/       # Main section components
-│   │   └── ui/             # UI components
-│   ├── lib/                # Utility functions
-│   └── types/              # TypeScript types
-├── public/                 # Static assets
-└── supabase/               # Database migrations
+│   ├── app/                      # Next.js App Router pages
+│   │   └── api/                  # API routes
+│   │       └── contact/          # Contact endpoint
+│   ├── components/
+│   │   ├── forms/                # Form components
+│   │   ├── layouts/              # Layout components
+│   │   ├── modals/               # Modal components
+│   │   ├── sections/             # Main section components
+│   │   └── ui/                   # Reusable UI components
+│   ├── lib/                      # Utility functions
+│   │   ├── constants/            # App constants
+│   │   ├── resend/               # Email client
+│   │   ├── supabase/             # Database client
+│   │   └── utils/                # Helper functions
+│   └── types/                    # TypeScript types
+├── public/                       # Static assets
+└── supabase/                     # Database configuration
+    ├── migrations/               # SQL migration files
+    └── seed/                     # Seed data files
 ```
 
 ## 🔜 Upcoming Features
 
-- Contact form functionality
-- Dark mode toggle
+- Dark mode toggle for manual theme switching
 - Project filtering capabilities
-- Blog section
+- Blog section for sharing articles and tutorials
 
 ## 🤖 Cline Resources
 
