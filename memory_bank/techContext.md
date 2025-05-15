@@ -19,6 +19,80 @@
 - **IDE**: Visual Studio Code with extensions for React, TypeScript, and Tailwind CSS.
 - **Local Development**: Run the development server using `npm run dev`.
 
+### Git and GitHub Best Practices
+
+#### Branch Naming Guidelines
+
+Follow these branch naming conventions and guidelines:
+
+```text
+<type>/<description>
+```
+
+Types:
+
+- `feature`: New feature development
+- `bugfix`: Bug fixes
+- `hotfix`: Urgent production fixes
+- `refactor`: Code improvements without changing functionality
+- `docs`: Documentation updates
+- `style`: UI/styling changes
+- `test`: Test additions or modifications
+- `chore`: Maintenance tasks
+
+Examples:
+
+```text
+feature/add-dark-mode
+
+bugfix/fix-mobile-nav
+
+docs/update-api-docs
+
+refactor/optimize-animations
+```
+
+Branch Guidelines:
+
+1. Always create branches from `main`
+2. Use lowercase letters and hyphens for the description
+3. Keep descriptions concise but meaningful
+4. Regularly sync your branch with `main` to avoid conflicts
+5. Follow one branch per feature/fix principle
+6. Keep branches short-lived to minimize merge conflicts
+
+#### Commit Message Guidelines
+
+Follow the conventional commit format:
+
+```text
+type(scope): description
+
+[optional body]
+
+[optional footer]
+```
+
+Types:
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation
+- `style`: Formatting
+- `refactor`: Code restructuring
+- `test`: Tests
+- `chore`: Maintenance
+
+Examples:
+
+```text
+feat(auth): add login and registration forms
+
+fix(navbar): resolve mobile menu display issue
+
+docs: update README with setup instructions
+```
+
 ### Project Structure
 
 ```text
