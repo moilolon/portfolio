@@ -90,7 +90,7 @@ feat(auth): add login and registration forms
 
 fix(navbar): resolve mobile menu display issue
 
-docs: update README with setup instructions
+docs(guidelines): update README with setup instructions
 ```
 
 ### Project Structure
