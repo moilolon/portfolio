@@ -186,10 +186,10 @@ flowchart TD
    - Pull request operations
    - Code search and review
    - Use when tasks involve:
-     - GitHub repositories
-     - Code collaboration
-     - Pull request workflow
-     - Issue management
+     * GitHub repositories
+     * Code collaboration
+     * Pull request workflow
+     * Issue management
 
 2. **Git Server (`mcp-git`)**
    - Local git operations
@@ -197,9 +197,9 @@ flowchart TD
    - Branch operations
    - Repository path: `/home/Developer/PERSONAL/portfolio`
    - Use when tasks require:
-     - Local git commands
-     - Branch management
-     - Commit operations
+     * Local git commands
+     * Branch management
+     * Commit operations
 
 ### Selection Strategy
 
