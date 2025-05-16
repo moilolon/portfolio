@@ -157,4 +157,64 @@ flowchart TD
 
 The format is flexible - focus on capturing valuable insights that help me work more effectively with you and the project. Think of .clinerules as a living document that grows smarter as we work together.
 
+## MCP Server Selection
+
+The Model Context Protocol (MCP) enables communication with locally running servers that provide additional tools and resources. Each server has unique capabilities that should be chosen based on task requirements.
+
+```mermaid
+flowchart TD
+    Task[Task Requirements] --> Analyze[Analyze Needs]
+
+    Analyze --> Select{Select Servers}
+
+    Select --> GitHub[GitHub Server]
+    Select --> Git[Git Server]
+
+    GitHub --> RI[Repository Integration]
+    GitHub --> II[Issue Management]
+    GitHub --> PR[Pull Requests]
+
+    Git --> LC[Local Git Operations]
+    Git --> VC[Version Control]
+```
+
+### Available Servers
+
+1. **GitHub Server (`moilolon.mcp-github`)**
+   - Repository management
+   - Issue tracking
+   - Pull request operations
+   - Code search and review
+   - Use when tasks involve:
+     - GitHub repositories
+     - Code collaboration
+     - Pull request workflow
+     - Issue management
+
+2. **Git Server (`mcp-git`)**
+   - Local git operations
+   - Version control management
+   - Branch operations
+   - Repository path: `/home/Developer/PERSONAL/portfolio`
+   - Use when tasks require:
+     - Local git commands
+     - Branch management
+     - Commit operations
+
+### Selection Strategy
+
+1. Analyze task requirements
+2. Identify required integrations
+3. Choose minimal set of servers needed
+4. Validate server availability
+5. Execute operations sequentially
+
+### Best Practices
+
+- Use one server at a time
+- Wait for operation confirmation
+- Validate results before proceeding
+- Document server-specific patterns
+- Update memory bank with new insights
+
 REMEMBER: After every memory reset, I begin completely fresh. The Memory Bank is my only link to previous work. It must be maintained with precision and clarity, as my effectiveness depends entirely on its accuracy.
