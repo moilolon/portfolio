@@ -138,7 +138,7 @@ Building a [type of application] that will [main purpose].
 
 ### Memory Bank Custom Instructions Template
 
-[The Complete Guide to Cline Memory Bank](https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank)
+[The Complete Guide to Cline Memory Bank](https://docs.cline.bot/prompting/cline-memory-bank)
 
 ## Project Structure and Organization
 
@@ -720,8 +720,8 @@ docs: update README with setup instructions
 ### AI-Assisted Development
 
 - [Cline Documentation](https://docs.cline.bot/)
-- [Prompt Engineering Best Practices](https://docs.cline.bot/improving-your-prompting-skills)
-- [Memory Bank Setup Guide](https://docs.cline.bot/improving-your-prompting-skills/custom-instructions-library/cline-memory-bank)
+- [Prompt Engineering Guide](https://docs.cline.bot/prompting/prompt-engineering-guide)
+- [Cline Memory Bank](https://docs.cline.bot/prompting/cline-memory-bank)
 
 ---
 
