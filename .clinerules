@@ -169,6 +169,9 @@ flowchart TD
 
     Select --> GitHub[GitHub Server]
     Select --> Git[Git Server]
+    Select --> FS[Filesystem Server]
+    Select --> Figma[Figma Server]
+    Select --> Browser[Browser Tools Server]
 
     GitHub --> RI[Repository Integration]
     GitHub --> II[Issue Management]
@@ -176,6 +179,19 @@ flowchart TD
 
     Git --> LC[Local Git Operations]
     Git --> VC[Version Control]
+
+    FS --> FM[File Management]
+    FS --> CM[Content Operations]
+    FS --> FS_Search[File Search]
+
+    Figma --> FD[Design Integration]
+    Figma --> FA[Asset Export]
+    Figma --> FL[Layout Info]
+
+    Browser --> BA[Accessibility]
+    Browser --> BP[Performance]
+    Browser --> BD[Debugging]
+    Browser --> BN[Network Analysis]
 ```
 
 ### Available Servers
@@ -200,6 +216,36 @@ flowchart TD
      - Local git commands
      - Branch management
      - Commit operations
+
+3. **Filesystem Server (`mcp-filesystem`)**
+   - File system operations
+   - Content management
+   - Directory navigation
+   - Use when tasks require:
+     - Reading/writing files
+     - Managing directories
+     - Searching file content
+     - File metadata access
+
+4. **Figma Server (`moilolon.mcp-figma`)**
+   - Figma design integration
+   - Design asset export
+   - Layout information retrieval
+   - Use when tasks involve:
+     - Accessing Figma file data
+     - Downloading design assets
+     - Implementing UI from Figma designs
+     - Converting designs to code
+
+5. **Browser Tools Server (`mcp-browser-tools`)**
+   - Browser interaction
+   - Performance monitoring
+   - Debugging support
+   - Use when tasks involve:
+     - Console log analysis
+     - Network monitoring
+     - Performance auditing
+     - Accessibility testing
 
 ### Selection Strategy
 
