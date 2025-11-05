@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Toast from '@/components/ui/Toast';
+import { EmailIcon, LoadingSpinnerIcon, MessageIcon, UserIcon } from '@/components/icons/forms';
 
 interface ContactFormProps {
   onSuccess?: () => void;
@@ -89,14 +90,12 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium">
+        <label htmlFor="name" className="block text-sm font-medium text-foreground">
           Name
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
+            <UserIcon className="h-5 w-5 text-foreground/40" />
           </div>
           <input
             id="name"
@@ -104,20 +103,18 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="pl-10 block w-full rounded-lg border-foreground/10 bg-foreground/5 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors"
+            className="pl-10 block w-full h-10 rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium">
+        <label htmlFor="email" className="block text-sm font-medium text-foreground">
           Email
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
+            <EmailIcon className="h-5 w-5 text-foreground/40" />
           </div>
           <input
             id="email"
@@ -125,20 +122,18 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="pl-10 block w-full rounded-lg border-foreground/10 bg-foreground/5 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors"
+            className="pl-10 block w-full h-10 rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium">
+        <label htmlFor="subject" className="block text-sm font-medium text-foreground">
           Subject
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-foreground/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
-            </svg>
+            <MessageIcon className="h-5 w-5 text-foreground/40" />
           </div>
           <input
             id="subject"
@@ -146,13 +141,13 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             required
-            className="pl-10 block w-full rounded-lg border-foreground/10 bg-foreground/5 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors"
+            className="pl-10 block w-full h-10 rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium">
+        <label htmlFor="message" className="block text-sm font-medium text-foreground">
           Message
         </label>
         <div className="mt-1 relative rounded-md shadow-sm">
@@ -162,7 +157,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
-            className="block w-full rounded-lg border-foreground/10 bg-foreground/5 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors"
+            className="block w-full rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors p-3 resize-none"
           />
         </div>
       </div>
@@ -178,14 +173,11 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-all duration-200"
+          className="inline-flex w-full justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-black hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200"
         >
           {isSubmitting ? (
             <span className="flex items-center">
-              <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
+              <LoadingSpinnerIcon className="-ml-1 mr-2 text-white" />
               Sending...
             </span>
           ) : 'Send Message'}
