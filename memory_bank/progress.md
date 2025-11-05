@@ -24,6 +24,8 @@
 - SEO-friendly metadata
 - Production build and deployment configuration
 - Direct communication through styled modal contact form with gradient UI and toast notifications
+- Vercel Analytics integration for visitor and page view tracking
+- Vercel Speed Insights for Core Web Vitals and performance monitoring
 
 ## What's Left to Build
 

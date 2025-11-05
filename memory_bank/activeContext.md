@@ -9,6 +9,8 @@
 
 ## Recent Changes
 
+- Integrated Vercel Speed Insights for Core Web Vitals and performance monitoring
+- Integrated Vercel Analytics for visitor and page view tracking
 - Implemented contact form functionality as a modal with animations
 - Added toast notifications for form submission feedback
 - Enhanced contact modal styling with gradients and icons to match site design

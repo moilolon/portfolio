@@ -202,3 +202,5 @@ DO NOT read or modify:
 4. **Geist Font**: Typography from Vercel for modern look and feel.
 5. **Resend**: Email delivery service for contact form submissions.
 6. **React Google reCAPTCHA**: Anti-spam protection for the contact form.
+7. **Vercel Analytics**: Privacy-focused analytics for tracking page views and visitor metrics.
+8. **Vercel Speed Insights**: Real User Monitoring (RUM) for Core Web Vitals and performance metrics.
