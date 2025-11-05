@@ -4,7 +4,7 @@ export default function AboutMe() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">About Me</h2>
 
-        <div className="max-w-3xl mx-auto">
+        <div>
           <div className="bg-background rounded-lg p-8 shadow-sm">
             <p className="mb-4 text-lg">
               My journey in software development commenced in 2014, shortly after I completed my degree in Computer Science Engineering at the University of A Coruña.
