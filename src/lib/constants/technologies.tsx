@@ -1,0 +1,87 @@
+import type { TechnologyCategory } from '@/types/technologies';
+import {
+  NextIcon,
+  TypeScriptIcon,
+  TailwindIcon,
+  JavaScriptIcon,
+  JQueryIcon,
+  Html5Icon,
+  Css3Icon,
+  JspIcon,
+  BootstrapIcon,
+  SassIcon,
+  NodeIcon,
+  JavaIcon,
+  HibernateIcon,
+  SpringIcon,
+  SupabaseIcon,
+  OracleIcon,
+  PostgreSqlIcon,
+  GraphQlIcon,
+  GitIcon,
+  GithubIcon,
+  DockerIcon,
+  VercelIcon,
+  PostmanIcon,
+  VsCodeIcon,
+  AzureAiIcon
+} from '@/components/icons/technologies';
+
+export const technologies: TechnologyCategory[] = [
+  {
+    category: 'Frontend',
+    items: [
+      { name: 'Next.js', icon: <NextIcon />, level: 25, color: '#000000' },
+      { name: 'TypeScript', icon: <TypeScriptIcon />, level: 25, color: '#3178C6' },
+      { name: 'Tailwind CSS', icon: <TailwindIcon />, level: 25, color: '#1CD4B5' },
+      { name: 'JavaScript', icon: <JavaScriptIcon />, level: 90, color: '#F7DF1E' },
+      { name: 'jQuery', icon: <JQueryIcon />, level: 90, color: '#63B9E3' },
+      { name: 'HTML5', icon: <Html5Icon />, level: 90, color: '#E44D26' },
+      { name: 'CSS3', icon: <Css3Icon />, level: 90, color: '#1172B8' },
+      { name: 'JSP', icon: <JspIcon />, level: 90, color: '#FDB940' },
+      { name: 'Bootstrap', icon: <BootstrapIcon />, level: 80, color: '#563D7C'},
+      { name: 'SASS', icon: <SassIcon />, level: 80, color: '#CC6699' },
+    ],
+  },
+  {
+    category: 'Backend',
+    items: [
+      { name: 'Node.js', icon: <NodeIcon />, level: 90, color: '#8CC84B' },
+      { name: 'Java', icon: <JavaIcon />, level: 95, color: '#E76F00' },
+      { name: 'Hibernate', icon: <HibernateIcon />, level: 85, color: '#BCAE79' },
+      { name: 'Spring', icon: <SpringIcon />, level: 85, color: '#70AD51' },
+      { name: 'JPA', color: '#E76F00' },
+      { name: 'Web Services', color: '#8CC84B' },
+      { name: 'REST', color: '#8CC84B' },
+      { name: 'Supabase', icon: <SupabaseIcon />, level: 25, color: '#3ECF8E' },
+      { name: 'Oracle', icon: <OracleIcon />, level: 85, color: '#EA1B22' },
+      { name: 'PostgreSQL', icon: <PostgreSqlIcon />, level: 75, color: '#336791' },
+      { name: 'SQL Server', color: '#CC2927' },
+      { name: 'SQL', color: '#EA1B22' },
+      { name: 'GraphQL', icon: <GraphQlIcon />, level: 70, color: '#E10098' },
+      { name: 'ASP.NET Core', color: '#512BD4' },
+      { name: 'Entity Framework Core', color: '#512BD4' },
+    ],
+  },
+  {
+    category: 'DevOps & Tools',
+    items: [
+      { name: 'Git', icon: <GitIcon />, level: 90, color: '#EE513B' },
+      { name: 'GitHub', icon: <GithubIcon />, level: 95, color: '#000000' },
+      { name: 'Docker', icon: <DockerIcon />, level: 70, color: '#1794D4' },
+      { name: 'Maven', color: '#C71A36' },
+      { name: 'Vercel', icon: <VercelIcon />, level: 25, color: '#000000' },
+      { name: 'Postman', icon: <PostmanIcon />, level: 95, color: '#FF6C37' },
+      { name: 'VS Code', icon: <VsCodeIcon />, level: 95, color: '#32B5F1' },
+      { name: 'Resend', color: '#000000' },
+      { name: 'Google reCAPTCHA', color: '#4A90E2' },
+    ],
+  },
+  {
+    category: 'AI & Cloud',
+    items: [
+      { name: 'Azure AI Foundry', icon: <AzureAiIcon />, level: 50, color: '#1171ED' },
+      { name: 'Salesforce Commerce Cloud', color: '#00A1E0' },
+    ],
+  }
+];
