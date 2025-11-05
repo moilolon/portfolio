@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { resend } from '../../../lib/resend/client';
-import { supabase } from '../../../lib/supabase/client';
+import { resend } from '@/lib/resend/client';
+import { supabase } from '@/lib/supabase/client';
 
 // Function to verify reCAPTCHA token
 async function verifyRecaptcha(token: string) {
