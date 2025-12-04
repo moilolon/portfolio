@@ -9,14 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
+    "@supabase/supabase-js": "^2.0.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
-    "next": "15.3.2",
+    "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-google-recaptcha": "^3.1.0",
-    "resend": "^4.5.1"
+    "resend": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -24,10 +24,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/react-google-recaptcha": "^2.1.9",
+    "@types/react-google-recaptcha": "^2.1.0",
     "eslint": "^9",
-    "eslint-config-next": "15.3.2",
-    "supabase": "^2.22.12",
+    "eslint-config-next": "^15.0.0",
+    "supabase": "^2.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
