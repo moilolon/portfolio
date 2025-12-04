@@ -592,7 +592,7 @@ type(scope): description
 Types:
 
 - `feature`: New feature
-- `fix`: Bug fix
+- `bugfix`: Bug fix
 - `docs`: Documentation
 - `style`: Formatting
 - `refactor`: Code restructuring
@@ -604,7 +604,7 @@ Examples:
 ```text
 feature(auth): add login and registration forms
 
-fix(navbar): resolve mobile menu display issue
+bugfix(navbar): resolve mobile menu display issue
 
 docs: update README with setup instructions
 ```
