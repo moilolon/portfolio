@@ -591,7 +591,7 @@ type(scope): description
 
 Types:
 
-- `feat`: New feature
+- `feature`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation
 - `style`: Formatting
@@ -602,7 +602,7 @@ Types:
 Examples:
 
 ```text
-feat(auth): add login and registration forms
+feature(auth): add login and registration forms
 
 fix(navbar): resolve mobile menu display issue
 
