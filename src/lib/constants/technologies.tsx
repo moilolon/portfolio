@@ -24,7 +24,8 @@ import {
   VercelIcon,
   PostmanIcon,
   VsCodeIcon,
-  AzureAiIcon
+  ZedIcon,
+  AzureAiIcon,
 } from '@/components/icons/technologies';
 
 export const technologies: TechnologyCategory[] = [
@@ -39,7 +40,7 @@ export const technologies: TechnologyCategory[] = [
       { name: 'HTML5', icon: <Html5Icon />, level: 90, color: '#E44D26' },
       { name: 'CSS3', icon: <Css3Icon />, level: 90, color: '#1172B8' },
       { name: 'JSP', icon: <JspIcon />, level: 90, color: '#FDB940' },
-      { name: 'Bootstrap', icon: <BootstrapIcon />, level: 80, color: '#563D7C'},
+      { name: 'Bootstrap', icon: <BootstrapIcon />, level: 80, color: '#563D7C' },
       { name: 'SASS', icon: <SassIcon />, level: 80, color: '#CC6699' },
     ],
   },
@@ -73,6 +74,7 @@ export const technologies: TechnologyCategory[] = [
       { name: 'Vercel', icon: <VercelIcon />, level: 25, color: '#000000' },
       { name: 'Postman', icon: <PostmanIcon />, level: 95, color: '#FF6C37' },
       { name: 'VS Code', icon: <VsCodeIcon />, level: 95, color: '#32B5F1' },
+      { name: 'Zed', icon: <ZedIcon />, level: 50, color: '#084CCF' },
       { name: 'Resend', color: '#000000' },
       { name: 'Google reCAPTCHA', color: '#4A90E2' },
     ],
@@ -83,5 +85,5 @@ export const technologies: TechnologyCategory[] = [
       { name: 'Azure AI Foundry', icon: <AzureAiIcon />, level: 50, color: '#1171ED' },
       { name: 'Salesforce Commerce Cloud', color: '#00A1E0' },
     ],
-  }
+  },
 ];

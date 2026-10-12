@@ -23,3 +23,4 @@ export * from './TailwindIcon';
 export * from './TypeScriptIcon';
 export * from './VercelIcon';
 export * from './VsCodeIcon';
+export * from './ZedIcon';

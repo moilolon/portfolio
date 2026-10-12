@@ -47,7 +47,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           email,
           subject,
           message,
-          recaptchaToken
+          recaptchaToken,
         }),
       });
 
@@ -61,7 +61,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       setToast({
         show: true,
         message: 'Thank you for your message! I will get back to you soon.',
-        type: 'success'
+        type: 'success',
       });
 
       // Reset form
@@ -80,7 +80,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       setToast({
         show: true,
         message: error instanceof Error ? error.message : 'Something went wrong',
-        type: 'error'
+        type: 'error',
       });
     } finally {
       setIsSubmitting(false);

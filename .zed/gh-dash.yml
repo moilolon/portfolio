@@ -1,0 +1,9 @@
+# gh-dash: `gh dash --config .zed/gh-dash.yml`, or the "GitHub: Dashboard" task.
+prSections:
+  - title: Open
+    filters: is:open repo:moilolon/portfolio
+  - title: Merged
+    filters: is:merged repo:moilolon/portfolio
+issuesSections:
+  - title: Open
+    filters: is:open repo:moilolon/portfolio
