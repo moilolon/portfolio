@@ -87,6 +87,6 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
         </div>
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
