@@ -1,25 +1,25 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import './globals.css';
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "Moisés López López | Portfolio",
-  description: "A professional portfolio showcasing skills, experience, and projects",
-  keywords: ["developer", "portfolio", "web development", "frontend", "backend", "full stack"],
-  authors: [{ name: "moilolon" }],
-  creator: "Moisés López López",
+  title: 'Moisés López López | Portfolio',
+  description: 'A professional portfolio showcasing skills, experience, and projects',
+  keywords: ['developer', 'portfolio', 'web development', 'frontend', 'backend', 'full stack'],
+  authors: [{ name: 'moilolon' }],
+  creator: 'Moisés López López',
 };
 
 export default function RootLayout({

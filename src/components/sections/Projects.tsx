@@ -61,10 +61,10 @@ export default function Projects() {
                 <div className="flex justify-between items-center">
                   <button
                     onClick={() => {
-                      setSelectedProjects(prev =>
+                      setSelectedProjects((prev) =>
                         prev.includes(index)
-                          ? prev.filter(i => i !== index)
-                          : [...prev, index]
+                          ? prev.filter((i) => i !== index)
+                          : [...prev, index],
                       );
                     }}
                     className="text-sm font-medium hover:underline disabled:cursor-not-allowed cursor-pointer"
