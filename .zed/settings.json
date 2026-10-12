@@ -1,0 +1,49 @@
+// Project settings for Zed, opened at the repo root. See .zed/README.md.
+// Personal choices (theme, font, keymap) go in your user settings: Zed merges both, key by key.
+{
+    // The code uses 2 spaces; Zed's default is 4.
+    "tab_size": 2,
+    "remove_trailing_whitespace_on_save": true,
+    "ensure_final_newline_on_save": true,
+    // Replaces Zed's default list, so the defaults are repeated. The build output and the
+    // agent worktrees would otherwise duplicate every search hit.
+    "file_scan_exclusions": [
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/.jj",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/Thumbs.db",
+        "**/.classpath",
+        "**/.settings",
+        "**/*.map",
+        ".next",
+        ".claude/worktrees",
+        "supabase/.temp",
+    ],
+    "lsp": {
+        // ESLint and its flat config live at the root.
+        "eslint": {
+            "settings": {
+                "run": "onSave",
+                "workingDirectory": { "mode": "auto" },
+            },
+        },
+    },
+    // ESLint (with ESLint Stylistic) is the formatter: its fixes run on save. No Prettier.
+    "languages": {
+        "TypeScript": {
+            "format_on_save": "on",
+            "formatter": { "code_action": "source.fixAll.eslint" },
+        },
+        "TSX": {
+            "format_on_save": "on",
+            "formatter": { "code_action": "source.fixAll.eslint" },
+        },
+        "JavaScript": {
+            "format_on_save": "on",
+            "formatter": { "code_action": "source.fixAll.eslint" },
+        },
+    },
+}

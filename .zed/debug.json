@@ -1,0 +1,17 @@
+// Debug configurations for Zed: `debugger: start` (F4). See .zed/README.md.
+[
+    {
+        // Server side: API routes and server components. Start the "Next: Dev (debug)" task
+        // first: with NODE_OPTIONS=--inspect, Next.js opens the inspector of its router server -
+        // the process that serves :3000 and runs src/app - on port 9230 (9229 is the CLI's).
+        "label": "Next: Attach server",
+        "adapter": "JavaScript",
+        "type": "node",
+        "request": "attach",
+        "port": 9230,
+        // Reconnect when Next.js restarts the server (a change to next.config.ts, .env.local).
+        "restart": true,
+        "cwd": "$ZED_WORKTREE_ROOT",
+        "skipFiles": ["<node_internals>/**"],
+    },
+]
