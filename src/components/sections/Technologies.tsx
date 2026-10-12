@@ -7,7 +7,7 @@ import type { Technology } from '@/types/technologies';
 export default function Technologies() {
   const [activeCategory, setActiveCategory] = useState(technologies[0].category);
 
-  const hasIconAndLevel = (item: Technology): item is Technology & { icon: NonNullable<Technology['icon']>, level: NonNullable<Technology['level']> } => {
+  const hasIconAndLevel = (item: Technology): item is Technology & { icon: NonNullable<Technology['icon']>; level: NonNullable<Technology['level']> } => {
     return Boolean(item.icon && item.level);
   };
 
@@ -61,7 +61,7 @@ export default function Technologies() {
                       width: `${item.level}%`,
                       backgroundColor: item.color,
                     }}
-                  ></div>
+                  />
                 </div>
               </div>
             ))}

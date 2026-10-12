@@ -30,8 +30,8 @@ export function SupabaseIcon() {
           y2="71.8293"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#249361"/>
-          <stop offset="1" stopColor="#3ECF8E"/>
+          <stop stopColor="#249361" />
+          <stop offset="1" stopColor="#3ECF8E" />
         </linearGradient>
         <linearGradient
           id="paint1_linear"
@@ -41,8 +41,8 @@ export function SupabaseIcon() {
           y2="65.0804"
           gradientUnits="userSpaceOnUse"
         >
-          <stop/>
-          <stop offset="1" stopOpacity="0"/>
+          <stop />
+          <stop offset="1" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>

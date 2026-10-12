@@ -35,6 +35,6 @@ export default function Toast({ message, type, duration = 3000, onClose }: Toast
     >
       {message}
     </div>,
-    document.body
+    document.body,
   );
 }

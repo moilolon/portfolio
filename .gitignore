@@ -30,8 +30,15 @@ npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# IDE
-.vscode/*
-!.vscode/portfolio.code-workspace
-!.vscode/extensions.json
-!.vscode/settings.json
+# Zed - the project's own editor settings are versioned, the rest is personal
+.zed/*
+!.zed/settings.json
+!.zed/tasks.json
+!.zed/debug.json
+!.zed/README.md
+!.zed/gh-dash.yml
+.vscode/
+
+# Claude Code
+.claude/settings.local.json
+.claude/worktrees/

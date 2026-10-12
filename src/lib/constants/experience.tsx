@@ -2,13 +2,13 @@ import { technologies } from './technologies';
 import type { Experience, ExperienceTechnology } from '@/types/experience';
 
 const mapTechnology = (name: string): ExperienceTechnology => {
-  const found = technologies.flatMap(cat => cat.items).find(t => t.name === name);
+  const found = technologies.flatMap((cat) => cat.items).find((t) => t.name === name);
   if (!found) {
     throw new Error(`Technology "${name}" not found in technologies`);
   }
   return {
     name: found.name,
-    color: found.color
+    color: found.color,
   };
 };
 

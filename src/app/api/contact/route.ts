@@ -15,7 +15,7 @@ async function verifyRecaptcha(token: string) {
         secret: process.env.RECAPTCHA_SECRET_KEY!,
         response: token,
       }),
-    }
+    },
   );
 
   const data = await response.json();
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'Name, email, subject, and message are required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     if (!recaptchaToken) {
       return NextResponse.json(
         { error: 'reCAPTCHA verification is required' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     if (!isValidRecaptcha) {
       return NextResponse.json(
         { error: 'reCAPTCHA verification failed' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
         email,
         subject,
         message,
-        status: 'pending'
+        status: 'pending',
       })
       .select()
       .single();
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
       console.error('Supabase error:', dbError);
       return NextResponse.json(
         { error: 'Failed to store submission' },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -100,7 +100,7 @@ export async function POST(request: Request) {
       // Still return success since we stored in DB
       return NextResponse.json(
         { success: true, warning: 'Stored but email failed' },
-        { status: 200 }
+        { status: 200 },
       );
     } else {
       await supabase
@@ -114,7 +114,7 @@ export async function POST(request: Request) {
     console.error('Contact form error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
