@@ -1,81 +1,193 @@
-# 👨🏻‍💻 Portfolio for developers
-
 <div align="center">
 
-  ![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=fff&style=flat)
-  ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat)
-  ![Supabase](https://img.shields.io/badge/Supabase-18AB2E?logo=supabase&logoColor=fff&style=flat)
-  ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=fff&style=flat)
-  ![GitHub Stars](https://img.shields.io/github/stars/moilolon/portfolio)
-  ![GitHub PR](https://img.shields.io/github/issues-pr/moilolon/portfolio?label=Pull%20Requests)
-  ![GitHub Forks](https://img.shields.io/github/forks/moilolon/portfolio)
-  ![GitHub Issues](https://img.shields.io/github/issues/moilolon/portfolio?label=Issues)
+# 👨🏻‍💻 Portfolio for developers
+
+A fast, responsive single-page portfolio to present your skills, experience and projects,
+with a contact form that lands straight in your inbox.
+
+[**🌐 Live site**](https://portfolio.moilolon.com) · [Report a bug](https://github.com/moilolon/portfolio/issues/new) · [Request a feature](https://github.com/moilolon/portfolio/issues/new)
+
+<br />
+
+![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+![Lint](https://img.shields.io/github/actions/workflow/status/moilolon/portfolio/cra.yaml?label=lint&style=flat-square)
+![Last commit](https://img.shields.io/github/last-commit/moilolon/portfolio?style=flat-square)
+![Stars](https://img.shields.io/github/stars/moilolon/portfolio?style=flat-square)
+![Issues](https://img.shields.io/github/issues/moilolon/portfolio?style=flat-square)
+![Pull requests](https://img.shields.io/github/issues-pr/moilolon/portfolio?style=flat-square)
+
+<br />
+
+<a href="https://portfolio.moilolon.com">
+  <img src="public/projects/portfolio.png" alt="Portfolio home: avatar, name, role and links" width="820" />
+</a>
 
 </div>
 
-A modern, responsive portfolio website built with Next.js 14+ and TypeScript, designed to help developers showcase their professional journey. Features server-side rendering for optimal performance, responsive design, and a clean interface to present your skills, projects, and achievements effectively.
+---
 
 ## ✨ Features
 
-- **Information Section** - Display your avatar, name, main skills, location, and contact details
-- **Technologies Section** - Showcase your technical skills with proficiency levels
-- **Experience Section** - Present your work history with detailed job descriptions
-- **Projects Section** - Highlight your projects with descriptions and tech stacks
-- **Training Section** - List your education and certifications
-- **About Me Section** - Share your personal story and approach
-- **Contact** - Styled contact form with gradient UI, animations, and toast notifications
-- **Responsive Design** - Optimized for all screen sizes with custom animations
+| | Section | What it shows |
+|---|---|---|
+| 🙋 | **Information** | Avatar, name, role, location and quick links: email, CV (PDF), GitHub, LinkedIn |
+| 🧰 | **Technologies** | Skills grouped by category, with brand icons and proficiency levels |
+| 💼 | **Experience** | Work history with expandable job descriptions |
+| 🚀 | **Projects** | Project cards with screenshots, tech stack and GitHub / live links |
+| 🎓 | **Training** | Education and certifications |
+| 💬 | **About me** | Who I am and how I work |
+| ✉️ | **Contact** | Modal form protected by reCAPTCHA, with toast feedback and email notification |
 
-## 🛠 Tech Stack
+**Under the hood:** server components by default, light/dark theme from the system
+preference, smooth-scrolling navigation, mobile-first layout, SEO metadata, and
+[Vercel Analytics](https://vercel.com/analytics) + [Speed Insights](https://vercel.com/docs/speed-insights)
+for real-user Core Web Vitals.
 
-- **Framework**: [Next.js 14+](https://nextjs.org) with App Router for optimized rendering
-- **Language**: [TypeScript](https://www.typescriptlang.org/) for type-safe development
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) for responsive design
-- **Database**: [Supabase](https://supabase.com/) for backend services
-- **Deployment**: [Vercel](https://vercel.com) for seamless deployment
-- **Font**: [Geist](https://vercel.com/font) for modern typography
-- **Email**: [Resend](https://resend.com) for reliable email delivery
-- **Security**: [React Google reCAPTCHA](https://www.google.com/recaptcha) for form protection
+## 🛠 Tech stack
 
-## 🏗 Project Structure
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js 15](https://nextjs.org) — App Router, Turbopack in dev |
+| UI | [React 19](https://react.dev), [Tailwind CSS 4](https://tailwindcss.com), [Geist](https://vercel.com/font) |
+| Language | [TypeScript](https://www.typescriptlang.org) (strict) |
+| Database | [Supabase](https://supabase.com) (Postgres + Row Level Security) |
+| Email | [Resend](https://resend.com) |
+| Anti-spam | [Google reCAPTCHA v2](https://www.google.com/recaptcha) |
+| Hosting & monitoring | [Vercel](https://vercel.com), Vercel Analytics, Speed Insights |
+| CI | GitHub Actions — lint on every branch push |
 
+## 📨 How the contact form works
+
+```mermaid
+sequenceDiagram
+    participant V as Visitor
+    participant F as ContactForm
+    participant A as /api/contact
+    participant G as reCAPTCHA
+    participant S as Supabase
+    participant R as Resend
+
+    V->>F: fills the form + solves the captcha
+    F->>A: POST name, email, subject, message, token
+    A->>G: verify token
+    G-->>A: ok
+    A->>S: insert message (status: pending)
+    A->>R: send notification email
+    A->>S: update status: sent / failed
+    A-->>F: 200 / error
+    F-->>V: toast
 ```
-portfolio/
-├── src/
-│   ├── app/                      # Next.js App Router pages
-│   │   └── api/                  # API routes
-│   │       └── contact/          # Contact endpoint
-│   ├── components/
-│   │   ├── forms/                # Form components
-│   │   ├── layouts/              # Layout components
-│   │   ├── modals/               # Modal components
-│   │   ├── sections/             # Main section components
-│   │   └── ui/                   # Reusable UI components
-│   ├── lib/                      # Utility functions
-│   │   ├── constants/            # App constants
-│   │   ├── resend/               # Email client
-│   │   ├── supabase/             # Database client
-│   │   └── utils/                # Helper functions
-│   └── types/                    # TypeScript types
-├── public/                       # Static assets
-└── supabase/                     # Database configuration
-    ├── migrations/               # SQL migration files
-    └── seed/                     # Seed data files
+
+## 🚀 Getting started
+
+**Prerequisites:** Node.js LTS, npm, and accounts for Supabase, Resend and Google reCAPTCHA.
+
+```bash
+git clone https://github.com/moilolon/portfolio.git
+cd portfolio
+npm install
 ```
 
-## 🔜 Upcoming Features
+Create `.env.local` at the root:
 
-- Dark mode toggle for manual theme switching
-- Project filtering capabilities
-- Blog section for sharing articles and tutorials
+```bash
+# Public — shipped to the browser
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
 
-## 🤖 Cline Resources
+# Server only
+RESEND_API_KEY=
+RECAPTCHA_SECRET_KEY=
+NOTIFICATION_EMAIL=
+```
 
-- [Cline Documentation](https://docs.cline.bot)
-- [Cline Project Guide](https://github.com/mgesteban/cline_project_guide)
+Apply the migrations in [`supabase/migrations/`](supabase/migrations) to your project
+(`supabase db push`, or paste them in the SQL editor), then:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+### Scripts
+
+| Command | Does |
+|---|---|
+| `npm run dev` | Dev server with Turbopack |
+| `npm run build` | Production build (also the type check) |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint (`next/core-web-vitals` + `next/typescript` + ESLint Stylistic); `-- --fix` formats |
+
+## 🧩 Make it yours
+
+The content is data, not markup — edit these files and the sections follow:
+
+| To change | Edit |
+|---|---|
+| Name, role, links, avatar, CV | [`src/lib/constants/information.tsx`](src/lib/constants/information.tsx), `public/avatar.jpg`, `public/cv/` |
+| Technologies and levels | [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
+| Jobs | [`src/lib/constants/experience.tsx`](src/lib/constants/experience.tsx) |
+| Projects | [`src/lib/constants/projects.tsx`](src/lib/constants/projects.tsx), screenshots in `public/projects/` |
+| Training, About me | [`Training.tsx`](src/components/sections/Training.tsx), [`AboutMe.tsx`](src/components/sections/AboutMe.tsx) (inline for now) |
+| Page title and SEO | [`src/app/layout.tsx`](src/app/layout.tsx) |
+| Colors and animations | [`src/app/globals.css`](src/app/globals.css) |
+
+## 🏗 Project structure
+
+```text
+src/
+├── app/
+│   ├── api/contact/route.ts   # contact endpoint
+│   ├── layout.tsx             # fonts, metadata, analytics
+│   ├── page.tsx               # composes every section
+│   └── globals.css            # Tailwind, theme variables, animations
+├── components/
+│   ├── sections/              # Information, Technologies, Experience, Projects, Training, AboutMe
+│   ├── layouts/               # Navbar
+│   ├── forms/ · modals/ · ui/ # ContactForm, ContactModal, Modal, Toast
+│   └── icons/                 # SVG icons, grouped by section
+├── lib/
+│   ├── constants/             # the site's content
+│   ├── supabase/ · resend/    # service clients
+└── types/                     # content types
+supabase/migrations/           # database schema
+```
+
+## 🗺 Roadmap
+
+- [x] All portfolio sections, responsive and animated
+- [x] Contact form with reCAPTCHA, Supabase and Resend
+- [x] Vercel Analytics and Speed Insights
+- [ ] Manual light/dark toggle
+- [ ] Filter projects by technology
+- [ ] Blog section
+
+## 🤖 Built with Claude Code and Zed
+
+Developed with [Claude Code](https://docs.claude.com/en/docs/claude-code) in [Zed](https://zed.dev):
+
+- [`CLAUDE.md`](CLAUDE.md) — project memory: stack, architecture, commands and conventions.
+- [`.claude/rules/`](.claude/rules) — rules read on demand (Next.js, Supabase, git, files, docs).
+- [`.claude/settings.json`](.claude/settings.json) — shared permissions; `.env*` files are never readable.
+- [`.zed/`](.zed) — editor settings, tasks and debugger, see [`.zed/README.md`](.zed/README.md).
 
 ## 🫂 Contributors
 
 <a href="https://github.com/moilolon/portfolio/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=moilolon/portfolio" />
+  <img src="https://contrib.rocks/image?repo=moilolon/portfolio" alt="Contributors" />
 </a>
+
+<div align="center">
+<br />
+
+Made with ☕ in A Coruña · [portfolio.moilolon.com](https://portfolio.moilolon.com)
+
+</div>
