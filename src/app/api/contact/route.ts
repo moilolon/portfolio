@@ -1,6 +1,18 @@
 import { NextResponse } from 'next/server';
 import { resend } from '@/lib/resend/client';
 import { supabase } from '@/lib/supabase/client';
+import { RECAPTCHA_CONTACT_ACTION } from '@/lib/recaptcha';
+
+type RecaptchaVerification = {
+  'success': boolean;
+  'score'?: number;
+  'action'?: string;
+  'hostname'?: string;
+  'error-codes'?: string[];
+};
+
+// Minimum reCAPTCHA v3 score accepted (0.5 is moderate confidence)
+const RECAPTCHA_MIN_SCORE = 0.5;
 
 // Function to verify reCAPTCHA token
 async function verifyRecaptcha(token: string) {
@@ -18,10 +30,20 @@ async function verifyRecaptcha(token: string) {
     },
   );
 
-  const data = await response.json();
+  const data: RecaptchaVerification = await response.json();
 
-  // Check if the score is above threshold (0.5 is moderate confidence)
-  return data.success && data.score >= 0.5;
+  if (!data.success) {
+    console.error('reCAPTCHA verification failed:', data['error-codes']);
+    return false;
+  }
+
+  // The token must come from the contact form and look human enough
+  if (data.action !== RECAPTCHA_CONTACT_ACTION || (data.score ?? 0) < RECAPTCHA_MIN_SCORE) {
+    console.error('reCAPTCHA rejected:', { action: data.action, score: data.score });
+    return false;
+  }
+
+  return true;
 }
 
 export async function POST(request: Request) {

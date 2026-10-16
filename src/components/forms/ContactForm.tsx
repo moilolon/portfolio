@@ -1,13 +1,15 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { useEffect, useState } from 'react';
 import Toast from '@/components/ui/Toast';
+import { getRecaptchaToken, loadRecaptcha, RECAPTCHA_CONTACT_ACTION } from '@/lib/recaptcha';
 import { EmailIcon, LoadingSpinnerIcon, MessageIcon, UserIcon } from '@/components/icons/forms';
 
 interface ContactFormProps {
   onSuccess?: () => void;
 }
+
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
 
 export default function ContactForm({ onSuccess }: ContactFormProps) {
   const [name, setName] = useState('');
@@ -21,19 +23,18 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
     type: 'success' | 'error';
   }>({ show: false, message: '', type: 'success' });
 
-  // Reference to reCAPTCHA component
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  // Load reCAPTCHA when the form opens so the token is ready by the time it is submitted
+  useEffect(() => {
+    loadRecaptcha(RECAPTCHA_SITE_KEY).catch((error) => console.error(error));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Execute reCAPTCHA and get token
-      const recaptchaToken = await recaptchaRef.current?.executeAsync();
-
-      // Reset reCAPTCHA for next submission
-      recaptchaRef.current?.reset();
+      // Get a fresh reCAPTCHA v3 token (tokens expire after two minutes)
+      const recaptchaToken = await getRecaptchaToken(RECAPTCHA_SITE_KEY, RECAPTCHA_CONTACT_ACTION);
 
       if (!recaptchaToken) {
         throw new Error('reCAPTCHA verification failed');
@@ -103,7 +104,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="pl-10 block w-full h-10 rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors"
+            className="pl-10 block w-full h-10 rounded-lg border border-foreground/10 bg-foreground/5 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-colors"
           />
         </div>
       </div>
@@ -122,7 +123,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="pl-10 block w-full h-10 rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors"
+            className="pl-10 block w-full h-10 rounded-lg border border-foreground/10 bg-foreground/5 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-colors"
           />
         </div>
       </div>
@@ -141,7 +142,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             required
-            className="pl-10 block w-full h-10 rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors"
+            className="pl-10 block w-full h-10 rounded-lg border border-foreground/10 bg-foreground/5 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-colors"
           />
         </div>
       </div>
@@ -157,27 +158,20 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
-            className="block w-full rounded-lg border-none bg-foreground/5 shadow-sm focus:ring-2 focus:ring-blue-500/20 transition-colors p-3 resize-none"
+            className="block w-full rounded-lg border border-foreground/10 bg-foreground/5 shadow-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-colors p-3 resize-none"
           />
         </div>
       </div>
-
-      {/* Invisible reCAPTCHA */}
-      <ReCAPTCHA
-        ref={recaptchaRef}
-        size="invisible"
-        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-      />
 
       <div>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex w-full justify-center py-2 px-6 border border-transparent shadow-sm text-sm font-medium rounded-lg text-white bg-black hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200"
+          className="inline-flex w-full justify-center py-2.5 px-6 border border-transparent shadow-sm text-sm font-medium rounded-full text-background bg-foreground hover:bg-foreground/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-card focus:ring-foreground disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all duration-200"
         >
           {isSubmitting ? (
             <span className="flex items-center">
-              <LoadingSpinnerIcon className="-ml-1 mr-2 text-white" />
+              <LoadingSpinnerIcon className="-ml-1 mr-2 text-current" />
               Sending...
             </span>
           ) : 'Send Message'}

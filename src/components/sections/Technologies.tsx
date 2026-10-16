@@ -2,14 +2,24 @@
 
 import { useState } from 'react';
 import { technologies } from '@/lib/constants/technologies';
-import type { Technology } from '@/types/technologies';
+import type { Technology, TechnologyUsage } from '@/types/technologies';
+
+const usageGroups: { usage: TechnologyUsage; title: string }[] = [
+  { usage: 'daily', title: 'Daily use' },
+  { usage: 'experienced', title: 'Worked with' },
+];
 
 export default function Technologies() {
   const [activeCategory, setActiveCategory] = useState(technologies[0].category);
 
-  const hasIconAndLevel = (item: Technology): item is Technology & { icon: NonNullable<Technology['icon']>; level: NonNullable<Technology['level']> } => {
-    return Boolean(item.icon && item.level);
+  const hasIconAndUsage = (item: Technology): item is Technology & { icon: NonNullable<Technology['icon']>; usage: TechnologyUsage } => {
+    return Boolean(item.icon && item.usage);
   };
+
+  const items = technologies
+    .find((tech) => tech.category === activeCategory)
+    ?.items
+    .filter(hasIconAndUsage) ?? [];
 
   return (
     <section id="technologies" className="py-20 bg-foreground/5">
@@ -33,38 +43,34 @@ export default function Technologies() {
           ))}
         </div>
 
-        {/* Technology Items */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {technologies
-            .find((tech) => tech.category === activeCategory)
-            ?.items
-            .filter(hasIconAndLevel)
-            .map((item) => (
-              <div
-                key={item.name}
-                className="bg-background rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="relative h-8 w-8">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold">{item.name}</h3>
-                  <div className="text-sm text-foreground/70 ml-auto text-right">
-                    Proficiency: {item.level}%
-                  </div>
-                </div>
+        {/* Technology Items grouped by usage */}
+        <div className="space-y-10">
+          {usageGroups.map(({ usage, title }) => {
+            const groupItems = items.filter((item) => item.usage === usage);
+            if (groupItems.length === 0) {
+              return null;
+            }
 
-                <div className="w-full bg-foreground/10 rounded-full h-2.5">
-                  <div
-                    className="bg-foreground h-2.5 rounded-full"
-                    style={{
-                      width: `${item.level}%`,
-                      backgroundColor: item.color,
-                    }}
-                  />
+            return (
+              <div key={usage}>
+                <h3 className="text-lg font-semibold mb-4 text-foreground/70">{title}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {groupItems.map((item) => (
+                    <div
+                      key={item.name}
+                      className="flex items-center gap-4 bg-card rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4 dark:border-y dark:border-r dark:border-border"
+                      style={{ borderLeftColor: item.color }}
+                    >
+                      <div className="relative h-8 w-8">
+                        {item.icon}
+                      </div>
+                      <h4 className="text-xl font-semibold">{item.name}</h4>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            );
+          })}
         </div>
       </div>
     </section>

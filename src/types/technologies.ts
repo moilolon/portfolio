@@ -1,9 +1,11 @@
 import type { ReactElement } from 'react';
 
+export type TechnologyUsage = 'daily' | 'experienced';
+
 export type Technology = {
   name: string;
   icon?: ReactElement;
-  level?: number;
+  usage?: TechnologyUsage;
   color: string;
 };
 
