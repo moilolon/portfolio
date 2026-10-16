@@ -25,7 +25,8 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
   and custom animations live in `src/app/globals.css`.
 - **Supabase** (`@supabase/supabase-js`) — the `contact_messages` table.
 - **Resend** — email notification for each contact message.
-- **Google reCAPTCHA v2** (`react-google-recaptcha`) — verified server-side in the API route.
+- **Google reCAPTCHA v3** (script loaded by `src/lib/recaptcha.ts`, no library) — the token
+  (action `contact`) is verified server-side in the API route, checking action and score.
 - **Vercel** hosting, **Vercel Analytics** and **Speed Insights** (mounted in `layout.tsx`).
 - **Geist** Sans / Mono through `next/font`.
 
@@ -34,23 +35,26 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
 ```text
 src/
 ├── app/
-│   ├── layout.tsx            # fonts, metadata, Analytics, SpeedInsights
+│   ├── layout.tsx            # fonts, metadata, theme init script, Analytics, SpeedInsights
 │   ├── page.tsx              # composes Navbar + every section
 │   ├── globals.css           # Tailwind import, CSS variables, animations
 │   └── api/contact/route.ts  # POST: reCAPTCHA → Supabase insert → Resend email
 ├── components/
-│   ├── layouts/Navbar.tsx    # section links + Contact button (opens ContactModal)
+│   ├── layouts/Navbar.tsx    # section links, Contact button (opens ContactModal), theme toggle
 │   ├── sections/             # Information, Technologies, Experience, Projects, Training, AboutMe
 │   ├── modals/ContactModal.tsx
 │   ├── forms/ContactForm.tsx
-│   ├── ui/                   # Modal, Toast
+│   ├── ui/                   # Modal, Toast, ThemeToggle
 │   └── icons/<section>/      # SVG icon components, re-exported by an index.ts per folder
 ├── lib/
 │   ├── constants/            # the site's CONTENT: experience, projects, technologies, information
 │   ├── supabase/client.ts
-│   └── resend/client.ts
+│   ├── resend/client.ts
+│   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
+│   ├── theme.ts              # inline script that sets <html data-theme> before paint
+│   └── colors.ts             # tint() for technology chip backgrounds
 └── types/                    # one file per content type (experience, projects, …)
-public/                       # avatar.jpg, cv/curriculum_en.pdf, projects/*.png
+public/                       # avatar.jpg, cv/curriculum_en.pdf, projects/*.png|svg
 supabase/migrations/          # NNN_description.sql
 ```
 
@@ -87,4 +91,4 @@ CI (`.github/workflows/cra.yaml`) runs `npm run lint` on every push to a branch 
 - **Git:** branches `<type>/<description>`, commits `type(scope): description` from `main`.
   See `.claude/rules/git-workflow.md`.
 - **Responsive and accessible by default:** every UI change works from mobile to desktop
-  and in light/dark (system preference), with semantic HTML and labelled controls.
+  and in light/dark (system preference or the manual toggle), with semantic HTML and labelled controls.
