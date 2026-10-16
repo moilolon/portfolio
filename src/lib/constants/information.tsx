@@ -10,7 +10,7 @@ export const personalInfo: PersonalInfo = {
   name: 'Moisés López López',
   title: 'Salesforce Full Stack Developer',
   location: 'A Coruña, Spain',
-  description: 'Passionate software engineer and full-stack developer with expertise in Salesforce.',
+  description: 'Salesforce Commerce Cloud developer with more than ten years in web development, building the Guess online stores for Europe and North America.',
   avatar: '/avatar.jpg',
   email: 'moiseslopezlopez@gmail.com',
   cv: '/cv/curriculum_en.pdf',

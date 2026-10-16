@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { experiences } from '@/lib/constants/experience';
 import { ChevronIcon } from '@/components/icons/experience';
 import type { Experience } from '@/types/experience';
+import { tint } from '@/lib/colors';
 
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -21,7 +22,7 @@ export default function Experience() {
           {experiences.map((exp: Experience, index) => (
             <div
               key={index}
-              className={`bg-background rounded-lg p-6 shadow-sm transition-all duration-300 ${
+              className={`bg-card dark:border dark:border-border rounded-lg p-6 shadow-sm transition-all duration-300 ${
                 expandedIndex === index ? 'ring-2 ring-foreground/20' : 'hover:shadow-md'
               }`}
             >
@@ -43,14 +44,19 @@ export default function Experience() {
 
               {expandedIndex === index && (
                 <div className="mt-4 pt-4 border-t border-foreground/10 animate-fadeIn">
-                  <p className="mb-4">{exp.description}</p>
+                  <p className="mb-3">{exp.description}</p>
+                  <ul className="mb-4 pl-5 list-disc space-y-1 text-foreground/80 marker:text-foreground/40">
+                    {exp.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech.name}
                         className="px-3 py-1 rounded-full text-sm transition-colors"
                         style={{
-                          backgroundColor: `${tech.color}20`,
+                          backgroundColor: tint(tech.color),
                           color: tech.color,
                         }}
                       >

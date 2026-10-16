@@ -1,7 +1,7 @@
 export function NextIcon() {
   return (
     <svg
-      fill="#000000"
+      fill="currentColor"
       viewBox="0 0 24 24"
       role="img"
       aria-label="Next.js Icon"

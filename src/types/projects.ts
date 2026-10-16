@@ -9,7 +9,7 @@ export type Project = {
   name: string;
   owner: string;
   summary: string;
-  description: string;
+  highlights: string[];
   technologies: Technology[];
   image: string;
   links: ProjectLinks;
