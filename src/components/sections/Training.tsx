@@ -8,7 +8,7 @@ export default function Training() {
       description: 'Intensive week program covering the fundamentals of Salesforce B2C Commerce and the SFRA framework.',
     },
     {
-      institution: 'Online Learning Platform',
+      institution: 'Indra (internal training)',
       qualification: 'J2EE Platform',
       year: '2016',
       description: 'Comprehensive courses on building complex applications with Java EE, J2EE Patterns, Spring MVC Web Applications, Spring Boot, Spring Batch, Hibernate, Oracle11g PL/SQL, Microservices, REST, JavaScript and HTML5&CSS3.',
@@ -36,7 +36,7 @@ export default function Training() {
           {trainings.map((training, index) => (
             <div
               key={index}
-              className="bg-background rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-card dark:border dark:border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>

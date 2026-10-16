@@ -7,5 +7,6 @@ export type Experience = {
   title: string;
   period: string;
   description: string;
+  highlights: string[];
   technologies: ExperienceTechnology[];
 };
