@@ -25,7 +25,7 @@ with a contact form that lands straight in your inbox.
 <br />
 
 <a href="https://portfolio.moilolon.com">
-  <img src="public/projects/portfolio.png" alt="Portfolio home: avatar, name, role and links" width="820" />
+  <img src="public/projects/portfolio-logo.svg" alt="moilolon portfolio" width="820" />
 </a>
 
 </div>
@@ -37,15 +37,15 @@ with a contact form that lands straight in your inbox.
 | | Section | What it shows |
 |---|---|---|
 | 🙋 | **Information** | Avatar, name, role, location and quick links: email, CV (PDF), GitHub, LinkedIn |
-| 🧰 | **Technologies** | Skills grouped by category, with brand icons and proficiency levels |
-| 💼 | **Experience** | Work history with expandable job descriptions |
-| 🚀 | **Projects** | Project cards with screenshots, tech stack and GitHub / live links |
+| 🧰 | **Technologies** | Skills by category, with brand icons, split into daily use and past experience |
+| 💼 | **Experience** | Work history with expandable entries: summary, key points and technologies |
+| 🚀 | **Projects** | Project cards with key points, tech stack and GitHub / live links, filterable by technology |
 | 🎓 | **Training** | Education and certifications |
 | 💬 | **About me** | Who I am and how I work |
-| ✉️ | **Contact** | Modal form protected by reCAPTCHA, with toast feedback and email notification |
+| ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, with toast feedback and email notification |
 
-**Under the hood:** server components by default, light/dark theme from the system
-preference, smooth-scrolling navigation, mobile-first layout, SEO metadata, and
+**Under the hood:** server components by default, light/dark theme that follows the system
+preference with a manual toggle (remembered, no flash on load), smooth-scrolling navigation, mobile-first layout, SEO metadata, and
 [Vercel Analytics](https://vercel.com/analytics) + [Speed Insights](https://vercel.com/docs/speed-insights)
 for real-user Core Web Vitals.
 
@@ -58,7 +58,7 @@ for real-user Core Web Vitals.
 | Language | [TypeScript](https://www.typescriptlang.org) (strict) |
 | Database | [Supabase](https://supabase.com) (Postgres + Row Level Security) |
 | Email | [Resend](https://resend.com) |
-| Anti-spam | [Google reCAPTCHA v2](https://www.google.com/recaptcha) |
+| Anti-spam | [Google reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) — invisible, score-based |
 | Hosting & monitoring | [Vercel](https://vercel.com), Vercel Analytics, Speed Insights |
 | CI | GitHub Actions — lint on every branch push |
 
@@ -73,10 +73,13 @@ sequenceDiagram
     participant S as Supabase
     participant R as Resend
 
-    V->>F: fills the form + solves the captcha
+    V->>F: fills the form
+    F->>G: execute action "contact"
+    G-->>F: token
     F->>A: POST name, email, subject, message, token
     A->>G: verify token
-    G-->>A: ok
+    G-->>A: success, action, score
+    A->>A: check action = contact, score ≥ 0.5
     A->>S: insert message (status: pending)
     A->>R: send notification email
     A->>S: update status: sent / failed
@@ -86,7 +89,8 @@ sequenceDiagram
 
 ## 🚀 Getting started
 
-**Prerequisites:** Node.js LTS, npm, and accounts for Supabase, Resend and Google reCAPTCHA.
+**Prerequisites:** Node.js LTS, npm, and accounts for Supabase, Resend and Google reCAPTCHA
+(a **v3** key, managed from a Google Cloud project, with `localhost` among its domains to test locally).
 
 ```bash
 git clone https://github.com/moilolon/portfolio.git
@@ -133,12 +137,15 @@ The content is data, not markup — edit these files and the sections follow:
 | To change | Edit |
 |---|---|
 | Name, role, links, avatar, CV | [`src/lib/constants/information.tsx`](src/lib/constants/information.tsx), `public/avatar.jpg`, `public/cv/` |
-| Technologies and levels | [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
-| Jobs | [`src/lib/constants/experience.tsx`](src/lib/constants/experience.tsx) |
-| Projects | [`src/lib/constants/projects.tsx`](src/lib/constants/projects.tsx), screenshots in `public/projects/` |
+| Technologies, colors and daily / past usage | [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
+| Jobs (summary, key points, technologies) | [`src/lib/constants/experience.tsx`](src/lib/constants/experience.tsx) |
+| Projects (newest first) | [`src/lib/constants/projects.tsx`](src/lib/constants/projects.tsx), images in `public/projects/` |
 | Training, About me | [`Training.tsx`](src/components/sections/Training.tsx), [`AboutMe.tsx`](src/components/sections/AboutMe.tsx) (inline for now) |
 | Page title and SEO | [`src/app/layout.tsx`](src/app/layout.tsx) |
-| Colors and animations | [`src/app/globals.css`](src/app/globals.css) |
+| Colors, light/dark theme and animations | [`src/app/globals.css`](src/app/globals.css) |
+
+Technologies in jobs and projects are referenced by name and must exist in `technologies.tsx`,
+which also sets their chip color. The ones marked `usage: 'daily'` become the quick filters of the Projects section.
 
 ## 🏗 Project structure
 
@@ -152,11 +159,14 @@ src/
 ├── components/
 │   ├── sections/              # Information, Technologies, Experience, Projects, Training, AboutMe
 │   ├── layouts/               # Navbar
-│   ├── forms/ · modals/ · ui/ # ContactForm, ContactModal, Modal, Toast
+│   ├── forms/ · modals/ · ui/ # ContactForm, ContactModal, Modal, Toast, ThemeToggle
 │   └── icons/                 # SVG icons, grouped by section
 ├── lib/
 │   ├── constants/             # the site's content
 │   ├── supabase/ · resend/    # service clients
+│   ├── recaptcha.ts           # reCAPTCHA v3 loader
+│   ├── theme.ts               # theme init script (runs before paint)
+│   └── colors.ts              # chip color helper
 └── types/                     # content types
 supabase/migrations/           # database schema
 ```
@@ -166,8 +176,8 @@ supabase/migrations/           # database schema
 - [x] All portfolio sections, responsive and animated
 - [x] Contact form with reCAPTCHA, Supabase and Resend
 - [x] Vercel Analytics and Speed Insights
-- [ ] Manual light/dark toggle
-- [ ] Filter projects by technology
+- [x] Manual light/dark toggle
+- [x] Filter projects by technology
 - [ ] Blog section
 
 ## 🤖 Built with Claude Code and Zed
