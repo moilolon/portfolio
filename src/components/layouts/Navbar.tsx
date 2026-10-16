@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import ContactModal from '@/components/modals/ContactModal';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 import { MenuIcon } from '@/components/icons/navigation';
 
 const navItems = [
@@ -34,10 +35,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/80 backdrop-blur-md shadow-sm'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 bg-background transition-shadow duration-300 ${
+        isScrolled ? 'shadow-sm dark:shadow-none dark:border-b dark:border-border' : ''
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,7 +47,7 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+            <div className="ml-10 flex items-center space-x-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
@@ -64,9 +63,11 @@ export default function Navbar() {
               >
                 Contact
               </button>
+              <ThemeToggle />
             </div>
           </div>
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-1">
+            <ThemeToggle />
             <MobileMenu />
           </div>
         </div>
@@ -96,7 +97,7 @@ function MobileMenu() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-16 left-0 right-0 bg-background shadow-lg p-4">
+        <div className="absolute top-16 left-0 right-0 bg-background shadow-lg p-4 dark:border-b dark:border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link
