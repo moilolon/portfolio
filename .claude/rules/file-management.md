@@ -18,7 +18,7 @@
 ## Never read or commit (sensitive)
 
 - `.env`, `.env.local`, `.env.*.local` — they hold the keys. The code uses:
-  `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
-  (public, shipped to the browser) and `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`,
-  `NOTIFICATION_EMAIL` (server only). Ask the user when a value matters; never print one.
+  `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (public, shipped to the browser) and `SUPABASE_URL`,
+  `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`, `NOTIFICATION_EMAIL`
+  (server only). Ask the user when a value matters; never print one.
 - `*.pem`, `.vercel/`
