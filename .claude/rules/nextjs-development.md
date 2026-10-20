@@ -45,8 +45,8 @@
 - Validate input before any side effect; verify reCAPTCHA server-side with
   `RECAPTCHA_SECRET_KEY`. The key is v3: check `success`, the `action`
   (`RECAPTCHA_CONTACT_ACTION`) and the `score` (≥ 0.5).
-- Server secrets (`RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`, `NOTIFICATION_EMAIL`) are read only
-  here, never in a client component.
+- Server secrets (`SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`,
+  `NOTIFICATION_EMAIL`) are read only here, never in a client component.
 - Log the error server-side, return a generic message to the client.
 
 ## Before calling it done
