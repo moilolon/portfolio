@@ -48,7 +48,7 @@ src/
 │   └── icons/<section>/      # SVG icon components, re-exported by an index.ts per folder
 ├── lib/
 │   ├── constants/            # the site's CONTENT: experience, projects, technologies, information
-│   ├── supabase/client.ts
+│   ├── supabase/client.ts    # server only (secret key)
 │   ├── resend/client.ts
 │   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
 │   ├── theme.ts              # inline script that sets <html data-theme> before paint
@@ -81,8 +81,8 @@ CI (`.github/workflows/cra.yaml`) runs `npm run lint` on every push to a branch 
 - **Secrets live in `.env.local`** (git-ignored) and must never be read, printed or committed.
   The variable names the code uses are listed in `.claude/rules/file-management.md`.
 - **Server-only secrets stay server-side.** Only `NEXT_PUBLIC_*` variables may be used in
-  client components; `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY` and `NOTIFICATION_EMAIL` are
-  read only in `src/app/api/`.
+  client components; `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY` and
+  `NOTIFICATION_EMAIL` are read only in `src/app/api/` (and the `src/lib/` clients it imports).
 - **`'use client'` only where needed** (state, effects, event handlers, browser APIs).
   Sections that just render constants stay server components.
 - **Style is enforced by ESLint Stylistic** (`eslint.config.mjs`): 2-space indent, single
