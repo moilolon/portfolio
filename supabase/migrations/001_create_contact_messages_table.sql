@@ -16,11 +16,12 @@ CREATE INDEX idx_contact_messages_created_at ON contact_messages(created_at);
 -- Enable Row Level Security (RLS)
 ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 
--- Create policy to allow select, insert, update and delete to everyone
-CREATE POLICY "Enable all access for everyone"
-ON contact_messages AS PERMISSIVE FOR ALL
-TO public
-USING (true);
+-- No policies: anon and authenticated cannot touch the table. Only the API route
+-- reaches it, server-side with the secret key (service_role), which bypasses RLS.
+
+-- Grant Data API access explicitly: only service_role, nothing for the public roles.
+REVOKE ALL ON contact_messages FROM anon, authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON contact_messages TO service_role;
 
 -- Add comment to table
 COMMENT ON TABLE contact_messages IS 'Saves contact messages from portfolio'
