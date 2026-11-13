@@ -30,6 +30,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* The site switcher (<moilolon-nav>, loaded from moilolon.com) wears the colors of the page */
+moilolon-nav {
+  --moilolon-nav-surface: var(--card);
+  --moilolon-nav-text: var(--foreground);
+  --moilolon-nav-border: var(--border);
+}
+
 /* The theme is set on <html data-theme> by an inline script (system preference or saved choice) */
 :root[data-theme="dark"] {
   color-scheme: dark;
