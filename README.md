@@ -158,7 +158,7 @@ src/
 │   └── globals.css            # Tailwind, theme variables, animations
 ├── components/
 │   ├── sections/              # Information, Technologies, Experience, Projects, Training, AboutMe
-│   ├── layouts/               # Navbar
+│   ├── layouts/               # Navbar, with the site switcher shared with moilolon.com
 │   ├── forms/ · modals/ · ui/ # ContactForm, ContactModal, Modal, Toast, ThemeToggle
 │   └── icons/                 # SVG icons, grouped by section
 ├── lib/

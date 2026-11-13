@@ -35,12 +35,12 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
 ```text
 src/
 ├── app/
-│   ├── layout.tsx            # fonts, metadata, theme init script, Analytics, SpeedInsights
+│   ├── layout.tsx            # fonts, metadata, theme init script, nav.js, Analytics, SpeedInsights
 │   ├── page.tsx              # composes Navbar + every section
 │   ├── globals.css           # Tailwind import, CSS variables, animations
 │   └── api/contact/route.ts  # POST: reCAPTCHA → Supabase insert → Resend email
 ├── components/
-│   ├── layouts/Navbar.tsx    # section links, Contact button (opens ContactModal), theme toggle
+│   ├── layouts/Navbar.tsx    # site switcher (<moilolon-nav>), section links, Contact button, theme toggle
 │   ├── sections/             # Information, Technologies, Experience, Projects, Training, AboutMe
 │   ├── modals/ContactModal.tsx
 │   ├── forms/ContactForm.tsx
@@ -53,7 +53,7 @@ src/
 │   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
 │   ├── theme.ts              # inline script that sets <html data-theme> before paint
 │   └── colors.ts             # tint() for technology chip backgrounds
-└── types/                    # one file per content type (experience, projects, …)
+└── types/                    # one file per content type (experience, projects, …), moilolon-nav.d.ts
 public/                       # avatar.jpg, cv/curriculum_en.pdf, projects/*.png|svg
 supabase/migrations/          # NNN_description.sql
 ```

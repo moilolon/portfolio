@@ -1,18 +1,14 @@
 'use client';
 
 import { MoonIcon, SunIcon } from '@/components/icons/navigation';
-import { THEME_STORAGE_KEY, type Theme } from '@/lib/theme';
+import { saveTheme, type Theme } from '@/lib/theme';
 
 export default function ThemeToggle() {
   const toggleTheme = () => {
     const root = document.documentElement;
     const next: Theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // Storage can be unavailable (private mode); the theme still applies for this visit
-    }
+    saveTheme(next);
   };
 
   // Icons are switched with the `dark:` variant, so the server render never mismatches the client

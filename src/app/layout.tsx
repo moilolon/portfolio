@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { themeInitScript } from '@/lib/theme';
@@ -38,6 +39,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {/* Defines <moilolon-nav>, the site switcher shared by every moilolon.com site (used in Navbar) */}
+        <Script src="https://moilolon.com/nav.js" strategy="afterInteractive" />
         <Analytics />
         <SpeedInsights />
       </body>
