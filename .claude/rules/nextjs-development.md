@@ -30,8 +30,9 @@
 - Tailwind utility classes in the JSX. Tailwind 4 has no config file: tokens and
   `@keyframes` are declared in `globals.css` (`@theme`, CSS variables).
 - The theme is `<html data-theme="light|dark">`: the inline script in `src/lib/theme.ts` sets it
-  before paint from the saved choice (`localStorage.theme`) or `prefers-color-scheme`, and
-  `ThemeToggle` switches it. The CSS variables in `globals.css` and the `dark:` variant
+  before paint from the cookie shared with the other moilolon.com sites (`moilolon-theme`),
+  the saved choice (`localStorage.theme`) or `prefers-color-scheme`, and `ThemeToggle` switches
+  it and saves it with `saveTheme()`. The CSS variables in `globals.css` and the `dark:` variant
   (`@custom-variant dark`) follow it; every new color needs its dark counterpart.
 - Cards use `bg-card` plus `dark:border dark:border-border` (shadows are invisible in dark).
   Technology colors may be CSS variables (`var(--foreground)`), so tint them with `tint()`
