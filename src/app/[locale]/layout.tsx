@@ -7,6 +7,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { routing } from '@/i18n/routing';
+import { SITE_URL } from '@/lib/site';
 import { themeInitScript } from '@/lib/theme';
 import '../globals.css';
 
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
   return {
-    metadataBase: new URL('https://portfolio.moilolon.com'),
+    metadataBase: new URL(SITE_URL),
     title: t('title'),
     description: t('description'),
     keywords: ['Salesforce Commerce Cloud', 'SFCC', 'SFRA', 'Salesforce developer', 'e-commerce', 'full stack', 'Node.js', 'JavaScript', 'Java', 'portfolio', 'A Coruña'],
@@ -45,7 +46,26 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
     creator: 'Moisés López López',
     alternates: {
       canonical: `/${locale}`,
-      languages: Object.fromEntries(routing.locales.map((language) => [language, `/${language}`])),
+      languages: {
+        ...Object.fromEntries(routing.locales.map((language) => [language, `/${language}`])),
+        // Without a language the middleware chooses one
+        'x-default': '/',
+      },
+    },
+    // The card of a shared link; its image is opengraph-image.tsx
+    openGraph: {
+      type: 'profile',
+      url: `/${locale}`,
+      siteName: 'moilolon',
+      title: t('title'),
+      description: t('description'),
+      locale,
+      alternateLocale: routing.locales.filter((language) => language !== locale),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
     },
   };
 }
