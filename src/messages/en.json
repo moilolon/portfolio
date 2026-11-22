@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "title": "Moisés López López | Salesforce Full Stack Developer",
+    "description": "Portfolio of Moisés López López, Salesforce Commerce Cloud developer building the Guess online stores for Europe and North America."
+  },
+  "nav": {
+    "technologies": "Technologies",
+    "experience": "Experience",
+    "projects": "Projects",
+    "training": "Training",
+    "about": "About Me",
+    "contact": "Contact",
+    "openMenu": "Open main menu",
+    "toggleTheme": "Toggle light and dark theme",
+    "toggleThemeTitle": "Toggle theme",
+    "language": "Language",
+    "languageName": "{locale, select, es {Español} other {English}}"
+  },
+  "information": {
+    "avatarAlt": "Photo of {name}",
+    "email": "Email",
+    "resume": "Resume",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "technologies": {
+    "title": "Technologies",
+    "daily": "Daily use",
+    "experienced": "Worked with"
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "projects": {
+    "title": "Projects",
+    "filterLabel": "Filter projects by technology",
+    "all": "All ({count})",
+    "showAll": "Show all (+{count})",
+    "showLess": "Show less",
+    "more": "+{count} more",
+    "viewDetails": "View Details",
+    "viewLess": "View Less",
+    "technologiesUsed": "Technologies Used:",
+    "github": "Source code of {name} on GitHub",
+    "live": "Live site of {name}"
+  },
+  "training": {
+    "title": "Training & Education",
+    "education": "Education",
+    "courses": "Courses",
+    "languages": "Languages"
+  },
+  "about": {
+    "title": "About Me"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "contact": {
+    "title": "Contact Me",
+    "intro": "Have a question or want to work together? Feel free to reach out using the form below.",
+    "close": "Close",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message"
+    },
+    "errors": {
+      "required": "{field} is required",
+      "tooLong": "{field} must be {max} characters or fewer",
+      "invalidEmail": "Enter a valid email address"
+    },
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Thank you for your message! I will get back to you soon.",
+    "checkFields": "Please check the highlighted fields",
+    "captchaUnavailable": "The anti-spam check could not load.",
+    "captchaFailed": "The anti-spam check did not pass. Please try again.",
+    "tooMany": "Too many messages. Please try again in a minute.",
+    "genericError": "Something went wrong. Please try again in a moment.",
+    "fallback": "Your message could not be sent from here. You can write to me directly at <email></email>.",
+    "recaptcha": "This site is protected by reCAPTCHA and the Google <privacy>Privacy Policy</privacy> and <terms>Terms of Service</terms> apply."
+  }
+}

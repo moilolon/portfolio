@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "title": "Moisés López López | Desarrollador Full Stack de Salesforce",
+    "description": "Portfolio de Moisés López López, desarrollador de Salesforce Commerce Cloud en las tiendas online de Guess para Europa y Norteamérica."
+  },
+  "nav": {
+    "technologies": "Tecnologías",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "training": "Formación",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "openMenu": "Abrir el menú principal",
+    "toggleTheme": "Cambiar entre tema claro y oscuro",
+    "toggleThemeTitle": "Cambiar de tema",
+    "language": "Idioma",
+    "languageName": "{locale, select, es {Español} other {English}}"
+  },
+  "information": {
+    "avatarAlt": "Foto de {name}",
+    "email": "Email",
+    "resume": "Currículum",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "technologies": {
+    "title": "Tecnologías",
+    "daily": "Uso diario",
+    "experienced": "He trabajado con"
+  },
+  "experience": {
+    "title": "Experiencia"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "filterLabel": "Filtrar proyectos por tecnología",
+    "all": "Todos ({count})",
+    "showAll": "Ver todas (+{count})",
+    "showLess": "Ver menos",
+    "more": "+{count} más",
+    "viewDetails": "Ver detalles",
+    "viewLess": "Ver menos",
+    "technologiesUsed": "Tecnologías utilizadas:",
+    "github": "Código fuente de {name} en GitHub",
+    "live": "Web de {name}"
+  },
+  "training": {
+    "title": "Formación",
+    "education": "Formación académica",
+    "courses": "Cursos",
+    "languages": "Idiomas"
+  },
+  "about": {
+    "title": "Sobre mí"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados."
+  },
+  "contact": {
+    "title": "Contacto",
+    "intro": "¿Tienes una pregunta o quieres que trabajemos juntos? Escríbeme con el formulario de abajo.",
+    "close": "Cerrar",
+    "fields": {
+      "name": "Nombre",
+      "email": "Email",
+      "subject": "Asunto",
+      "message": "Mensaje"
+    },
+    "errors": {
+      "required": "El campo {field} es obligatorio",
+      "tooLong": "El campo {field} admite como máximo {max} caracteres",
+      "invalidEmail": "Escribe una dirección de email válida"
+    },
+    "send": "Enviar mensaje",
+    "sending": "Enviando...",
+    "success": "¡Gracias por tu mensaje! Te responderé pronto.",
+    "checkFields": "Revisa los campos marcados",
+    "captchaUnavailable": "No se pudo cargar la comprobación antispam.",
+    "captchaFailed": "La comprobación antispam no se superó. Inténtalo de nuevo.",
+    "tooMany": "Demasiados mensajes. Inténtalo de nuevo en un minuto.",
+    "genericError": "Algo ha fallado. Inténtalo de nuevo en un momento.",
+    "fallback": "No se ha podido enviar tu mensaje desde aquí. Puedes escribirme directamente a <email></email>.",
+    "recaptcha": "Este sitio está protegido por reCAPTCHA y se aplican la <privacy>Política de privacidad</privacy> y los <terms>Términos del servicio</terms> de Google."
+  }
+}

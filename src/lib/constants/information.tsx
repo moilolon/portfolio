@@ -13,6 +13,7 @@ export const contactEmail = content.email;
 
 // The personal details are content: src/content/profile.json.
 // Here goes only how the quick links look: their icon and button colors.
+// Their label is an interface text: messages "information.<id>".
 export function getPersonalInfo(locale: Locale): PersonalInfo {
   const profile = localize(content, locale);
 
@@ -20,28 +21,28 @@ export function getPersonalInfo(locale: Locale): PersonalInfo {
     ...profile,
     socials: [
       {
-        name: 'Email',
+        id: 'email',
         icon: <EmailIcon />,
         url: `mailto:${profile.email}`,
         color: 'bg-blue-500 hover:bg-blue-600 text-white',
       },
 
       {
-        name: 'Resume',
+        id: 'resume',
         icon: <ResumeIcon />,
         url: profile.cv,
         color: 'bg-gray-200 hover:bg-gray-300 text-gray-900',
       },
 
       {
-        name: 'GitHub',
+        id: 'github',
         icon: <GithubIcon />,
         url: profile.github,
         color: 'bg-gray-800 hover:bg-gray-900 text-white',
       },
 
       {
-        name: 'LinkedIn',
+        id: 'linkedin',
         icon: <LinkedInIcon />,
         url: profile.linkedin,
         color: 'bg-blue-700 hover:bg-blue-800 text-white',
