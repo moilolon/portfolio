@@ -47,9 +47,11 @@ src/
 │   ├── forms/ContactForm.tsx
 │   ├── ui/                   # Modal, Toast, ThemeToggle
 │   └── icons/<section>/      # SVG icon components, re-exported by an index.ts per folder
-├── content/                  # the site's CONTENT as JSON: profile, technologies, experience, projects, training, about
+├── content/                  # the site's CONTENT as JSON, every text in English and Spanish: profile, technologies,
+│                             #   experience, projects, training, languages, about; cv.json holds what only the CV shows
 ├── lib/
-│   ├── constants/            # typed adapters over content/, adding what is not data (icons, colors)
+│   ├── constants/            # typed adapters over content/: get<Section>(locale), adding what is not data (icons, colors)
+│   ├── i18n.ts               # the locales (en, es) and localize(), which picks one language out of the content
 │   ├── contact.ts            # contact form rules (limits, validation, honeypot) shared by form and API
 │   ├── supabase/client.ts    # server only (secret key)
 │   ├── resend/               # client.ts, contact.ts (the notification email, HTML-escaped)
@@ -65,6 +67,11 @@ vercel.json                   # the daily cron of the contact messages
 Content is data, not markup: to add a job, project, technology, course or a paragraph of About me,
 edit the matching JSON in `src/content/` (typed by `src/types/`), not the section component. A new
 technology also needs its color (and icon) in `src/lib/constants/technologies.tsx`.
+
+Every text in `src/content/` is written in both languages, side by side:
+`"title": { "en": "…", "es": "…" }`. The site still renders English only (`DEFAULT_LOCALE`).
+The same content will feed the generated CV, so the site is the source: there is no second
+wording of a job for the PDF.
 
 ## Commands
 

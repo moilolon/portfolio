@@ -1,6 +1,9 @@
-import { about } from '@/lib/constants/about';
+import { getAbout } from '@/lib/constants/about';
+import { DEFAULT_LOCALE } from '@/lib/i18n';
 
 export default function AboutMe() {
+  const about = getAbout(DEFAULT_LOCALE);
+
   return (
     <section id="about" className="py-20 bg-foreground/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -40,7 +40,7 @@ with a contact form that lands straight in your inbox.
 | 🧰 | **Technologies** | Skills by category, with brand icons, split into daily use and past experience |
 | 💼 | **Experience** | Work history with expandable entries: summary, key points and technologies |
 | 🚀 | **Projects** | Project cards with key points, tech stack and GitHub / live links, filterable by technology |
-| 🎓 | **Training** | Education and certifications |
+| 🎓 | **Training** | Education, courses and languages |
 | 💬 | **About me** | Who I am and how I work |
 | ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, a honeypot and a Vercel Firewall rate limit, with per-field validation, toast feedback, an email notification you can reply to, and daily retries |
 
@@ -160,9 +160,13 @@ The content is data, not markup — edit these files and the sections follow:
 | Technologies and daily / past usage | [`src/content/technologies.json`](src/content/technologies.json); colors and icons in [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
 | Jobs (summary, key points, technologies) | [`src/content/experience.json`](src/content/experience.json) |
 | Projects (newest first) | [`src/content/projects.json`](src/content/projects.json), images in `public/projects/` |
-| Training, About me | [`src/content/training.json`](src/content/training.json), [`src/content/about.json`](src/content/about.json) |
+| Education and courses, languages | [`src/content/training.json`](src/content/training.json), [`src/content/languages.json`](src/content/languages.json) |
+| About me | [`src/content/about.json`](src/content/about.json) |
 | Page title and SEO | [`src/app/layout.tsx`](src/app/layout.tsx) |
 | Colors, light/dark theme and animations | [`src/app/globals.css`](src/app/globals.css) |
+
+Every text is written in English and Spanish, side by side: `"title": { "en": "…", "es": "…" }`.
+The site renders English for now; the Spanish version is on its way.
 
 Technologies in jobs and projects are referenced by name and must exist in `technologies.json`;
 `technologies.tsx` sets their chip color. The ones marked `"usage": "daily"` become the quick filters of the Projects section.

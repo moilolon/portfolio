@@ -1,0 +1,32 @@
+[
+  {
+    "name": {
+      "en": "Galician",
+      "es": "Gallego"
+    },
+    "level": {
+      "en": "Native or Bilingual Proficiency",
+      "es": "Competencia nativa"
+    }
+  },
+  {
+    "name": {
+      "en": "Spanish",
+      "es": "Castellano"
+    },
+    "level": {
+      "en": "Native or Bilingual Proficiency",
+      "es": "Competencia nativa"
+    }
+  },
+  {
+    "name": {
+      "en": "English",
+      "es": "Inglés"
+    },
+    "level": {
+      "en": "Professional Proficiency",
+      "es": "Competencia profesional"
+    }
+  }
+]

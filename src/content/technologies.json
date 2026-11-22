@@ -1,6 +1,9 @@
 [
   {
-    "category": "Frontend",
+    "category": {
+      "en": "Frontend",
+      "es": "Frontend"
+    },
     "items": [
       {
         "name": "Next.js",
@@ -49,7 +52,10 @@
     ]
   },
   {
-    "category": "Backend",
+    "category": {
+      "en": "Backend",
+      "es": "Backend"
+    },
     "items": [
       {
         "name": "Node.js",
@@ -102,7 +108,10 @@
     ]
   },
   {
-    "category": "DevOps & Tools",
+    "category": {
+      "en": "DevOps & Tools",
+      "es": "DevOps y herramientas"
+    },
     "items": [
       {
         "name": "Git",
@@ -148,7 +157,10 @@
     ]
   },
   {
-    "category": "AI & Cloud",
+    "category": {
+      "en": "AI & Cloud",
+      "es": "IA y cloud"
+    },
     "items": [
       {
         "name": "Azure AI Foundry",
