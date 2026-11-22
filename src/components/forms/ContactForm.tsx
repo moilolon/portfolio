@@ -10,7 +10,7 @@ import {
   type ContactErrors,
   type ContactField,
 } from '@/lib/contact';
-import { personalInfo } from '@/lib/constants/information';
+import { contactEmail } from '@/lib/constants/information';
 import { getRecaptchaToken, loadRecaptcha, RECAPTCHA_CONTACT_ACTION } from '@/lib/recaptcha';
 import { EmailIcon, LoadingSpinnerIcon, MessageIcon, UserIcon } from '@/components/icons/forms';
 
@@ -223,8 +223,8 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       {showEmailFallback && (
         <p role="alert" className="rounded-lg border border-red-500/40 bg-red-500/10 p-3 text-sm">
           Your message could not be sent from here. You can write to me directly at{' '}
-          <a href={`mailto:${personalInfo.email}`} className="font-medium text-blue-500 hover:text-blue-600">
-            {personalInfo.email}
+          <a href={`mailto:${contactEmail}`} className="font-medium text-blue-500 hover:text-blue-600">
+            {contactEmail}
           </a>
           .
         </p>
