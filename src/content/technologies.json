@@ -1,0 +1,167 @@
+[
+  {
+    "category": "Frontend",
+    "items": [
+      {
+        "name": "Next.js",
+        "usage": "experienced"
+      },
+      {
+        "name": "TypeScript",
+        "usage": "experienced"
+      },
+      {
+        "name": "Tailwind CSS",
+        "usage": "experienced"
+      },
+      {
+        "name": "JavaScript",
+        "usage": "daily"
+      },
+      {
+        "name": "jQuery",
+        "usage": "daily"
+      },
+      {
+        "name": "HTML5",
+        "usage": "daily"
+      },
+      {
+        "name": "CSS3",
+        "usage": "daily"
+      },
+      {
+        "name": "JSP",
+        "usage": "experienced"
+      },
+      {
+        "name": "Bootstrap",
+        "usage": "daily"
+      },
+      {
+        "name": "SASS",
+        "usage": "daily"
+      },
+      {
+        "name": "ISML",
+        "usage": "daily"
+      }
+    ]
+  },
+  {
+    "category": "Backend",
+    "items": [
+      {
+        "name": "Node.js",
+        "usage": "daily"
+      },
+      {
+        "name": "Java",
+        "usage": "experienced"
+      },
+      {
+        "name": "Hibernate",
+        "usage": "experienced"
+      },
+      {
+        "name": "Spring",
+        "usage": "experienced"
+      },
+      {
+        "name": "JPA"
+      },
+      {
+        "name": "Web Services"
+      },
+      {
+        "name": "REST"
+      },
+      {
+        "name": "Supabase",
+        "usage": "experienced"
+      },
+      {
+        "name": "Oracle",
+        "usage": "experienced"
+      },
+      {
+        "name": "PostgreSQL",
+        "usage": "experienced"
+      },
+      {
+        "name": "SQL"
+      },
+      {
+        "name": "PL/SQL",
+        "usage": "experienced"
+      },
+      {
+        "name": "GraphQL",
+        "usage": "experienced"
+      }
+    ]
+  },
+  {
+    "category": "DevOps & Tools",
+    "items": [
+      {
+        "name": "Git",
+        "usage": "daily"
+      },
+      {
+        "name": "GitHub",
+        "usage": "daily"
+      },
+      {
+        "name": "Docker",
+        "usage": "experienced"
+      },
+      {
+        "name": "Maven"
+      },
+      {
+        "name": "GitHub Actions",
+        "usage": "daily"
+      },
+      {
+        "name": "Vercel",
+        "usage": "experienced"
+      },
+      {
+        "name": "Postman",
+        "usage": "daily"
+      },
+      {
+        "name": "VS Code",
+        "usage": "daily"
+      },
+      {
+        "name": "Zed",
+        "usage": "daily"
+      },
+      {
+        "name": "Resend"
+      },
+      {
+        "name": "Google reCAPTCHA"
+      }
+    ]
+  },
+  {
+    "category": "AI & Cloud",
+    "items": [
+      {
+        "name": "Azure AI Foundry",
+        "usage": "experienced"
+      },
+      {
+        "name": "Salesforce Commerce Cloud",
+        "usage": "daily"
+      },
+      {
+        "name": "Claude Code",
+        "usage": "daily"
+      }
+    ]
+  }
+]
