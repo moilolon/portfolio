@@ -42,7 +42,7 @@ component, or it ships to the browser.
   a key missing only in `es.json` does not, so add both at once.
 - The language is remembered in the cookie `moilolon-lang`, shared with the other moilolon.com
   sites (`src/lib/lang.ts`), not in next-intl's own cookie, which is turned off. Only the language
-  switcher writes it. `src/middleware.ts` reads it for a URL without language and falls back to
+  switcher writes it. `src/proxy.ts` (what Next.js called middleware before version 16) reads it for a URL without language and falls back to
   the browser's language. A URL with language always wins.
 - Internal links to a page go through `Link` of `src/i18n/navigation.ts`, which adds the
   language; section anchors are plain `<a href="#id">`.
@@ -60,6 +60,12 @@ component, or it ships to the browser.
   CSS in `StyleSheet`, no Tailwind. Pass images as a buffer, not as a Windows path.
 - After a change, open both PDFs and read every page: text that grows can move a whole entry
   to the next page, since entries are never split.
+
+## Hooks
+
+- The lint rejects `setState` called straight from the body of an effect. For "am I in the
+  browser?" (a portal into `document.body`) use `useIsClient()` from `src/lib/use-is-client.ts`;
+  for state that follows a prop, set it while rendering behind a condition, as `ui/Modal` does.
 
 ## Components
 

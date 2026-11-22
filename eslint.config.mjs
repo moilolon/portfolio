@@ -1,19 +1,12 @@
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTypescript from 'eslint-config-next/typescript';
 import stylistic from '@stylistic/eslint-plugin';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  // What `next lint` used to skip on its own
-  { ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'supabase/.temp/**'] },
-  ...compat.extends('next/core-web-vitals', 'next/typescript'),
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTypescript,
+  globalIgnores(['.next/**', 'node_modules/**', 'next-env.d.ts', 'supabase/.temp/**']),
   // Formatting through ESLint: `npm run lint -- --fix`, and Zed fixes on save.
   stylistic.configs.customize({
     indent: 2,
@@ -32,6 +25,6 @@ const eslintConfig = [
       'react/self-closing-comp': 'error',
     },
   },
-];
+]);
 
 export default eslintConfig;
