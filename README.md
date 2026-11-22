@@ -42,7 +42,7 @@ with a contact form that lands straight in your inbox.
 | 🚀 | **Projects** | Project cards with key points, tech stack and GitHub / live links, filterable by technology |
 | 🎓 | **Training** | Education and certifications |
 | 💬 | **About me** | Who I am and how I work |
-| ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, with toast feedback and email notification |
+| ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, a honeypot and a rate limit, with per-field validation, toast feedback, an email notification you can reply to, and daily retries |
 
 **Under the hood:** server components by default, light/dark theme that follows the system
 preference with a manual toggle (remembered, no flash on load), smooth-scrolling navigation, mobile-first layout, SEO metadata, and
@@ -74,18 +74,24 @@ sequenceDiagram
     participant R as Resend
 
     V->>F: fills the form
+    F->>F: validate fields
     F->>G: execute action "contact"
     G-->>F: token
     F->>A: POST name, email, subject, message, token
+    A->>A: validate fields, discard honeypot hits
     A->>G: verify token
     G-->>A: success, action, score
     A->>A: check action = contact, score ≥ 0.5
+    A->>S: count recent messages (rate limit)
     A->>S: insert message (status: pending)
-    A->>R: send notification email
+    A->>R: send notification email (reply-to: visitor)
     A->>S: update status: sent / failed
     A-->>F: 200 / error
-    F-->>V: toast
+    F-->>V: toast, field errors or email fallback
 ```
+
+A daily [Vercel Cron](https://vercel.com/docs/cron-jobs) (`vercel.json` → `/api/cron/contact`)
+retries the notifications that were not sent, up to five times.
 
 ## 🚀 Getting started
 
@@ -112,6 +118,9 @@ RECAPTCHA_SECRET_KEY=
 NOTIFICATION_EMAIL=
 ```
 
+On Vercel, also set `CRON_SECRET` (any long random string): Vercel Cron sends it to
+`/api/cron/contact`, which rejects every call without it.
+
 Apply the migrations in [`supabase/migrations/`](supabase/migrations) to your project
 (`supabase db push`, or paste them in the SQL editor), then:
 
@@ -136,16 +145,16 @@ The content is data, not markup — edit these files and the sections follow:
 
 | To change | Edit |
 |---|---|
-| Name, role, links, avatar, CV | [`src/lib/constants/information.tsx`](src/lib/constants/information.tsx), `public/avatar.jpg`, `public/cv/` |
-| Technologies, colors and daily / past usage | [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
-| Jobs (summary, key points, technologies) | [`src/lib/constants/experience.tsx`](src/lib/constants/experience.tsx) |
-| Projects (newest first) | [`src/lib/constants/projects.tsx`](src/lib/constants/projects.tsx), images in `public/projects/` |
-| Training, About me | [`Training.tsx`](src/components/sections/Training.tsx), [`AboutMe.tsx`](src/components/sections/AboutMe.tsx) (inline for now) |
+| Name, role, links, avatar, CV | [`src/content/profile.json`](src/content/profile.json), `public/avatar.jpg`, `public/cv/` |
+| Technologies and daily / past usage | [`src/content/technologies.json`](src/content/technologies.json); colors and icons in [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
+| Jobs (summary, key points, technologies) | [`src/content/experience.json`](src/content/experience.json) |
+| Projects (newest first) | [`src/content/projects.json`](src/content/projects.json), images in `public/projects/` |
+| Training, About me | [`src/content/training.json`](src/content/training.json), [`src/content/about.json`](src/content/about.json) |
 | Page title and SEO | [`src/app/layout.tsx`](src/app/layout.tsx) |
 | Colors, light/dark theme and animations | [`src/app/globals.css`](src/app/globals.css) |
 
-Technologies in jobs and projects are referenced by name and must exist in `technologies.tsx`,
-which also sets their chip color. The ones marked `usage: 'daily'` become the quick filters of the Projects section.
+Technologies in jobs and projects are referenced by name and must exist in `technologies.json`;
+`technologies.tsx` sets their chip color. The ones marked `"usage": "daily"` become the quick filters of the Projects section.
 
 ## 🏗 Project structure
 
@@ -153,6 +162,7 @@ which also sets their chip color. The ones marked `usage: 'daily'` become the qu
 src/
 ├── app/
 │   ├── api/contact/route.ts   # contact endpoint
+│   ├── api/cron/contact/      # daily retry of the unsent contact notifications
 │   ├── layout.tsx             # fonts, metadata, analytics
 │   ├── page.tsx               # composes every section
 │   └── globals.css            # Tailwind, theme variables, animations
@@ -161,9 +171,11 @@ src/
 │   ├── layouts/               # Navbar, with the site switcher shared with moilolon.com
 │   ├── forms/ · modals/ · ui/ # ContactForm, ContactModal, Modal, Toast, ThemeToggle
 │   └── icons/                 # SVG icons, grouped by section
+├── content/                   # the site's content, as JSON
 ├── lib/
-│   ├── constants/             # the site's content
-│   ├── supabase/ · resend/    # service clients
+│   ├── constants/             # typed content, joined with icons and colors
+│   ├── contact.ts             # contact form rules shared by the form and the API
+│   ├── supabase/ · resend/    # service clients, notification email
 │   ├── recaptcha.ts           # reCAPTCHA v3 loader
 │   ├── theme.ts               # theme init script (runs before paint)
 │   └── colors.ts              # chip color helper

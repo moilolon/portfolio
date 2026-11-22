@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
-import { resend } from '@/lib/resend/client';
+import { sendContactNotification } from '@/lib/resend/contact';
 import { supabase } from '@/lib/supabase/client';
+import { CONTACT_HONEYPOT_FIELD, validateContact } from '@/lib/contact';
 import { RECAPTCHA_CONTACT_ACTION } from '@/lib/recaptcha';
 
 type RecaptchaVerification = {
@@ -13,6 +14,10 @@ type RecaptchaVerification = {
 
 // Minimum reCAPTCHA v3 score accepted (0.5 is moderate confidence)
 const RECAPTCHA_MIN_SCORE = 0.5;
+
+// Messages accepted per hour: from the same email address, and in total
+const MAX_MESSAGES_PER_EMAIL = 3;
+const MAX_MESSAGES_TOTAL = 30;
 
 // Function to verify reCAPTCHA token
 async function verifyRecaptcha(token: string) {
@@ -27,6 +32,7 @@ async function verifyRecaptcha(token: string) {
         secret: process.env.RECAPTCHA_SECRET_KEY!,
         response: token,
       }),
+      signal: AbortSignal.timeout(5000),
     },
   );
 
@@ -46,21 +52,64 @@ async function verifyRecaptcha(token: string) {
   return true;
 }
 
+// Whether too many messages arrived in the last hour. A failed count never blocks a message.
+async function isRateLimited(email: string) {
+  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+
+  const [fromEmail, total] = await Promise.all([
+    supabase
+      .from('contact_messages')
+      .select('id', { count: 'exact', head: true })
+      .eq('email', email)
+      .gte('created_at', since),
+    supabase
+      .from('contact_messages')
+      .select('id', { count: 'exact', head: true })
+      .gte('created_at', since),
+  ]);
+
+  if (fromEmail.error || total.error) {
+    console.error('Rate limit check failed:', fromEmail.error ?? total.error);
+    return false;
+  }
+
+  return (fromEmail.count ?? 0) >= MAX_MESSAGES_PER_EMAIL || (total.count ?? 0) >= MAX_MESSAGES_TOTAL;
+}
+
 export async function POST(request: Request) {
   try {
     // Parse request body
-    const { name, email, subject, message, recaptchaToken } = await request.json();
+    let body: Record<string, unknown>;
+    try {
+      const parsed: unknown = await request.json();
+      if (typeof parsed !== 'object' || parsed === null) {
+        throw new Error('Body is not an object');
+      }
+      body = parsed as Record<string, unknown>;
+    } catch {
+      return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+    }
+
+    // Honeypot: a filled hidden field means a bot. Answer as if it worked.
+    if (body[CONTACT_HONEYPOT_FIELD]) {
+      console.warn('Contact form honeypot filled, message discarded');
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     // Validate inputs
-    if (!name || !email || !subject || !message) {
+    const { data, errors, valid } = validateContact(body);
+
+    if (!valid) {
       return NextResponse.json(
-        { error: 'Name, email, subject, and message are required' },
+        { error: 'Please check the highlighted fields', fields: errors },
         { status: 400 },
       );
     }
 
     // Verify reCAPTCHA
-    if (!recaptchaToken) {
+    const { recaptchaToken } = body;
+
+    if (typeof recaptchaToken !== 'string' || !recaptchaToken) {
       return NextResponse.json(
         { error: 'reCAPTCHA verification is required' },
         { status: 400 },
@@ -76,17 +125,18 @@ export async function POST(request: Request) {
       );
     }
 
+    if (await isRateLimited(data.email)) {
+      return NextResponse.json(
+        { error: 'Too many messages. Please try again later.' },
+        { status: 429 },
+      );
+    }
+
     // Store in Supabase with initial pending status
     const { error: dbError, data: submission } = await supabase
       .from('contact_messages')
-      .insert({
-        name,
-        email,
-        subject,
-        message,
-        status: 'pending',
-      })
-      .select()
+      .insert({ ...data, status: 'pending' })
+      .select('id')
       .single();
 
     if (dbError) {
@@ -97,38 +147,17 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email with Resend
-    const { error: emailError } = await resend.emails.send({
-      from: 'My Portfolio <portfolio@moilolon.com>',
-      to: process.env.NOTIFICATION_EMAIL!,
-      subject: `New Contact Message: ${subject}`,
-      html: `
-        <h2>New Contact Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
-    });
+    // Send the notification email and record the result. A message that fails here
+    // is stored, so the visitor gets a success and the daily cron retries it.
+    const sent = await sendContactNotification(data);
 
-    // Update the status based on the result
-    if (emailError) {
-      await supabase
-        .from('contact_messages')
-        .update({ status: 'failed' })
-        .eq('id', submission.id);
+    const { error: statusError } = await supabase
+      .from('contact_messages')
+      .update({ status: sent ? 'sent' : 'failed' })
+      .eq('id', submission.id);
 
-      console.error('Email error:', emailError);
-      // Still return success since we stored in DB
-      return NextResponse.json(
-        { success: true, warning: 'Stored but email failed' },
-        { status: 200 },
-      );
-    } else {
-      await supabase
-        .from('contact_messages')
-        .update({ status: 'sent' })
-        .eq('id', submission.id);
+    if (statusError) {
+      console.error('Supabase status update error:', statusError);
     }
 
     return NextResponse.json({ success: true }, { status: 200 });

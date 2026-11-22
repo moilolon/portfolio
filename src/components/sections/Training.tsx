@@ -1,41 +1,15 @@
-export default function Training() {
-  // Define training data
-  const trainings = [
-    {
-      institution: 'Trailhead Academy',
-      qualification: 'B2C Commerce Developer with SFRA',
-      year: '2020',
-      description: 'Intensive week program covering the fundamentals of Salesforce B2C Commerce and the SFRA framework.',
-    },
-    {
-      institution: 'Indra (internal training)',
-      qualification: 'J2EE Platform',
-      year: '2016',
-      description: 'Comprehensive courses on building complex applications with Java EE, J2EE Patterns, Spring MVC Web Applications, Spring Boot, Spring Batch, Hibernate, Oracle11g PL/SQL, Microservices, REST, JavaScript and HTML5&CSS3.',
-    },
-    {
-      institution: 'University of A Coruña',
-      qualification: 'Engineering in Computer Science',
-      year: '2014',
-      description: 'Project: Design and implementation of a Java EE Web application with MVC architecture, for PDF generation of electronic tickets.',
-    },
-    {
-      institution: 'University of A Coruña',
-      qualification: 'Technical Engineering in Computer Systems',
-      year: '2012',
-      description: 'Project: Design and implementation of a .NET Web application with MVC architecture for the exchange of experiences and resources of the In-TIC project.',
-    },
-  ];
+import { trainings } from '@/lib/constants/training';
 
+export default function Training() {
   return (
     <section id="training" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Training & Education</h2>
 
         <div className="space-y-8">
-          {trainings.map((training, index) => (
+          {trainings.map((training) => (
             <div
-              key={index}
+              key={`${training.institution}-${training.qualification}`}
               className="bg-card dark:border dark:border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">

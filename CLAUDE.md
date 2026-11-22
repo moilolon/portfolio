@@ -38,7 +38,8 @@ src/
 │   ├── layout.tsx            # fonts, metadata, theme init script, nav.js, Analytics, SpeedInsights
 │   ├── page.tsx              # composes Navbar + every section
 │   ├── globals.css           # Tailwind import, CSS variables, animations
-│   └── api/contact/route.ts  # POST: reCAPTCHA → Supabase insert → Resend email
+│   ├── api/contact/route.ts  # POST: validate → reCAPTCHA → rate limit → Supabase insert → Resend email
+│   └── api/cron/contact/route.ts  # GET (Vercel Cron, daily): retry unsent notifications
 ├── components/
 │   ├── layouts/Navbar.tsx    # site switcher (<moilolon-nav>), section links, Contact button, theme toggle
 │   ├── sections/             # Information, Technologies, Experience, Projects, Training, AboutMe
@@ -46,21 +47,24 @@ src/
 │   ├── forms/ContactForm.tsx
 │   ├── ui/                   # Modal, Toast, ThemeToggle
 │   └── icons/<section>/      # SVG icon components, re-exported by an index.ts per folder
+├── content/                  # the site's CONTENT as JSON: profile, technologies, experience, projects, training, about
 ├── lib/
-│   ├── constants/            # the site's CONTENT: experience, projects, technologies, information
+│   ├── constants/            # typed adapters over content/, adding what is not data (icons, colors)
+│   ├── contact.ts            # contact form rules (limits, validation, honeypot) shared by form and API
 │   ├── supabase/client.ts    # server only (secret key)
-│   ├── resend/client.ts
+│   ├── resend/               # client.ts, contact.ts (the notification email, HTML-escaped)
 │   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
 │   ├── theme.ts              # inline script that sets <html data-theme> before paint
 │   └── colors.ts             # tint() for technology chip backgrounds
 └── types/                    # one file per content type (experience, projects, …), moilolon-nav.d.ts
 public/                       # avatar.jpg, cv/curriculum_en.pdf, projects/*.png|svg
 supabase/migrations/          # NNN_description.sql
+vercel.json                   # the daily cron of the contact messages
 ```
 
-Content is data, not markup: to add a job, project or technology, edit the matching file in
-`src/lib/constants/` (typed by `src/types/`), not the section component. Exception: Training and
-About me still keep their content inline in their section component.
+Content is data, not markup: to add a job, project, technology, course or a paragraph of About me,
+edit the matching JSON in `src/content/` (typed by `src/types/`), not the section component. A new
+technology also needs its color (and icon) in `src/lib/constants/technologies.tsx`.
 
 ## Commands
 
@@ -81,8 +85,8 @@ CI (`.github/workflows/cra.yaml`) runs `npm run lint` on every push to a branch 
 - **Secrets live in `.env.local`** (git-ignored) and must never be read, printed or committed.
   The variable names the code uses are listed in `.claude/rules/file-management.md`.
 - **Server-only secrets stay server-side.** Only `NEXT_PUBLIC_*` variables may be used in
-  client components; `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY` and
-  `NOTIFICATION_EMAIL` are read only in `src/app/api/` (and the `src/lib/` clients it imports).
+  client components; `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`,
+  `NOTIFICATION_EMAIL` and `CRON_SECRET` are read only in `src/app/api/` (and the `src/lib/` clients it imports).
 - **`'use client'` only where needed** (state, effects, event handlers, browser APIs).
   Sections that just render constants stay server components.
 - **Style is enforced by ESLint Stylistic** (`eslint.config.mjs`): 2-space indent, single
