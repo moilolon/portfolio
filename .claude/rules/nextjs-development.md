@@ -132,6 +132,8 @@ component, or it ships to the browser.
   (`./contact.ts`), which Node requires. For that reason it can only reach modules without
   `@/` imports or JSX: keep the logic worth testing in plain `.ts` files.
 - Test the rules, not the framework: validation, content helpers, anything with branches.
+- Logic that lives in a file Node cannot load (the proxy, a route, a component) is tested by
+  moving the decision to a pure function in `src/lib/`, as `sharedLanguagePath()` for the proxy.
 
 ## Before calling it done
 
