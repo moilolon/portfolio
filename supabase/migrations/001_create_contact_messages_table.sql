@@ -24,4 +24,13 @@ REVOKE ALL ON contact_messages FROM anon, authenticated;
 GRANT SELECT, INSERT, UPDATE, DELETE ON contact_messages TO service_role;
 
 -- Add comment to table
-COMMENT ON TABLE contact_messages IS 'Saves contact messages from portfolio'
+COMMENT ON TABLE contact_messages IS 'Saves contact messages from portfolio';
+
+-- Describe every column of the table
+COMMENT ON COLUMN contact_messages.id IS 'Unique identifier of the message';
+COMMENT ON COLUMN contact_messages.name IS 'Name the visitor gave in the contact form';
+COMMENT ON COLUMN contact_messages.email IS 'Email address of the visitor, in lowercase; the notification replies to it';
+COMMENT ON COLUMN contact_messages.subject IS 'Subject of the message, a single line';
+COMMENT ON COLUMN contact_messages.message IS 'Body of the message, as plain text';
+COMMENT ON COLUMN contact_messages.created_at IS 'When the message was received';
+COMMENT ON COLUMN contact_messages.status IS 'State of the email notification: pending (not sent yet), sent or failed';
