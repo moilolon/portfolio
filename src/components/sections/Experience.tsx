@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { experiences } from '@/lib/constants/experience';
+import { getExperiences } from '@/lib/constants/experience';
+import { DEFAULT_LOCALE } from '@/lib/i18n';
 import { ChevronIcon } from '@/components/icons/experience';
 import type { Experience } from '@/types/experience';
 import { tint } from '@/lib/colors';
+
+const experiences = getExperiences(DEFAULT_LOCALE);
 
 export default function Experience() {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
