@@ -1,22 +1,24 @@
+import { useLocale, useTranslations } from 'next-intl';
 import { getLanguages, getTraining } from '@/lib/constants/training';
-import { DEFAULT_LOCALE } from '@/lib/i18n';
 
 const cardClass = 'bg-card dark:border dark:border-border rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow';
 const groupTitleClass = 'text-lg font-semibold mb-4 text-foreground/70';
 const periodClass = 'inline-block px-4 py-2 bg-foreground/10 rounded-full text-sm font-medium whitespace-nowrap';
 
 export default function Training() {
-  const { education, courses } = getTraining(DEFAULT_LOCALE);
-  const languages = getLanguages(DEFAULT_LOCALE);
+  const t = useTranslations('training');
+  const locale = useLocale();
+  const { education, courses } = getTraining(locale);
+  const languages = getLanguages(locale);
 
   return (
     <section id="training" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Training & Education</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t('title')}</h2>
 
         <div className="space-y-12">
           <div>
-            <h3 className={groupTitleClass}>Education</h3>
+            <h3 className={groupTitleClass}>{t('education')}</h3>
             <div className="space-y-8">
               {education.map((item) => (
                 <div key={item.qualification} className={cardClass}>
@@ -36,7 +38,7 @@ export default function Training() {
           </div>
 
           <div>
-            <h3 className={groupTitleClass}>Courses</h3>
+            <h3 className={groupTitleClass}>{t('courses')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
               {courses.map((group) => (
                 <div key={`${group.organisation}-${group.period}`} className={cardClass}>
@@ -58,7 +60,7 @@ export default function Training() {
           </div>
 
           <div>
-            <h3 className={groupTitleClass}>Languages</h3>
+            <h3 className={groupTitleClass}>{t('languages')}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {languages.map((language) => (
                 <div key={language.name} className={cardClass}>

@@ -44,6 +44,10 @@ with a contact form that lands straight in your inbox.
 | 💬 | **About me** | Who I am and how I work |
 | ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, a honeypot and a Vercel Firewall rate limit, with per-field validation, toast feedback, an email notification you can reply to, and daily retries |
 
+**In English and Spanish:** every page lives under `/en` and `/es`, with a switcher in the
+navbar. The choice is kept in a cookie shared with the other moilolon.com sites; without it, the
+language of the browser decides.
+
 **Under the hood:** server components by default, light/dark theme that follows the system
 preference with a manual toggle (remembered, no flash on load), smooth-scrolling navigation, mobile-first layout, SEO metadata, and
 [Vercel Analytics](https://vercel.com/analytics) + [Speed Insights](https://vercel.com/docs/speed-insights)
@@ -54,6 +58,7 @@ for real-user Core Web Vitals.
 | Layer | Technology |
 |---|---|
 | Framework | [Next.js 15](https://nextjs.org) — App Router, Turbopack in dev |
+| Languages | [next-intl](https://next-intl.dev) — English and Spanish, statically rendered |
 | UI | [React 19](https://react.dev), [Tailwind CSS 4](https://tailwindcss.com), [Geist](https://vercel.com/font) |
 | Language | [TypeScript](https://www.typescriptlang.org) (strict) |
 | Database | [Supabase](https://supabase.com) (Postgres + Row Level Security) |
@@ -166,7 +171,7 @@ The content is data, not markup — edit these files and the sections follow:
 | Colors, light/dark theme and animations | [`src/app/globals.css`](src/app/globals.css) |
 
 Every text is written in English and Spanish, side by side: `"title": { "en": "…", "es": "…" }`.
-The site renders English for now; the Spanish version is on its way.
+The texts of the interface (menu, headings, form) are in [`src/messages/`](src/messages), one file per language.
 
 Technologies in jobs and projects are referenced by name and must exist in `technologies.json`;
 `technologies.tsx` sets their chip color. The ones marked `"usage": "daily"` become the quick filters of the Projects section.
@@ -178,15 +183,16 @@ src/
 ├── app/
 │   ├── api/contact/route.ts   # contact endpoint
 │   ├── api/cron/contact/      # daily retry of the unsent contact notifications
-│   ├── layout.tsx             # fonts, metadata, analytics
-│   ├── page.tsx               # composes every section
+│   ├── [locale]/              # layout (fonts, metadata, analytics) and page, as /en and /es
 │   └── globals.css            # Tailwind, theme variables, animations
 ├── components/
 │   ├── sections/              # Information, Technologies, Experience, Projects, Training, AboutMe
 │   ├── layouts/               # Navbar, with the site switcher shared with moilolon.com
 │   ├── forms/ · modals/ · ui/ # ContactForm, ContactModal, Modal, Toast, ThemeToggle
 │   └── icons/                 # SVG icons, grouped by section
-├── content/                   # the site's content, as JSON
+├── content/                   # the site's content, as JSON, in both languages
+├── messages/                  # the interface texts, one file per language
+├── i18n/ · middleware.ts      # next-intl setup and the redirect to /en or /es
 ├── lib/
 │   ├── constants/             # typed content, joined with icons and colors
 │   ├── contact.ts             # contact form rules shared by the form and the API
@@ -205,6 +211,7 @@ supabase/migrations/           # database schema
 - [x] Vercel Analytics and Speed Insights
 - [x] Manual light/dark toggle
 - [x] Filter projects by technology
+- [x] Spanish version
 - [ ] Blog section
 
 ## 🤖 Built with Claude Code and Zed

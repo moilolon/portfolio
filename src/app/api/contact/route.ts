@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { sendContactNotification } from '@/lib/resend/contact';
 import { supabase } from '@/lib/supabase/client';
-import { CONTACT_HONEYPOT_FIELD, validateContact } from '@/lib/contact';
+import { CONTACT_HONEYPOT_FIELD, validateContact, type ContactApiError, type ContactErrors } from '@/lib/contact';
 import { RECAPTCHA_CONTACT_ACTION } from '@/lib/recaptcha';
 
 type RecaptchaVerification = {
@@ -48,6 +48,10 @@ async function verifyRecaptcha(token: string) {
   return true;
 }
 
+// The API answers with codes, not texts: the form shows them in the visitor's language
+const reject = (error: ContactApiError, status: number, fields?: ContactErrors) =>
+  NextResponse.json(fields ? { error, fields } : { error }, { status });
+
 // The rate limit is not here: a Vercel Firewall rule limits POST /api/contact per IP
 // and answers 429 before the request reaches this function.
 export async function POST(request: Request) {
@@ -61,7 +65,7 @@ export async function POST(request: Request) {
       }
       body = parsed as Record<string, unknown>;
     } catch {
-      return NextResponse.json({ error: 'Invalid request' }, { status: 400 });
+      return reject('invalid_request', 400);
     }
 
     // Honeypot: a filled hidden field means a bot. Answer as if it worked.
@@ -74,29 +78,20 @@ export async function POST(request: Request) {
     const { data, errors, valid } = validateContact(body);
 
     if (!valid) {
-      return NextResponse.json(
-        { error: 'Please check the highlighted fields', fields: errors },
-        { status: 400 },
-      );
+      return reject('validation', 400, errors);
     }
 
     // Verify reCAPTCHA
     const { recaptchaToken } = body;
 
     if (typeof recaptchaToken !== 'string' || !recaptchaToken) {
-      return NextResponse.json(
-        { error: 'reCAPTCHA verification is required' },
-        { status: 400 },
-      );
+      return reject('recaptcha_required', 400);
     }
 
     const isValidRecaptcha = await verifyRecaptcha(recaptchaToken);
 
     if (!isValidRecaptcha) {
-      return NextResponse.json(
-        { error: 'reCAPTCHA verification failed' },
-        { status: 400 },
-      );
+      return reject('recaptcha_failed', 400);
     }
 
     // Store in Supabase with initial pending status
@@ -108,10 +103,7 @@ export async function POST(request: Request) {
 
     if (dbError) {
       console.error('Supabase error:', dbError);
-      return NextResponse.json(
-        { error: 'Failed to store submission' },
-        { status: 500 },
-      );
+      return reject('store_failed', 500);
     }
 
     // Send the notification email and record the result. A message that fails here
@@ -130,9 +122,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error('Contact form error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return reject('internal', 500);
   }
 }
