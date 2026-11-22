@@ -50,7 +50,7 @@ navbar. The choice is kept in a cookie shared with the other moilolon.com sites;
 language of the browser decides.
 
 **Under the hood:** server components by default, light/dark theme that follows the system
-preference with a manual toggle (remembered, no flash on load), smooth-scrolling navigation, mobile-first layout, SEO metadata, and
+preference with a manual toggle (remembered, no flash on load), smooth-scrolling navigation, mobile-first layout, SEO (metadata per language, `sitemap.xml`, a generated social card and schema.org data), and
 [Vercel Analytics](https://vercel.com/analytics) + [Speed Insights](https://vercel.com/docs/speed-insights)
 for real-user Core Web Vitals.
 
@@ -171,7 +171,7 @@ The content is data, not markup — edit these files and the sections follow:
 | Projects (newest first) | [`src/content/projects.json`](src/content/projects.json), images in `public/projects/` |
 | Education and courses, languages | [`src/content/training.json`](src/content/training.json), [`src/content/languages.json`](src/content/languages.json) |
 | About me | [`src/content/about.json`](src/content/about.json) |
-| Page title and SEO | [`src/app/layout.tsx`](src/app/layout.tsx) |
+| Page title and description | the `metadata` texts of [`src/messages/`](src/messages); the rest of the SEO in [`src/app/[locale]/layout.tsx`](src/app/%5Blocale%5D/layout.tsx) |
 | Colors, light/dark theme and animations | [`src/app/globals.css`](src/app/globals.css) |
 
 Every text is written in English and Spanish, side by side: `"title": { "en": "…", "es": "…" }`.

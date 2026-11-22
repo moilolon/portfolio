@@ -16,5 +16,7 @@ export type PersonalInfo = {
   avatar: string;
   email: string;
   cv: string;
+  github: string;
+  linkedin: string;
   socials: SocialLink[];
 };
