@@ -47,7 +47,8 @@ src/
 │   └── api/cron/contact/route.ts  # GET (Vercel Cron, daily): retry unsent notifications
 ├── components/
 │   ├── layouts/Navbar.tsx    # site switcher (<moilolon-nav>), section links, Contact button, theme toggle
-│   ├── sections/             # Information, Technologies, Experience, Projects, Training, AboutMe
+│   ├── sections/             # Information, Technologies, Experience, Projects, Training, AboutMe; the three
+│   │                         #   with state hand their content to a client part (TechnologiesTabs, ExperienceCards, ProjectsGrid)
 │   ├── modals/ContactModal.tsx
 │   ├── forms/ContactForm.tsx
 │   ├── ui/                   # Modal, Toast, ThemeToggle, LanguageSwitcher
