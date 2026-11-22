@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import type { ReactNode } from 'react';
-import { Document, Font, Image, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
+import { Document, Font, Image, Page, Path, StyleSheet, Svg, Text, View } from '@react-pdf/renderer';
 import type { Experience } from '@/types/experience';
 import type { PersonalInfo } from '@/types/information';
 import type { TechnologyCategory } from '@/types/technologies';
@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
   name: { fontSize: 24.88, lineHeight: 1 },
   title: { fontSize: 14.4, fontStyle: 'italic', color: GREY, marginTop: 12 },
   contact: { marginRight: 10, alignItems: 'flex-end' },
+  contactRow: { flexDirection: 'row', alignItems: 'center' },
+  contactIcon: { width: 8, height: 8, marginRight: 3 },
   contactLine: { fontSize: 10, fontStyle: 'italic', color: GREY, textAlign: 'right' },
   photoFrame: { borderWidth: 0.5, borderColor: BLUE, padding: 2 },
   photo: { width: 80, height: 80 },
@@ -81,7 +83,6 @@ export interface CvLabels {
   skills: string;
   courses: string;
   languages: string;
-  technologies: string;
 }
 
 export interface CvProps {
@@ -94,6 +95,18 @@ export interface CvProps {
   training: Training;
   technologies: TechnologyCategory[];
   languages: Language[];
+}
+
+// Material Symbols (Apache 2.0), drawn on a 24 x 24 grid
+const PHONE_ICON = 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z';
+const EMAIL_ICON = 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z';
+
+function Icon({ path: d }: { path: string }) {
+  return (
+    <Svg viewBox="0 0 24 24" style={styles.contactIcon}>
+      <Path d={d} fill={GREY} />
+    </Svg>
+  );
 }
 
 function Section({ title }: { title: string }) {
@@ -174,9 +187,16 @@ export default function CvDocument({
             <Text style={styles.title}>{labels.title}</Text>
           </View>
           <View style={styles.contact}>
-            {[personalInfo.location, phone, personalInfo.email, born].map((line) => (
-              <Text key={line} style={styles.contactLine}>{line}</Text>
-            ))}
+            <Text style={styles.contactLine}>{personalInfo.location}</Text>
+            <View style={styles.contactRow}>
+              <Icon path={PHONE_ICON} />
+              <Text style={styles.contactLine}>{phone}</Text>
+            </View>
+            <View style={styles.contactRow}>
+              <Icon path={EMAIL_ICON} />
+              <Text style={styles.contactLine}>{personalInfo.email}</Text>
+            </View>
+            <Text style={styles.contactLine}>{born}</Text>
           </View>
           <View style={styles.photoFrame}>
             {/* eslint-disable-next-line jsx-a11y/alt-text -- an image of a PDF, not an <img> */}
@@ -200,9 +220,6 @@ export default function CvDocument({
               {job.highlights.map((highlight) => (
                 <Dash key={highlight}>{highlight}</Dash>
               ))}
-              <Dash>
-                {labels.technologies}: {job.technologies.map((technology) => technology.name).join(', ')}.
-              </Dash>
             </View>
           </Row>
         ))}
