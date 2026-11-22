@@ -1,11 +1,11 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getProjects } from '@/lib/constants/projects';
 import { getTechnologies } from '@/lib/constants/technologies';
-import { DEFAULT_LOCALE } from '@/lib/i18n';
 import { GithubIcon, LiveIcon } from '@/components/icons/projects';
 import type { Project } from '@/types/projects';
 import type { Technology } from '@/types/technologies';
@@ -19,17 +19,12 @@ const PREVIEW_TECHNOLOGIES = 3;
 // Number of quick filters shown before "Show all": taken from the technologies in daily use
 const QUICK_FILTERS = 6;
 
-const projects = getProjects(DEFAULT_LOCALE);
-const technologies = getTechnologies(DEFAULT_LOCALE);
-
-// Technologies marked as daily use in the Technologies section (the current stack)
-const dailyTechnologies = new Set(
-  technologies.flatMap((category) => category.items).filter((tech) => tech.usage === 'daily').map((tech) => tech.name),
-);
-
 const filterChipClass = 'px-3 py-1 rounded-full text-sm transition-colors cursor-pointer border';
 
 export default function Projects() {
+  const t = useTranslations('projects');
+  const locale = useLocale();
+  const projects = useMemo(() => getProjects(locale), [locale]);
   const [expandedProjects, setExpandedProjects] = useState<string[]>([]);
   const [selectedTechnology, setSelectedTechnology] = useState<string | null>(null);
   const [showAllFilters, setShowAllFilters] = useState(false);
@@ -38,6 +33,10 @@ export default function Projects() {
   // recent project (projects are listed newest first, so first appearance = most recent).
   // The quick filters (daily-use stack) come first so they keep their place when "Show all" is open.
   const technologyFilters = useMemo<TechnologyFilter[]>(() => {
+    // Technologies marked as daily use in the Technologies section (the current stack)
+    const dailyTechnologies = new Set(
+      getTechnologies(locale).flatMap((category) => category.items).filter((tech) => tech.usage === 'daily').map((tech) => tech.name),
+    );
     const filters = new Map<string, TechnologyFilter & { firstSeen: number }>();
     projects.flatMap((project) => project.technologies).forEach((tech, position) => {
       const current = filters.get(tech.name);
@@ -53,7 +52,7 @@ export default function Projects() {
     const quick = sorted.filter((tech) => dailyTechnologies.has(tech.name)).slice(0, QUICK_FILTERS);
     const rest = sorted.filter((tech) => !quick.includes(tech));
     return [...quick.map((tech) => ({ ...tech, quick: true })), ...rest];
-  }, []);
+  }, [projects, locale]);
 
   const visibleFilters = technologyFilters.filter((tech) =>
     showAllFilters || tech.quick || tech.name === selectedTechnology,
@@ -71,10 +70,10 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 bg-foreground/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Projects</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t('title')}</h2>
 
         {/* Technology filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10" role="group" aria-label="Filter projects by technology">
+        <div className="flex flex-wrap justify-center gap-2 mb-10" role="group" aria-label={t('filterLabel')}>
           <button
             type="button"
             onClick={() => setSelectedTechnology(null)}
@@ -85,7 +84,7 @@ export default function Projects() {
                 : 'bg-background border-foreground/15 hover:bg-foreground/10'
             }`}
           >
-            All ({projects.length})
+            {t('all', { count: projects.length })}
           </button>
           {visibleFilters.map((tech) => {
             const isSelected = selectedTechnology === tech.name;
@@ -113,7 +112,7 @@ export default function Projects() {
               onClick={() => setShowAllFilters((current) => !current)}
               className={`${filterChipClass} bg-background border-dashed border-foreground/30 hover:bg-foreground/10`}
             >
-              {showAllFilters ? 'Show less' : `Show all (+${hiddenFiltersCount})`}
+              {showAllFilters ? t('showLess') : t('showAll', { count: hiddenFiltersCount })}
             </button>
           )}
         </div>
@@ -159,7 +158,7 @@ export default function Projects() {
                     ))}
                     {project.technologies.length > PREVIEW_TECHNOLOGIES && (
                       <span className="flex items-center justify-center px-3 py-1 bg-foreground/10 rounded-full text-xs leading-tight text-center sm:flex-1 sm:basis-0 sm:min-w-fit sm:whitespace-nowrap">
-                        +{project.technologies.length - PREVIEW_TECHNOLOGIES} more
+                        {t('more', { count: project.technologies.length - PREVIEW_TECHNOLOGIES })}
                       </span>
                     )}
                   </div>
@@ -175,7 +174,7 @@ export default function Projects() {
                       }}
                       className="text-sm font-medium hover:underline disabled:cursor-not-allowed cursor-pointer"
                     >
-                      {isExpanded ? 'View Less' : 'View Details'}
+                      {isExpanded ? t('viewLess') : t('viewDetails')}
                     </button>
 
                     <div className="flex gap-3">
@@ -183,6 +182,7 @@ export default function Projects() {
                         <Link
                           href={project.links.github}
                           target="_blank"
+                          aria-label={t('github', { name: project.name })}
                           className="text-foreground/70 hover:text-foreground transition-colors"
                         >
                           <GithubIcon />
@@ -192,6 +192,7 @@ export default function Projects() {
                         <Link
                           href={project.links.live}
                           target="_blank"
+                          aria-label={t('live', { name: project.name })}
                           className="text-foreground/70 hover:text-foreground transition-colors"
                         >
                           <LiveIcon />
@@ -208,7 +209,7 @@ export default function Projects() {
                         ))}
                       </ul>
                       <div className="mb-4">
-                        <h4 className="font-medium mb-2">Technologies Used:</h4>
+                        <h4 className="font-medium mb-2">{t('technologiesUsed')}</h4>
                         <div className="flex flex-wrap gap-2">
                           {project.technologies.map((tech) => (
                             <span

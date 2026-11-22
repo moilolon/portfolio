@@ -1,42 +1,37 @@
 'use client';
 
 import { useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { getTechnologies } from '@/lib/constants/technologies';
-import { DEFAULT_LOCALE } from '@/lib/i18n';
 import type { Technology, TechnologyUsage } from '@/types/technologies';
 
-const usageGroups: { usage: TechnologyUsage; title: string }[] = [
-  { usage: 'daily', title: 'Daily use' },
-  { usage: 'experienced', title: 'Worked with' },
-];
-
-const technologies = getTechnologies(DEFAULT_LOCALE);
+const usageGroups: TechnologyUsage[] = ['daily', 'experienced'];
 
 export default function Technologies() {
-  const [activeCategory, setActiveCategory] = useState(technologies[0].category);
+  const t = useTranslations('technologies');
+  const technologies = getTechnologies(useLocale());
+  // The position, not the name: the name of a category changes with the language
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const hasIconAndUsage = (item: Technology): item is Technology & { icon: NonNullable<Technology['icon']>; usage: TechnologyUsage } => {
     return Boolean(item.icon && item.usage);
   };
 
-  const items = technologies
-    .find((tech) => tech.category === activeCategory)
-    ?.items
-    .filter(hasIconAndUsage) ?? [];
+  const items = technologies[activeIndex].items.filter(hasIconAndUsage);
 
   return (
     <section id="technologies" className="py-20 bg-foreground/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Technologies</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t('title')}</h2>
 
         {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {technologies.map((tech) => (
+          {technologies.map((tech, index) => (
             <button
               key={tech.category}
-              onClick={() => setActiveCategory(tech.category)}
+              onClick={() => setActiveIndex(index)}
               className={`px-6 py-3 rounded-full text-sm font-medium transition-colors disabled:cursor-not-allowed cursor-pointer ${
-                activeCategory === tech.category
+                activeIndex === index
                   ? 'bg-foreground text-background'
                   : 'bg-foreground/10 hover:bg-foreground/20'
               }`}
@@ -48,7 +43,7 @@ export default function Technologies() {
 
         {/* Technology Items grouped by usage */}
         <div className="space-y-10">
-          {usageGroups.map(({ usage, title }) => {
+          {usageGroups.map((usage) => {
             const groupItems = items.filter((item) => item.usage === usage);
             if (groupItems.length === 0) {
               return null;
@@ -56,7 +51,7 @@ export default function Technologies() {
 
             return (
               <div key={usage}>
-                <h3 className="text-lg font-semibold mb-4 text-foreground/70">{title}</h3>
+                <h3 className="text-lg font-semibold mb-4 text-foreground/70">{t(usage)}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {groupItems.map((item) => (
                     <div

@@ -1,15 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { getExperiences } from '@/lib/constants/experience';
-import { DEFAULT_LOCALE } from '@/lib/i18n';
 import { ChevronIcon } from '@/components/icons/experience';
 import type { Experience } from '@/types/experience';
 import { tint } from '@/lib/colors';
 
-const experiences = getExperiences(DEFAULT_LOCALE);
-
 export default function Experience() {
+  const t = useTranslations('experience');
+  const experiences = getExperiences(useLocale());
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const toggleExpand = (index: number) => {
@@ -19,7 +19,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Experience</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t('title')}</h2>
 
         <div className="space-y-8">
           {experiences.map((exp: Experience, index) => (

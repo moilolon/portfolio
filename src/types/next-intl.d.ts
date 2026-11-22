@@ -1,0 +1,10 @@
+import type messages from '@/messages/en.json';
+import type { Locale } from '@/lib/i18n';
+
+// Types the locale and the message keys of next-intl after the English messages
+declare module 'next-intl' {
+  interface AppConfig {
+    Locale: Locale;
+    Messages: typeof messages;
+  }
+}
