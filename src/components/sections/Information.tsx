@@ -14,11 +14,13 @@ export default function Information() {
           {/* Avatar */}
           <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-foreground/10">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 animate-gradient-xy">
-              <div className="flex items-center justify-center h-full text-white text-6xl font-bold">
+              <div className="relative flex items-center justify-center h-full text-white text-6xl font-bold">
                 <Image
                   src={personalInfo.avatar}
                   alt={t('avatarAlt', { name: personalInfo.name })}
                   fill
+                  // The avatar is 192px wide, 256px from md up: without this the browser asks for a full-width image
+                  sizes="(min-width: 768px) 256px, 192px"
                   className="object-cover rounded-full"
                 />
               </div>

@@ -56,6 +56,11 @@
   "footer": {
     "rights": "All rights reserved."
   },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page does not exist, or it has moved.",
+    "back": "Back to the portfolio"
+  },
   "contact": {
     "title": "Contact Me",
     "intro": "Have a question or want to work together? Feel free to reach out using the form below.",
