@@ -42,6 +42,7 @@ with a contact form that lands straight in your inbox.
 | 🚀 | **Projects** | Project cards with key points, tech stack and GitHub / live links, filterable by technology |
 | 🎓 | **Training** | Education, courses and languages |
 | 💬 | **About me** | Who I am and how I work |
+| 📄 | **CV** | A PDF in English and Spanish, generated from the same content at build time |
 | ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, a honeypot and a Vercel Firewall rate limit, with per-field validation, toast feedback, an email notification you can reply to, and daily retries |
 
 **In English and Spanish:** every page lives under `/en` and `/es`, with a switcher in the
@@ -63,6 +64,7 @@ for real-user Core Web Vitals.
 | Language | [TypeScript](https://www.typescriptlang.org) (strict) |
 | Database | [Supabase](https://supabase.com) (Postgres + Row Level Security) |
 | Email | [Resend](https://resend.com) |
+| CV | [@react-pdf/renderer](https://react-pdf.org) — a PDF per language, built with the site |
 | Anti-spam | [Google reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) — invisible, score-based |
 | Hosting & monitoring | [Vercel](https://vercel.com), Vercel Analytics, Speed Insights |
 | CI | GitHub Actions — lint on every branch push |
@@ -161,7 +163,8 @@ The content is data, not markup — edit these files and the sections follow:
 
 | To change | Edit |
 |---|---|
-| Name, role, links, avatar, CV | [`src/content/profile.json`](src/content/profile.json), `public/avatar.jpg`, `public/cv/` |
+| Name, role, links, avatar | [`src/content/profile.json`](src/content/profile.json), `public/avatar.jpg` |
+| Phone and birth date of the CV | [`src/content/cv.json`](src/content/cv.json) |
 | Technologies and daily / past usage | [`src/content/technologies.json`](src/content/technologies.json); colors and icons in [`src/lib/constants/technologies.tsx`](src/lib/constants/technologies.tsx) |
 | Jobs (summary, key points, technologies) | [`src/content/experience.json`](src/content/experience.json) |
 | Projects (newest first) | [`src/content/projects.json`](src/content/projects.json), images in `public/projects/` |
@@ -173,6 +176,9 @@ The content is data, not markup — edit these files and the sections follow:
 Every text is written in English and Spanish, side by side: `"title": { "en": "…", "es": "…" }`.
 The texts of the interface (menu, headings, form) are in [`src/messages/`](src/messages), one file per language.
 
+The CV is not a file you upload: `/cv/curriculum_en.pdf` and `/cv/curriculum_es.pdf` are generated
+from this same content on every build, laid out by [`src/lib/cv/CvDocument.tsx`](src/lib/cv/CvDocument.tsx).
+
 Technologies in jobs and projects are referenced by name and must exist in `technologies.json`;
 `technologies.tsx` sets their chip color. The ones marked `"usage": "daily"` become the quick filters of the Projects section.
 
@@ -182,6 +188,7 @@ Technologies in jobs and projects are referenced by name and must exist in `tech
 src/
 ├── app/
 │   ├── api/contact/route.ts   # contact endpoint
+│   ├── cv/[file]/route.tsx    # the CV as a PDF, one per language
 │   ├── api/cron/contact/      # daily retry of the unsent contact notifications
 │   ├── [locale]/              # layout (fonts, metadata, analytics) and page, as /en and /es
 │   └── globals.css            # Tailwind, theme variables, animations
@@ -212,6 +219,7 @@ supabase/migrations/           # database schema
 - [x] Manual light/dark toggle
 - [x] Filter projects by technology
 - [x] Spanish version
+- [x] CV generated from the content, in both languages
 - [ ] Blog section
 
 ## 🤖 Built with Claude Code and Zed
