@@ -7,7 +7,7 @@ on:
 
 jobs:
     run-lint:
-        name: Run Lint
+        name: Lint, test and build
         runs-on: "ubuntu-latest"
         steps:
             - name: "Checkout"
@@ -32,4 +32,18 @@ jobs:
               run: "npm ci"
 
             - name: Run Lint
-              run: "npm run lint --annotations-type=GITHUB_ACTIONS"
+              run: "npm run lint"
+
+            - name: Run Tests
+              run: "npm test"
+
+            # The build is the type check, and it writes the pages of each language and the CV.
+            # The service clients are created when their module loads, so they need a value
+            # to exist; nothing is called during the build.
+            - name: Run Build
+              run: "npm run build"
+              env:
+                  NEXT_PUBLIC_RECAPTCHA_SITE_KEY: "ci-placeholder"
+                  SUPABASE_URL: "https://ci-placeholder.supabase.co"
+                  SUPABASE_SECRET_KEY: "ci-placeholder"
+                  RESEND_API_KEY: "ci-placeholder"

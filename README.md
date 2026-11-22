@@ -67,7 +67,7 @@ for real-user Core Web Vitals.
 | CV | [@react-pdf/renderer](https://react-pdf.org) — a PDF per language, built with the site |
 | Anti-spam | [Google reCAPTCHA v3](https://developers.google.com/recaptcha/docs/v3) — invisible, score-based |
 | Hosting & monitoring | [Vercel](https://vercel.com), Vercel Analytics, Speed Insights |
-| CI | GitHub Actions — lint on every branch push |
+| CI | GitHub Actions — lint, tests and build on every branch push |
 
 ## 📨 How the contact form works
 
@@ -156,6 +156,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run build` | Production build (also the type check) |
 | `npm run start` | Serve the production build |
 | `npm run lint` | ESLint (`next/core-web-vitals` + `next/typescript` + ESLint Stylistic); `-- --fix` formats |
+| `npm test` | Unit tests with the Node test runner |
 
 ## 🧩 Make it yours
 

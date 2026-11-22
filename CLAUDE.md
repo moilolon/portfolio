@@ -87,13 +87,15 @@ of a job for the PDF, and no PDF to edit by hand.
 ```bash
 npm run dev     # next dev --turbopack (http://localhost:3000)
 npm run build   # production build — the real type check
-npm run lint    # next lint: next/core-web-vitals + next/typescript + ESLint Stylistic (add -- --fix to format)
+npm run lint    # eslint .: next/core-web-vitals + next/typescript + ESLint Stylistic (add -- --fix to format)
+npm test        # node --test: the unit tests of src/**/*.test.ts, no test framework
 ```
 
-There are no tests. A change is verified with `npm run lint`, `npm run build` and, for UI,
+Tests cover the pure logic only (`validateContact`, `localize`). A change is verified with
+`npm run lint`, `npm test`, `npm run build` and, for UI,
 by looking at it in the browser (`npm run dev`).
 
-CI (`.github/workflows/cra.yaml`) runs `npm run lint` on every push to a branch other than
+CI (`.github/workflows/cra.yaml`) runs the lint, the tests and the build on every push to a branch other than
 `main`; `cache.yaml` warms the `node_modules` cache on `main`.
 
 ## Critical conventions (do not skip)

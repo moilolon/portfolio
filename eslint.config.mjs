@@ -11,6 +11,8 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // What `next lint` used to skip on its own
+  { ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'supabase/.temp/**'] },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   // Formatting through ESLint: `npm run lint -- --fix`, and Zed fixes on save.
   stylistic.configs.customize({
