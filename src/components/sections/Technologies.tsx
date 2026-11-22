@@ -1,13 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { technologies } from '@/lib/constants/technologies';
+import { getTechnologies } from '@/lib/constants/technologies';
+import { DEFAULT_LOCALE } from '@/lib/i18n';
 import type { Technology, TechnologyUsage } from '@/types/technologies';
 
 const usageGroups: { usage: TechnologyUsage; title: string }[] = [
   { usage: 'daily', title: 'Daily use' },
   { usage: 'experienced', title: 'Worked with' },
 ];
+
+const technologies = getTechnologies(DEFAULT_LOCALE);
 
 export default function Technologies() {
   const [activeCategory, setActiveCategory] = useState(technologies[0].category);

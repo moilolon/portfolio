@@ -1,14 +1,38 @@
 [
   {
-    "name": "Guess e-commerce",
-    "owner": "3MT Global Services",
-    "summary": "Online stores for Guess and Rag & Bone in Europe and North America, built on Salesforce Commerce Cloud.",
+    "name": {
+      "en": "Guess e-commerce",
+      "es": "E-commerce de Guess"
+    },
+    "owner": {
+      "en": "3MT Global Services",
+      "es": "3MT Global Services"
+    },
+    "summary": {
+      "en": "Online stores for Guess and Rag & Bone in Europe and North America, built on Salesforce Commerce Cloud.",
+      "es": "Tiendas online de Guess y Rag & Bone en Europa y Norteamérica, construidas sobre Salesforce Commerce Cloud."
+    },
     "highlights": [
-      "Backend: controllers, models, OCAPI/SCAPI hooks, jobs and services.",
-      "Frontend: ISML templates, Web Components and SASS.",
-      "Third-party integrations for payments, search, tax, fraud and CRM through REST APIs.",
-      "Continuous integration, unit tests and code reviews as part of the workflow.",
-      "AI-assisted development with Claude Code applied across the development lifecycle."
+      {
+        "en": "Backend: controllers, models, OCAPI/SCAPI hooks, jobs and services.",
+        "es": "Backend: controladores, modelos, hooks OCAPI/SCAPI, jobs y servicios."
+      },
+      {
+        "en": "Frontend: ISML templates, Web Components and SASS.",
+        "es": "Frontend: plantillas ISML, Web Components y SASS."
+      },
+      {
+        "en": "Third-party integrations for payments, search, tax, fraud and CRM through REST APIs.",
+        "es": "Integraciones con terceros para pagos, búsqueda, impuestos, fraude y CRM mediante APIs REST."
+      },
+      {
+        "en": "Continuous integration, unit tests and code reviews as part of the workflow.",
+        "es": "Integración continua, tests unitarios y revisiones de código como parte del flujo de trabajo."
+      },
+      {
+        "en": "AI-assisted development with Claude Code applied across the development lifecycle.",
+        "es": "Desarrollo asistido por IA con Claude Code aplicado a todo el ciclo de desarrollo."
+      }
     ],
     "technologies": [
       "Salesforce Commerce Cloud",
@@ -28,15 +52,39 @@
     }
   },
   {
-    "name": "My Portfolio",
-    "owner": "Personal Project",
-    "summary": "A personal portfolio website to showcase skills, experience, and projects.",
+    "name": {
+      "en": "My Portfolio",
+      "es": "Mi portfolio"
+    },
+    "owner": {
+      "en": "Personal Project",
+      "es": "Proyecto personal"
+    },
+    "summary": {
+      "en": "A personal portfolio website to showcase skills, experience, and projects.",
+      "es": "Web personal para mostrar mis conocimientos, experiencia y proyectos."
+    },
     "highlights": [
-      "Light and dark themes that follow the system preference, with a manual toggle.",
-      "Projects filterable by technology.",
-      "Contact form stored in Supabase, with email notifications through Resend and Google reCAPTCHA protection.",
-      "Deployed on Vercel with Analytics and Speed Insights.",
-      "Developed with Claude Code as AI pair programmer."
+      {
+        "en": "Light and dark themes that follow the system preference, with a manual toggle.",
+        "es": "Temas claro y oscuro que siguen la preferencia del sistema, con un selector manual."
+      },
+      {
+        "en": "Projects filterable by technology.",
+        "es": "Proyectos filtrables por tecnología."
+      },
+      {
+        "en": "Contact form stored in Supabase, with email notifications through Resend and Google reCAPTCHA protection.",
+        "es": "Formulario de contacto guardado en Supabase, con avisos por email mediante Resend y protección con Google reCAPTCHA."
+      },
+      {
+        "en": "Deployed on Vercel with Analytics and Speed Insights.",
+        "es": "Desplegado en Vercel con Analytics y Speed Insights."
+      },
+      {
+        "en": "Developed with Claude Code as AI pair programmer.",
+        "es": "Desarrollado con Claude Code como compañero de programación."
+      }
     ],
     "technologies": [
       "Next.js",
@@ -55,14 +103,35 @@
     }
   },
   {
-    "name": "Flexia",
-    "owner": "Altia",
-    "summary": "Electronic case-processing system for public administration.",
+    "name": {
+      "en": "Flexia",
+      "es": "Flexia"
+    },
+    "owner": {
+      "en": "Altia",
+      "es": "Altia"
+    },
+    "summary": {
+      "en": "Electronic case-processing system for public administration.",
+      "es": "Sistema de tramitación de expedientes electrónicos para la administración pública."
+    },
     "highlights": [
-      "Object-oriented design applying software design patterns.",
-      "Integration with government e-services such as FACe.",
-      "Document management through the Alfresco platform.",
-      "Reports and documents generated with JasperReports."
+      {
+        "en": "Object-oriented design applying software design patterns.",
+        "es": "Diseño orientado a objetos aplicando patrones de diseño de software."
+      },
+      {
+        "en": "Integration with government e-services such as FACe.",
+        "es": "Integración con servicios de administración electrónica como FACe."
+      },
+      {
+        "en": "Document management through the Alfresco platform.",
+        "es": "Gestión documental mediante la plataforma Alfresco."
+      },
+      {
+        "en": "Reports and documents generated with JasperReports.",
+        "es": "Informes y documentos generados con JasperReports."
+      }
     ],
     "technologies": [
       "Java",
@@ -76,13 +145,31 @@
     "links": {}
   },
   {
-    "name": "PDF generator for electronic tickets in the Inditex stores",
-    "owner": "atSistemas",
-    "summary": "The application facilitates the generation of PDF electronic tickets for stores within the Inditex group.",
+    "name": {
+      "en": "PDF generator for electronic tickets in the Inditex stores",
+      "es": "Generador en PDF de tickets electrónicos de las tiendas de Inditex"
+    },
+    "owner": {
+      "en": "atSistemas",
+      "es": "atSistemas"
+    },
+    "summary": {
+      "en": "The application facilitates the generation of PDF electronic tickets for stores within the Inditex group.",
+      "es": "La aplicación facilita la generación de tickets electrónicos en PDF para las tiendas del grupo Inditex."
+    },
     "highlights": [
-      "Generates electronic tickets in PDF format from the store till services.",
-      "Built on the J2EE platform with Spring and Hibernate.",
-      "Object-oriented design applying software patterns."
+      {
+        "en": "Generates electronic tickets in PDF format from the store till services.",
+        "es": "Genera tickets electrónicos en formato PDF a partir de los servicios de las cajas de las tiendas."
+      },
+      {
+        "en": "Built on the J2EE platform with Spring and Hibernate.",
+        "es": "Construido sobre la plataforma J2EE con Spring e Hibernate."
+      },
+      {
+        "en": "Object-oriented design applying software patterns.",
+        "es": "Diseño orientado a objetos aplicando patrones de software."
+      }
     ],
     "technologies": [
       "Java",
@@ -97,13 +184,31 @@
     "links": {}
   },
   {
-    "name": "Store closure viewer in the Inditex Store Management Terminals",
-    "owner": "atSistemas",
-    "summary": "The application enables users to view store closures within the Store Management Terminals (TGT) of the Inditex group.",
+    "name": {
+      "en": "Store closure viewer in the Inditex Store Management Terminals",
+      "es": "Visor de cierres de tienda en los Terminales de Gestión de Tiendas de Inditex"
+    },
+    "owner": {
+      "en": "atSistemas",
+      "es": "atSistemas"
+    },
+    "summary": {
+      "en": "The application enables users to view store closures within the Store Management Terminals (TGT) of the Inditex group.",
+      "es": "La aplicación permite consultar los cierres de tienda desde los Terminales de Gestión de Tiendas (TGT) del grupo Inditex."
+    },
     "highlights": [
-      "Lets store staff review the store closures from the Store Management Terminals (TGT).",
-      "Gathers the closure data from the store tills through web services.",
-      "Built on the J2EE platform with Spring and Hibernate."
+      {
+        "en": "Lets store staff review the store closures from the Store Management Terminals (TGT).",
+        "es": "Permite al personal de tienda revisar los cierres desde los Terminales de Gestión de Tiendas (TGT)."
+      },
+      {
+        "en": "Gathers the closure data from the store tills through web services.",
+        "es": "Obtiene los datos de cierre de las cajas mediante servicios web."
+      },
+      {
+        "en": "Built on the J2EE platform with Spring and Hibernate.",
+        "es": "Construido sobre la plataforma J2EE con Spring e Hibernate."
+      }
     ],
     "technologies": [
       "Java",
@@ -118,14 +223,35 @@
     "links": {}
   },
   {
-    "name": "Customer Relationship Management",
-    "owner": "Indra",
-    "summary": "Evolutive and corrective development of Jazztel's CRM system.",
+    "name": {
+      "en": "Customer Relationship Management",
+      "es": "Gestión de relaciones con clientes (CRM)"
+    },
+    "owner": {
+      "en": "Indra",
+      "es": "Indra"
+    },
+    "summary": {
+      "en": "Evolutive and corrective development of Jazztel's CRM system.",
+      "es": "Desarrollo evolutivo y correctivo del sistema CRM de Jazztel."
+    },
     "highlights": [
-      "Spring for dependency injection, transaction management and JMS messaging.",
-      "Persistence with JPA and Hibernate on Oracle, plus SQL and PL/SQL procedures.",
-      "Scheduled jobs with Quartz.",
-      "Web layer with Servlets, JSP and Struts, integrated through SOAP web services."
+      {
+        "en": "Spring for dependency injection, transaction management and JMS messaging.",
+        "es": "Spring para inyección de dependencias, gestión de transacciones y mensajería JMS."
+      },
+      {
+        "en": "Persistence with JPA and Hibernate on Oracle, plus SQL and PL/SQL procedures.",
+        "es": "Persistencia con JPA e Hibernate sobre Oracle, además de procedimientos SQL y PL/SQL."
+      },
+      {
+        "en": "Scheduled jobs with Quartz.",
+        "es": "Tareas programadas con Quartz."
+      },
+      {
+        "en": "Web layer with Servlets, JSP and Struts, integrated through SOAP web services.",
+        "es": "Capa web con Servlets, JSP y Struts, integrada mediante servicios web SOAP."
+      }
     ],
     "technologies": [
       "Java",

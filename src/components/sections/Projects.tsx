@@ -3,8 +3,9 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { projects } from '@/lib/constants/projects';
-import { technologies } from '@/lib/constants/technologies';
+import { getProjects } from '@/lib/constants/projects';
+import { getTechnologies } from '@/lib/constants/technologies';
+import { DEFAULT_LOCALE } from '@/lib/i18n';
 import { GithubIcon, LiveIcon } from '@/components/icons/projects';
 import type { Project } from '@/types/projects';
 import type { Technology } from '@/types/technologies';
@@ -17,6 +18,9 @@ const PREVIEW_TECHNOLOGIES = 3;
 
 // Number of quick filters shown before "Show all": taken from the technologies in daily use
 const QUICK_FILTERS = 6;
+
+const projects = getProjects(DEFAULT_LOCALE);
+const technologies = getTechnologies(DEFAULT_LOCALE);
 
 // Technologies marked as daily use in the Technologies section (the current stack)
 const dailyTechnologies = new Set(

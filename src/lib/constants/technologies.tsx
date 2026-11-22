@@ -1,4 +1,5 @@
 import content from '@/content/technologies.json';
+import { localize, type Locale } from '@/lib/i18n';
 import type { Technology, TechnologyCategory, TechnologyUsage } from '@/types/technologies';
 import {
   NextIcon,
@@ -77,31 +78,33 @@ const styles: Record<string, Pick<Technology, 'icon' | 'color'>> = {
   'Claude Code': { icon: <ClaudeCodeIcon />, color: '#D97757' },
 };
 
-type TechnologyContent = {
-  category: string;
-  items: { name: string; usage?: TechnologyUsage }[];
-};
+// Every technology with its style, whatever its category
+const all: Pick<Technology, 'name' | 'color'>[] = content.flatMap(({ items }) => items).map(({ name }) => {
+  const style = styles[name];
+  if (!style) {
+    throw new Error(`Technology "${name}" has no style in src/lib/constants/technologies.tsx`);
+  }
+  return { name, color: style.color };
+});
 
-export const technologies: TechnologyCategory[] = (content as TechnologyContent[]).map(({ category, items }) => ({
-  category,
-  items: items.map((item) => {
-    const style = styles[item.name];
-    if (!style) {
-      throw new Error(`Technology "${item.name}" has no style in src/lib/constants/technologies.tsx`);
-    }
-    return { ...item, ...style };
-  }),
-}));
+export function getTechnologies(locale: Locale): TechnologyCategory[] {
+  return localize(content, locale).map(({ category, items }) => ({
+    category,
+    items: items.map((item) => ({
+      ...item,
+      usage: item.usage as TechnologyUsage | undefined,
+      ...styles[item.name],
+    })),
+  }));
+}
 
 // Resolves the technology names of a job or a project to their name and chip color
 export function findTechnologies(names: string[]): Pick<Technology, 'name' | 'color'>[] {
-  const all = technologies.flatMap((category) => category.items);
-
   return names.map((name) => {
     const found = all.find((technology) => technology.name === name);
     if (!found) {
       throw new Error(`Technology "${name}" not found in src/content/technologies.json`);
     }
-    return { name: found.name, color: found.color };
+    return found;
   });
 }
