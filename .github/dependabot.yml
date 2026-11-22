@@ -1,0 +1,29 @@
+# Keeps the dependencies current: Dependabot opens the pull requests and the
+# Code Review Assistant workflow (lint, tests and build) says whether they are safe to merge.
+version: 2
+
+updates:
+    - package-ecosystem: "npm"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+          day: "monday"
+      open-pull-requests-limit: 5
+      commit-message:
+          prefix: "chore"
+          include: "scope"
+      groups:
+          # One pull request for all the minor and patch updates of the week
+          minor-and-patch:
+              update-types:
+                  - "minor"
+                  - "patch"
+      # A major update comes alone, in its own pull request: it may need changes in the code
+
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "monthly"
+      commit-message:
+          prefix: "chore"
+          include: "scope"
