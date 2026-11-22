@@ -6,7 +6,7 @@ import { isLocale, LANG_COOKIE } from '@/lib/lang';
 // Sends a URL without a language to /en or /es, after the browser's language
 const handleI18n = createMiddleware(routing);
 
-export default function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const hasLanguage = routing.locales.some((locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`));
   const shared = request.cookies.get(LANG_COOKIE)?.value;

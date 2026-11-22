@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useIsClient } from '@/lib/use-is-client';
 
 interface ToastProps {
   message: string;
@@ -12,11 +13,9 @@ interface ToastProps {
 
 export default function Toast({ message, type, duration = 3000, onClose }: ToastProps) {
   const [isVisible, setIsVisible] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
+  const isClient = useIsClient();
 
   useEffect(() => {
-    setIsMounted(true);
-
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onClose, 300); // Allow time for exit animation
@@ -25,7 +24,7 @@ export default function Toast({ message, type, duration = 3000, onClose }: Toast
     return () => clearTimeout(timer);
   }, [duration, onClose]);
 
-  if (!isMounted) return null;
+  if (!isClient) return null;
 
   return createPortal(
     <div

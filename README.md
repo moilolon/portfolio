@@ -9,7 +9,7 @@ with a contact form that lands straight in your inbox.
 
 <br />
 
-![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
@@ -58,7 +58,7 @@ for real-user Core Web Vitals.
 
 | Layer | Technology |
 |---|---|
-| Framework | [Next.js 15](https://nextjs.org) — App Router, Turbopack in dev |
+| Framework | [Next.js 16](https://nextjs.org) — App Router, Turbopack |
 | Languages | [next-intl](https://next-intl.dev) — English and Spanish, statically rendered |
 | UI | [React 19](https://react.dev), [Tailwind CSS 4](https://tailwindcss.com), [Geist](https://vercel.com/font) |
 | Language | [TypeScript](https://www.typescriptlang.org) (strict) |
@@ -200,7 +200,7 @@ src/
 │   └── icons/                 # SVG icons, grouped by section
 ├── content/                   # the site's content, as JSON, in both languages
 ├── messages/                  # the interface texts, one file per language
-├── i18n/ · middleware.ts      # next-intl setup and the redirect to /en or /es
+├── i18n/ · proxy.ts           # next-intl setup and the redirect to /en or /es
 ├── lib/
 │   ├── constants/             # typed content, joined with icons and colors
 │   ├── contact.ts             # contact form rules shared by the form and the API

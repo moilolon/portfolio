@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
       canonical: `/${locale}`,
       languages: {
         ...Object.fromEntries(routing.locales.map((language) => [language, `/${language}`])),
-        // Without a language the middleware chooses one
+        // Without a language the proxy chooses one
         'x-default': '/',
       },
     },
