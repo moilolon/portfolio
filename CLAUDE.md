@@ -39,6 +39,8 @@ src/
 ├── app/
 │   ├── [locale]/layout.tsx   # <html lang>, fonts, metadata per language, theme init script, nav.js, analytics
 │   ├── [locale]/page.tsx     # composes Navbar + every section; prerendered as /en and /es
+│   ├── [locale]/opengraph-image.tsx  # the card of a shared link, one per language, written at build time
+│   ├── sitemap.ts, robots.ts # /sitemap.xml (both languages) and /robots.txt
 │   ├── globals.css           # Tailwind import, CSS variables, animations
 │   ├── cv/[file]/route.tsx   # GET /cv/curriculum_<locale>.pdf: the CV, prerendered at build time
 │   ├── api/contact/route.ts  # POST: validate → reCAPTCHA → Supabase insert → Resend email
@@ -65,6 +67,7 @@ src/
 │   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
 │   ├── cv/CvDocument.tsx     # the layout of the CV as a PDF (server only)
 │   ├── lang.ts               # the language cookie shared with the other moilolon.com sites
+│   ├── site.ts               # SITE_URL, the base of every absolute URL
 │   ├── theme.ts              # inline script that sets <html data-theme> before paint
 │   └── colors.ts             # tint() for technology chip backgrounds
 └── types/                    # one file per content type (experience, projects, …), moilolon-nav.d.ts
