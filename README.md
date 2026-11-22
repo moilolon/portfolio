@@ -42,7 +42,7 @@ with a contact form that lands straight in your inbox.
 | 🚀 | **Projects** | Project cards with key points, tech stack and GitHub / live links, filterable by technology |
 | 🎓 | **Training** | Education and certifications |
 | 💬 | **About me** | Who I am and how I work |
-| ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, a honeypot and a rate limit, with per-field validation, toast feedback, an email notification you can reply to, and daily retries |
+| ✉️ | **Contact** | Modal form protected by invisible reCAPTCHA v3, a honeypot and a Vercel Firewall rate limit, with per-field validation, toast feedback, an email notification you can reply to, and daily retries |
 
 **Under the hood:** server components by default, light/dark theme that follows the system
 preference with a manual toggle (remembered, no flash on load), smooth-scrolling navigation, mobile-first layout, SEO metadata, and
@@ -82,7 +82,6 @@ sequenceDiagram
     A->>G: verify token
     G-->>A: success, action, score
     A->>A: check action = contact, score ≥ 0.5
-    A->>S: count recent messages (rate limit)
     A->>S: insert message (status: pending)
     A->>R: send notification email (reply-to: visitor)
     A->>S: update status: sent / failed
@@ -92,6 +91,18 @@ sequenceDiagram
 
 A daily [Vercel Cron](https://vercel.com/docs/cron-jobs) (`vercel.json` → `/api/cron/contact`)
 retries the notifications that were not sent, up to five times.
+
+The rate limit is not in the code: a [Vercel Firewall](https://vercel.com/docs/vercel-firewall/vercel-waf/custom-rules)
+rule limits `POST /api/contact` to 5 requests per minute per IP and answers 429 before the
+request reaches the function. Create it in the project's Firewall tab, or with the CLI:
+
+```bash
+vercel firewall rules add "Rate limit contact form" \
+  --condition '{"type":"path","op":"eq","value":"/api/contact"}' \
+  --condition '{"type":"method","op":"eq","value":"POST"}' \
+  --action rate_limit --rate-limit-requests 5 --rate-limit-window 60 --rate-limit-keys ip
+vercel firewall publish
+```
 
 ## 🚀 Getting started
 
