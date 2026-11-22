@@ -4,7 +4,7 @@
 
 | Change | File |
 | ------ | ---- |
-| A job, project, technology, course, personal detail or About me text | `src/content/<section>.json`, typed by `src/types/<section>.ts` |
+| A job, project, technology, degree, course, language, personal detail or About me text | `src/content/<section>.json`, typed by `src/types/<section>.ts` |
 | The color or icon of a technology, the look of the quick links | `src/lib/constants/technologies.tsx`, `information.tsx` (adapters over `src/content/`) |
 | A project screenshot, the avatar or the CV | `public/projects/`, `public/avatar.jpg`, `public/cv/` |
 | How a section looks or behaves | `src/components/sections/<Section>.tsx` |
@@ -17,6 +17,14 @@
 Content is JSON without presentation: keep Tailwind classes, colors and icons out of
 `src/content/` and join them by name in `src/lib/constants/`. The build fails when a job or
 project names a technology missing from `technologies.json`, or one without a style.
+
+Every text of the content is an object with one string per language, `{ "en": "…", "es": "…" }`,
+never a bare string: add both when adding content. `localize()` in `src/lib/i18n.ts` picks one
+language, and the adapters expose it as `get<Section>(locale)`. Things that are not translated
+(names of companies and technologies, dates, URLs) stay plain values.
+
+`src/content/cv.json` (phone, birth date) is for the generated CV only: never import it from a
+component, or it ships to the browser.
 
 ## Components
 

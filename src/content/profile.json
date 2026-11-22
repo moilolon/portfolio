@@ -1,8 +1,17 @@
 {
   "name": "Moisés López López",
-  "title": "Salesforce Full Stack Developer",
-  "location": "A Coruña, Spain",
-  "description": "Salesforce Commerce Cloud developer with more than ten years in web development, building the Guess online stores for Europe and North America.",
+  "title": {
+    "en": "Salesforce Full Stack Developer",
+    "es": "Desarrollador Full Stack de Salesforce"
+  },
+  "location": {
+    "en": "A Coruña, Spain",
+    "es": "A Coruña, España"
+  },
+  "description": {
+    "en": "Software engineer with more than ten years of experience in web development. Specialised in Salesforce Commerce Cloud since 2019, responsible for the analysis and development of the Guess and Rag & Bone online stores for Europe and North America.",
+    "es": "Ingeniero de software con más de diez años de experiencia en desarrollo web. Especializado en Salesforce Commerce Cloud desde 2019, responsable del análisis y desarrollo de las tiendas online de Guess y Rag & Bone para Europa y Norteamérica."
+  },
   "avatar": "/avatar.jpg",
   "email": "moiseslopezlopez@gmail.com",
   "cv": "/cv/curriculum_en.pdf",
