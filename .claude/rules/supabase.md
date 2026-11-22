@@ -7,8 +7,9 @@
 - The public roles (`anon`, `authenticated`) get no grants and no policies: the browser never
   talks to Supabase directly, everything goes through an API route.
 - Tables today: `contact_messages` (`id`, `name`, `email`, `subject`, `message`,
-  `created_at`, `status` = `pending` → `sent` / `failed`), written by
-  `src/app/api/contact/route.ts`.
+  `created_at`, `status` = `pending` → `sent` / `failed`, `attempts`), written by
+  `src/app/api/contact/route.ts`. `src/app/api/cron/contact/route.ts` retries the `pending` /
+  `failed` notifications once a day (up to 5 `attempts`).
 
 ## Migrations
 

@@ -4,14 +4,19 @@
 
 | Change | File |
 | ------ | ---- |
-| A job, project, technology or personal detail | `src/lib/constants/<section>.tsx`, typed by `src/types/<section>.ts` |
+| A job, project, technology, course, personal detail or About me text | `src/content/<section>.json`, typed by `src/types/<section>.ts` |
+| The color or icon of a technology, the look of the quick links | `src/lib/constants/technologies.tsx`, `information.tsx` (adapters over `src/content/`) |
 | A project screenshot, the avatar or the CV | `public/projects/`, `public/avatar.jpg`, `public/cv/` |
 | How a section looks or behaves | `src/components/sections/<Section>.tsx` |
 | A new section | a component in `sections/` rendering `<section id="…">`, added to `src/app/page.tsx`, and a link in `Navbar.tsx` |
 | An icon | `src/components/icons/<section>/<Name>Icon.tsx`, exported from that folder's `index.ts` |
 | Colors, theme variables, keyframes | `src/app/globals.css` |
 | Metadata / SEO, fonts, analytics | `src/app/layout.tsx` |
-| Contact flow | `ContactForm.tsx` (client) → `src/app/api/contact/route.ts` (server) |
+| Contact flow | `ContactForm.tsx` (client) → `src/app/api/contact/route.ts` (server); rules shared in `src/lib/contact.ts`, email in `src/lib/resend/contact.ts` |
+
+Content is JSON without presentation: keep Tailwind classes, colors and icons out of
+`src/content/` and join them by name in `src/lib/constants/`. The build fails when a job or
+project names a technology missing from `technologies.json`, or one without a style.
 
 ## Components
 
@@ -49,6 +54,10 @@
 - Server secrets (`SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`,
   `NOTIFICATION_EMAIL`) are read only here, never in a client component.
 - Log the error server-side, return a generic message to the client.
+- Contact input is validated with `validateContact()` on both sides, and every visitor value is
+  escaped before it goes into the HTML of an email (`src/lib/resend/contact.ts`).
+- The contact route answers 200 when the message is stored even if the email fails: the daily
+  cron (`/api/cron/contact`, authorised with `CRON_SECRET`) retries it.
 
 ## Before calling it done
 

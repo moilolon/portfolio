@@ -1,4 +1,5 @@
-import { PersonalInfo } from '@/types/information';
+import content from '@/content/profile.json';
+import type { PersonalInfo } from '@/types/information';
 import {
   EmailIcon,
   GithubIcon,
@@ -6,40 +7,36 @@ import {
   ResumeIcon,
 } from '@/components/icons/information';
 
+// The personal details are content: src/content/profile.json.
+// Here goes only how the quick links look: their icon and button colors.
 export const personalInfo: PersonalInfo = {
-  name: 'Moisés López López',
-  title: 'Salesforce Full Stack Developer',
-  location: 'A Coruña, Spain',
-  description: 'Salesforce Commerce Cloud developer with more than ten years in web development, building the Guess online stores for Europe and North America.',
-  avatar: '/avatar.jpg',
-  email: 'moiseslopezlopez@gmail.com',
-  cv: '/cv/curriculum_en.pdf',
+  ...content,
   socials: [
     {
       name: 'Email',
       icon: <EmailIcon />,
-      url: 'mailto:moiseslopezlopez@gmail.com',
+      url: `mailto:${content.email}`,
       color: 'bg-blue-500 hover:bg-blue-600 text-white',
     },
 
     {
       name: 'Resume',
       icon: <ResumeIcon />,
-      url: '/cv/curriculum_en.pdf',
+      url: content.cv,
       color: 'bg-gray-200 hover:bg-gray-300 text-gray-900',
     },
 
     {
       name: 'GitHub',
       icon: <GithubIcon />,
-      url: 'https://github.com/moilolon',
+      url: content.github,
       color: 'bg-gray-800 hover:bg-gray-900 text-white',
     },
 
     {
       name: 'LinkedIn',
       icon: <LinkedInIcon />,
-      url: 'https://linkedin.com/in/moilolon',
+      url: content.linkedin,
       color: 'bg-blue-700 hover:bg-blue-800 text-white',
     },
   ],
