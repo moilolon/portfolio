@@ -29,6 +29,11 @@ Examples: `feature(projects): add filtering by technology`,
 `bugfix(navbar): close the mobile menu after navigation`.
 
 - `npm run lint` must pass before committing.
+- After adding or updating a dependency, regenerate `package-lock.json` with npm 10, the one CI
+  runs (Node 23): `npx npm@10 install --package-lock-only`, then check it with
+  `npx npm@10 ci --dry-run`. A lock file written by a newer local npm can leave out entries
+  npm 10 needs, and `npm ci` fails in CI before the lint runs. Do not run a plain `npm install`
+  with the newer npm afterwards: it rewrites the file back.
 - Commit or push only when the user asks.
 
 ## Pull requests
