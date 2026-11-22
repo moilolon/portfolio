@@ -15,10 +15,6 @@ type RecaptchaVerification = {
 // Minimum reCAPTCHA v3 score accepted (0.5 is moderate confidence)
 const RECAPTCHA_MIN_SCORE = 0.5;
 
-// Messages accepted per hour: from the same email address, and in total
-const MAX_MESSAGES_PER_EMAIL = 3;
-const MAX_MESSAGES_TOTAL = 30;
-
 // Function to verify reCAPTCHA token
 async function verifyRecaptcha(token: string) {
   const response = await fetch(
@@ -52,30 +48,8 @@ async function verifyRecaptcha(token: string) {
   return true;
 }
 
-// Whether too many messages arrived in the last hour. A failed count never blocks a message.
-async function isRateLimited(email: string) {
-  const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-
-  const [fromEmail, total] = await Promise.all([
-    supabase
-      .from('contact_messages')
-      .select('id', { count: 'exact', head: true })
-      .eq('email', email)
-      .gte('created_at', since),
-    supabase
-      .from('contact_messages')
-      .select('id', { count: 'exact', head: true })
-      .gte('created_at', since),
-  ]);
-
-  if (fromEmail.error || total.error) {
-    console.error('Rate limit check failed:', fromEmail.error ?? total.error);
-    return false;
-  }
-
-  return (fromEmail.count ?? 0) >= MAX_MESSAGES_PER_EMAIL || (total.count ?? 0) >= MAX_MESSAGES_TOTAL;
-}
-
+// The rate limit is not here: a Vercel Firewall rule limits POST /api/contact per IP
+// and answers 429 before the request reaches this function.
 export async function POST(request: Request) {
   try {
     // Parse request body
@@ -122,13 +96,6 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: 'reCAPTCHA verification failed' },
         { status: 400 },
-      );
-    }
-
-    if (await isRateLimited(data.email)) {
-      return NextResponse.json(
-        { error: 'Too many messages. Please try again later.' },
-        { status: 429 },
       );
     }
 

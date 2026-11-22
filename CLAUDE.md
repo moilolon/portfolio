@@ -38,7 +38,7 @@ src/
 │   ├── layout.tsx            # fonts, metadata, theme init script, nav.js, Analytics, SpeedInsights
 │   ├── page.tsx              # composes Navbar + every section
 │   ├── globals.css           # Tailwind import, CSS variables, animations
-│   ├── api/contact/route.ts  # POST: validate → reCAPTCHA → rate limit → Supabase insert → Resend email
+│   ├── api/contact/route.ts  # POST: validate → reCAPTCHA → Supabase insert → Resend email
 │   └── api/cron/contact/route.ts  # GET (Vercel Cron, daily): retry unsent notifications
 ├── components/
 │   ├── layouts/Navbar.tsx    # site switcher (<moilolon-nav>), section links, Contact button, theme toggle
