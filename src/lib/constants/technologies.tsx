@@ -1,4 +1,5 @@
-import type { TechnologyCategory } from '@/types/technologies';
+import content from '@/content/technologies.json';
+import type { Technology, TechnologyCategory, TechnologyUsage } from '@/types/technologies';
 import {
   NextIcon,
   TypeScriptIcon,
@@ -33,63 +34,74 @@ import {
   ZedIcon,
 } from '@/components/icons/technologies';
 
-export const technologies: TechnologyCategory[] = [
-  {
-    category: 'Frontend',
-    items: [
-      { name: 'Next.js', icon: <NextIcon />, usage: 'experienced', color: 'var(--foreground)' },
-      { name: 'TypeScript', icon: <TypeScriptIcon />, usage: 'experienced', color: '#3178C6' },
-      { name: 'Tailwind CSS', icon: <TailwindIcon />, usage: 'experienced', color: '#1CD4B5' },
-      { name: 'JavaScript', icon: <JavaScriptIcon />, usage: 'daily', color: '#F7DF1E' },
-      { name: 'jQuery', icon: <JQueryIcon />, usage: 'daily', color: '#63B9E3' },
-      { name: 'HTML5', icon: <Html5Icon />, usage: 'daily', color: '#E44D26' },
-      { name: 'CSS3', icon: <Css3Icon />, usage: 'daily', color: '#1172B8' },
-      { name: 'JSP', icon: <JspIcon />, usage: 'experienced', color: '#FDB940' },
-      { name: 'Bootstrap', icon: <BootstrapIcon />, usage: 'daily', color: '#563D7C' },
-      { name: 'SASS', icon: <SassIcon />, usage: 'daily', color: '#CC6699' },
-      { name: 'ISML', icon: <IsmlIcon />, usage: 'daily', color: '#00A1E0' },
-    ],
-  },
-  {
-    category: 'Backend',
-    items: [
-      { name: 'Node.js', icon: <NodeIcon />, usage: 'daily', color: '#8CC84B' },
-      { name: 'Java', icon: <JavaIcon />, usage: 'experienced', color: '#E76F00' },
-      { name: 'Hibernate', icon: <HibernateIcon />, usage: 'experienced', color: '#BCAE79' },
-      { name: 'Spring', icon: <SpringIcon />, usage: 'experienced', color: '#70AD51' },
-      { name: 'JPA', color: '#E76F00' },
-      { name: 'Web Services', color: '#8CC84B' },
-      { name: 'REST', color: '#8CC84B' },
-      { name: 'Supabase', icon: <SupabaseIcon />, usage: 'experienced', color: '#3ECF8E' },
-      { name: 'Oracle', icon: <OracleIcon />, usage: 'experienced', color: '#EA1B22' },
-      { name: 'PostgreSQL', icon: <PostgreSqlIcon />, usage: 'experienced', color: '#336791' },
-      { name: 'SQL', color: '#EA1B22' },
-      { name: 'PL/SQL', icon: <PlSqlIcon />, usage: 'experienced', color: '#EA1B22' },
-      { name: 'GraphQL', icon: <GraphQlIcon />, usage: 'experienced', color: '#E10098' },
-    ],
-  },
-  {
-    category: 'DevOps & Tools',
-    items: [
-      { name: 'Git', icon: <GitIcon />, usage: 'daily', color: '#EE513B' },
-      { name: 'GitHub', icon: <GithubIcon />, usage: 'daily', color: 'var(--foreground)' },
-      { name: 'Docker', icon: <DockerIcon />, usage: 'experienced', color: '#1794D4' },
-      { name: 'Maven', color: '#C71A36' },
-      { name: 'GitHub Actions', icon: <GithubActionsIcon />, usage: 'daily', color: '#2088FF' },
-      { name: 'Vercel', icon: <VercelIcon />, usage: 'experienced', color: 'var(--foreground)' },
-      { name: 'Postman', icon: <PostmanIcon />, usage: 'daily', color: '#FF6C37' },
-      { name: 'VS Code', icon: <VsCodeIcon />, usage: 'daily', color: '#32B5F1' },
-      { name: 'Zed', icon: <ZedIcon />, usage: 'daily', color: '#084CCF' },
-      { name: 'Resend', color: 'var(--foreground)' },
-      { name: 'Google reCAPTCHA', color: '#4A90E2' },
-    ],
-  },
-  {
-    category: 'AI & Cloud',
-    items: [
-      { name: 'Azure AI Foundry', icon: <AzureAiIcon />, usage: 'experienced', color: '#1171ED' },
-      { name: 'Salesforce Commerce Cloud', icon: <SalesforceIcon />, usage: 'daily', color: '#00A1E0' },
-      { name: 'Claude Code', icon: <ClaudeCodeIcon />, usage: 'daily', color: '#D97757' },
-    ],
-  },
-];
+// The technologies themselves (name, category, usage) are content: src/content/technologies.json.
+// Here goes only how each one looks: its brand color and, for the Technologies section, its icon.
+const styles: Record<string, Pick<Technology, 'icon' | 'color'>> = {
+  'Next.js': { icon: <NextIcon />, color: 'var(--foreground)' },
+  'TypeScript': { icon: <TypeScriptIcon />, color: '#3178C6' },
+  'Tailwind CSS': { icon: <TailwindIcon />, color: '#1CD4B5' },
+  'JavaScript': { icon: <JavaScriptIcon />, color: '#F7DF1E' },
+  'jQuery': { icon: <JQueryIcon />, color: '#63B9E3' },
+  'HTML5': { icon: <Html5Icon />, color: '#E44D26' },
+  'CSS3': { icon: <Css3Icon />, color: '#1172B8' },
+  'JSP': { icon: <JspIcon />, color: '#FDB940' },
+  'Bootstrap': { icon: <BootstrapIcon />, color: '#563D7C' },
+  'SASS': { icon: <SassIcon />, color: '#CC6699' },
+  'ISML': { icon: <IsmlIcon />, color: '#00A1E0' },
+  'Node.js': { icon: <NodeIcon />, color: '#8CC84B' },
+  'Java': { icon: <JavaIcon />, color: '#E76F00' },
+  'Hibernate': { icon: <HibernateIcon />, color: '#BCAE79' },
+  'Spring': { icon: <SpringIcon />, color: '#70AD51' },
+  'JPA': { color: '#E76F00' },
+  'Web Services': { color: '#8CC84B' },
+  'REST': { color: '#8CC84B' },
+  'Supabase': { icon: <SupabaseIcon />, color: '#3ECF8E' },
+  'Oracle': { icon: <OracleIcon />, color: '#EA1B22' },
+  'PostgreSQL': { icon: <PostgreSqlIcon />, color: '#336791' },
+  'SQL': { color: '#EA1B22' },
+  'PL/SQL': { icon: <PlSqlIcon />, color: '#EA1B22' },
+  'GraphQL': { icon: <GraphQlIcon />, color: '#E10098' },
+  'Git': { icon: <GitIcon />, color: '#EE513B' },
+  'GitHub': { icon: <GithubIcon />, color: 'var(--foreground)' },
+  'Docker': { icon: <DockerIcon />, color: '#1794D4' },
+  'Maven': { color: '#C71A36' },
+  'GitHub Actions': { icon: <GithubActionsIcon />, color: '#2088FF' },
+  'Vercel': { icon: <VercelIcon />, color: 'var(--foreground)' },
+  'Postman': { icon: <PostmanIcon />, color: '#FF6C37' },
+  'VS Code': { icon: <VsCodeIcon />, color: '#32B5F1' },
+  'Zed': { icon: <ZedIcon />, color: '#084CCF' },
+  'Resend': { color: 'var(--foreground)' },
+  'Google reCAPTCHA': { color: '#4A90E2' },
+  'Azure AI Foundry': { icon: <AzureAiIcon />, color: '#1171ED' },
+  'Salesforce Commerce Cloud': { icon: <SalesforceIcon />, color: '#00A1E0' },
+  'Claude Code': { icon: <ClaudeCodeIcon />, color: '#D97757' },
+};
+
+type TechnologyContent = {
+  category: string;
+  items: { name: string; usage?: TechnologyUsage }[];
+};
+
+export const technologies: TechnologyCategory[] = (content as TechnologyContent[]).map(({ category, items }) => ({
+  category,
+  items: items.map((item) => {
+    const style = styles[item.name];
+    if (!style) {
+      throw new Error(`Technology "${item.name}" has no style in src/lib/constants/technologies.tsx`);
+    }
+    return { ...item, ...style };
+  }),
+}));
+
+// Resolves the technology names of a job or a project to their name and chip color
+export function findTechnologies(names: string[]): Pick<Technology, 'name' | 'color'>[] {
+  const all = technologies.flatMap((category) => category.items);
+
+  return names.map((name) => {
+    const found = all.find((technology) => technology.name === name);
+    if (!found) {
+      throw new Error(`Technology "${name}" not found in src/content/technologies.json`);
+    }
+    return { name: found.name, color: found.color };
+  });
+}

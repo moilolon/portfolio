@@ -1,0 +1,27 @@
+{
+  "intro": [
+    "I'm a software engineer from A Coruña, Spain, with more than ten years of experience building web applications. I started in 2014 as a Java developer, right after finishing my Computer Science Engineering degree at the University of A Coruña, and spent my first years working with the J2EE platform on projects for companies such as Inditex, Jazztel and the public administration.",
+    "Since 2019 I've specialised in Salesforce Commerce Cloud, where I'm responsible for the analysis and development of the Guess and Rag & Bone online stores for Europe and North America, working across the whole platform, from backend services and third-party integrations to the storefront."
+  ],
+  "sections": [
+    {
+      "title": "How I Work",
+      "paragraphs": [
+        "I enjoy understanding a problem before writing a single line of code, which is why I like working side by side with the business team to turn their needs into functional and technical designs. Backend development is still my favourite part of the job: it's where you see how real-world problems actually get solved.",
+        "I also care about how the team works, not just about what it ships. I mentor junior developers, review code, and keep pushing improvements to our workflow, such as continuous integration, unit testing and AI-assisted development."
+      ]
+    },
+    {
+      "title": "Beyond Code",
+      "paragraphs": [
+        "When I'm not coding, you'll probably find me on a beach in Galicia with my wife or friends, doing sport (I've run a couple of marathons and enjoy swimming, CrossFit and yoga), or travelling to discover new places and their food, from fine dining to street food. And I never say no to a few beers with friends."
+      ]
+    },
+    {
+      "title": "Let's Connect",
+      "paragraphs": [
+        "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the contact methods in the information section above."
+      ]
+    }
+  ]
+}
