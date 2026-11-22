@@ -8,6 +8,8 @@ export type Education = {
 // The courses taken at one place: a company (with the job held there) or a university (with the degree)
 export type CourseGroup = {
   organisation: string;
+  // Shown in the CV only
+  location: string;
   title: string;
   period: string;
   items: string[];

@@ -81,5 +81,15 @@
     "genericError": "Algo ha fallado. Inténtalo de nuevo en un momento.",
     "fallback": "No se ha podido enviar tu mensaje desde aquí. Puedes escribirme directamente a <email></email>.",
     "recaptcha": "Este sitio está protegido por reCAPTCHA y se aplican la <privacy>Política de privacidad</privacy> y los <terms>Términos del servicio</terms> de Google."
+  },
+  "cv": {
+    "title": "Currículum Vítae",
+    "profile": "Perfil",
+    "experience": "Experiencia",
+    "education": "Formación académica",
+    "skills": "Conocimientos técnicos",
+    "courses": "Formación complementaria, cursos y otros",
+    "languages": "Idiomas",
+    "technologies": "Tecnologías"
   }
 }
