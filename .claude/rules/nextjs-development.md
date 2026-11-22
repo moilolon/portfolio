@@ -10,6 +10,7 @@
 | What the CV says | the same `src/content/` files; phone and birth date in `src/content/cv.json` |
 | How the CV looks, its section titles | `src/lib/cv/CvDocument.tsx`, the `cv` namespace of `src/messages/` |
 | How a section looks or behaves | `src/components/sections/<Section>.tsx` |
+| The 404 page | `src/app/[locale]/not-found.tsx`, texts in the `notFound` namespace; `[...rest]/page.tsx` sends every unknown path there |
 | A new section | a component in `sections/` rendering `<section id="…">`, added to `src/app/page.tsx`, and a link in `Navbar.tsx` |
 | An icon | `src/components/icons/<section>/<Name>Icon.tsx`, exported from that folder's `index.ts` |
 | A text of the interface (menu, heading, button, error) | `src/messages/en.json` **and** `es.json`, read with `useTranslations()` |
@@ -82,7 +83,12 @@ component, or it ships to the browser.
   browser.
 - Anything that opens or closes is a `<button>` with `aria-expanded` (and `aria-controls` when
   it owns a panel), never a `<div>` with `onClick`.
-- Reuse `ui/Modal` and `ui/Toast` instead of writing new overlays or notifications.
+- Reuse `ui/Modal` and `ui/Toast` instead of writing new overlays or notifications. `Modal` is
+  a real dialog (`role="dialog"`, focus kept inside, given back to the opener on close) and
+  `Toast` announces itself (`role="status"`, `alert` for errors): a hand-made overlay loses that.
+- A callback prop used inside an effect goes through `useEffectEvent`, as in `Modal` and `Toast`.
+  As a dependency it would run the effect again on every render of the parent, since parents
+  pass a new function each time: that is what restarted the countdown of the toast.
 - Images through `next/image`; section anchors are `#<id>` links, smoothed by `scroll-smooth`
   on `<html>`.
 
