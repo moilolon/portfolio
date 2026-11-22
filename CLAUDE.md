@@ -39,6 +39,7 @@ src/
 ├── app/
 │   ├── [locale]/layout.tsx   # <html lang>, fonts, metadata per language, theme init script, nav.js, analytics
 │   ├── [locale]/page.tsx     # composes Navbar + every section; prerendered as /en and /es
+│   ├── [locale]/not-found.tsx, [...rest]/  # the 404 page, in the language of the URL
 │   ├── [locale]/opengraph-image.tsx  # the card of a shared link, one per language, written at build time
 │   ├── sitemap.ts, robots.ts # /sitemap.xml (both languages) and /robots.txt
 │   ├── globals.css           # Tailwind import, CSS variables, animations
