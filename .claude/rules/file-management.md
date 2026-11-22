@@ -19,6 +19,6 @@
 
 - `.env`, `.env.local`, `.env.*.local` — they hold the keys. The code uses:
   `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (public, shipped to the browser) and `SUPABASE_URL`,
-  `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`, `NOTIFICATION_EMAIL`
-  (server only). Ask the user when a value matters; never print one.
+  `SUPABASE_SECRET_KEY`, `RESEND_API_KEY`, `RECAPTCHA_SECRET_KEY`, `NOTIFICATION_EMAIL`,
+  `CRON_SECRET` (server only; the last one is only needed on Vercel, for the daily cron). Ask the user when a value matters; never print one.
 - `*.pem`, `.vercel/`
