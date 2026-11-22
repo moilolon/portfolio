@@ -1,7 +1,7 @@
 import { LOCALES, type Locale } from '@/lib/i18n';
 
 // The language is shared with the other sites under moilolon.com through a cookie of the
-// whole domain, like the theme (src/lib/theme.ts). The middleware reads it to choose the
+// whole domain, like the theme (src/lib/theme.ts). The proxy (src/proxy.ts) reads it to choose the
 // language of a URL without one.
 export const LANG_COOKIE = 'moilolon-lang';
 const SHARED_DOMAIN = 'moilolon.com';
