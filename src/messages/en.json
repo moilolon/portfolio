@@ -81,5 +81,15 @@
     "genericError": "Something went wrong. Please try again in a moment.",
     "fallback": "Your message could not be sent from here. You can write to me directly at <email></email>.",
     "recaptcha": "This site is protected by reCAPTCHA and the Google <privacy>Privacy Policy</privacy> and <terms>Terms of Service</terms> apply."
+  },
+  "cv": {
+    "title": "Curriculum Vitae",
+    "profile": "Profile",
+    "experience": "Work Experience",
+    "education": "Education",
+    "skills": "Technical Skills",
+    "courses": "Training, courses and others",
+    "languages": "Languages",
+    "technologies": "Technologies"
   }
 }

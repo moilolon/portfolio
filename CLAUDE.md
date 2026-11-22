@@ -24,6 +24,7 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
 - **Tailwind CSS 4** through `@tailwindcss/postcss` — no `tailwind.config.*`; theme tokens
   and custom animations live in `src/app/globals.css`.
 - **next-intl** — the site in English and Spanish, under `/en` and `/es`.
+- **@react-pdf/renderer** — the CV, generated as a PDF per language at build time.
 - **Supabase** (`@supabase/supabase-js`) — the `contact_messages` table.
 - **Resend** — email notification for each contact message.
 - **Google reCAPTCHA v3** (script loaded by `src/lib/recaptcha.ts`, no library) — the token
@@ -39,6 +40,7 @@ src/
 │   ├── [locale]/layout.tsx   # <html lang>, fonts, metadata per language, theme init script, nav.js, analytics
 │   ├── [locale]/page.tsx     # composes Navbar + every section; prerendered as /en and /es
 │   ├── globals.css           # Tailwind import, CSS variables, animations
+│   ├── cv/[file]/route.tsx   # GET /cv/curriculum_<locale>.pdf: the CV, prerendered at build time
 │   ├── api/contact/route.ts  # POST: validate → reCAPTCHA → Supabase insert → Resend email
 │   └── api/cron/contact/route.ts  # GET (Vercel Cron, daily): retry unsent notifications
 ├── components/
@@ -51,6 +53,7 @@ src/
 ├── i18n/                     # next-intl: routing (locales), request (loads the messages), navigation (Link, router)
 ├── messages/                 # the INTERFACE texts, en.json and es.json: menu, headings, form, errors
 ├── middleware.ts             # sends a URL without language to /en or /es: shared cookie, then the browser
+├── assets/fonts/             # Latin Modern Sans, embedded in the CV
 ├── content/                  # the site's CONTENT as JSON, every text in English and Spanish: profile, technologies,
 │                             #   experience, projects, training, languages, about; cv.json holds what only the CV shows
 ├── lib/
@@ -60,11 +63,12 @@ src/
 │   ├── supabase/client.ts    # server only (secret key)
 │   ├── resend/               # client.ts, contact.ts (the notification email, HTML-escaped)
 │   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
+│   ├── cv/CvDocument.tsx     # the layout of the CV as a PDF (server only)
 │   ├── lang.ts               # the language cookie shared with the other moilolon.com sites
 │   ├── theme.ts              # inline script that sets <html data-theme> before paint
 │   └── colors.ts             # tint() for technology chip backgrounds
 └── types/                    # one file per content type (experience, projects, …), moilolon-nav.d.ts
-public/                       # avatar.jpg, cv/curriculum_en.pdf, projects/*.png|svg
+public/                       # avatar.jpg (also the photo of the CV), projects/*.png|svg
 supabase/migrations/          # NNN_description.sql
 vercel.json                   # the daily cron of the contact messages
 ```
@@ -75,8 +79,8 @@ technology also needs its color (and icon) in `src/lib/constants/technologies.ts
 
 Every text in `src/content/` is written in both languages, side by side:
 `"title": { "en": "…", "es": "…" }`. Interface texts (menu, headings, buttons, errors) are not
-content: they live in `src/messages/<locale>.json`. The same content will feed the generated CV, so the site is the source: there is no second
-wording of a job for the PDF.
+content: they live in `src/messages/<locale>.json`. The same content feeds the generated CV, so the site is the source: there is no second wording
+of a job for the PDF, and no PDF to edit by hand.
 
 ## Commands
 
