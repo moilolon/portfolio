@@ -28,7 +28,7 @@ Types: `feature`, `bugfix`, `docs`, `style`, `refactor`, `test`, `chore`
 Examples: `feature(projects): add filtering by technology`,
 `bugfix(navbar): close the mobile menu after navigation`.
 
-- `npm run lint` must pass before committing.
+- `npm run lint` and `npm test` must pass before committing.
 - CI and the local machine must run the same Node major (today 25, with npm 11): the workflows
   in `.github/workflows/` pin it in `node-version`. A `package-lock.json` written by one npm
   major can be rejected by `npm ci` on another, and then CI fails before the lint runs. When
@@ -40,4 +40,6 @@ Examples: `feature(projects): add filtering by technology`,
 - Title: `type: Description` (e.g. `feat: Add Vercel Analytics and Speed Insights for monitoring`),
   squash-merged into `main` — GitHub appends `(#N)`.
 - Description: what changed, why, how to test; screenshots for UI.
-- CI (`Code Review Assistant`) runs the lint on the branch; it must be green.
+- CI (`Code Review Assistant`) runs the lint, the tests and the build on the branch; it must be
+  green. The build runs with placeholder values for the service keys: a module that calls a
+  service while it loads would break it.
