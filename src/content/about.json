@@ -1,26 +1,53 @@
 {
   "intro": [
-    "I'm a software engineer from A Coruña, Spain, with more than ten years of experience building web applications. I started in 2014 as a Java developer, right after finishing my Computer Science Engineering degree at the University of A Coruña, and spent my first years working with the J2EE platform on projects for companies such as Inditex, Jazztel and the public administration.",
-    "Since 2019 I've specialised in Salesforce Commerce Cloud, where I'm responsible for the analysis and development of the Guess and Rag & Bone online stores for Europe and North America, working across the whole platform, from backend services and third-party integrations to the storefront."
+    {
+      "en": "I'm a software engineer from A Coruña, Spain, with more than ten years of experience building web applications. I started in 2014 as a Java developer, right after finishing my Computer Science Engineering degree at the University of A Coruña, and spent my first years working with the J2EE platform on projects for companies such as Inditex, Jazztel and the public administration.",
+      "es": "Soy ingeniero de software de A Coruña, con más de diez años de experiencia construyendo aplicaciones web. Empecé en 2014 como desarrollador Java, nada más terminar Ingeniería Informática en la Universidade da Coruña, y pasé mis primeros años trabajando con la plataforma J2EE en proyectos para empresas como Inditex, Jazztel y la administración pública."
+    },
+    {
+      "en": "Since 2019 I've specialised in Salesforce Commerce Cloud, where I'm responsible for the analysis and development of the Guess and Rag & Bone online stores for Europe and North America, working across the whole platform, from backend services and third-party integrations to the storefront.",
+      "es": "Desde 2019 estoy especializado en Salesforce Commerce Cloud, donde me encargo del análisis y desarrollo de las tiendas online de Guess y Rag & Bone para Europa y Norteamérica, trabajando en toda la plataforma, desde los servicios de backend y las integraciones con terceros hasta la tienda."
+    }
   ],
   "sections": [
     {
-      "title": "How I Work",
+      "title": {
+        "en": "How I Work",
+        "es": "Cómo trabajo"
+      },
       "paragraphs": [
-        "I enjoy understanding a problem before writing a single line of code, which is why I like working side by side with the business team to turn their needs into functional and technical designs. Backend development is still my favourite part of the job: it's where you see how real-world problems actually get solved.",
-        "I also care about how the team works, not just about what it ships. I mentor junior developers, review code, and keep pushing improvements to our workflow, such as continuous integration, unit testing and AI-assisted development."
+        {
+          "en": "I enjoy understanding a problem before writing a single line of code, which is why I like working side by side with the business team to turn their needs into functional and technical designs. Backend development is still my favourite part of the job: it's where you see how real-world problems actually get solved.",
+          "es": "Me gusta entender un problema antes de escribir una sola línea de código, por eso disfruto trabajando codo con codo con el equipo de negocio para convertir sus necesidades en diseños funcionales y técnicos. El desarrollo backend sigue siendo mi parte favorita del trabajo: es donde se ve cómo se resuelven de verdad los problemas del mundo real."
+        },
+        {
+          "en": "I also care about how the team works, not just about what it ships. I mentor junior developers, review code, and keep pushing improvements to our workflow, such as continuous integration, unit testing and AI-assisted development.",
+          "es": "También me importa cómo trabaja el equipo, no solo lo que entrega. Hago de mentor de desarrolladores junior, reviso código y sigo impulsando mejoras en nuestro flujo de trabajo, como la integración continua, los tests unitarios y el desarrollo asistido por IA."
+        }
       ]
     },
     {
-      "title": "Beyond Code",
+      "title": {
+        "en": "Beyond Code",
+        "es": "Más allá del código"
+      },
       "paragraphs": [
-        "When I'm not coding, you'll probably find me on a beach in Galicia with my wife or friends, doing sport (I've run a couple of marathons and enjoy swimming, CrossFit and yoga), or travelling to discover new places and their food, from fine dining to street food. And I never say no to a few beers with friends."
+        {
+          "en": "When I'm not coding, you'll probably find me on a beach in Galicia with my wife or friends, doing sport (I've run a couple of marathons and enjoy swimming, CrossFit and yoga), or travelling to discover new places and their food, from fine dining to street food. And I never say no to a few beers with friends.",
+          "es": "Cuando no estoy programando, lo más probable es que me encuentres en una playa de Galicia con mi mujer o mis amigos, haciendo deporte (he corrido un par de maratones y me gustan la natación, el CrossFit y el yoga) o viajando para descubrir sitios nuevos y su comida, desde la alta cocina hasta la comida callejera. Y nunca digo que no a unas cañas con amigos."
+        }
       ]
     },
     {
-      "title": "Let's Connect",
+      "title": {
+        "en": "Let's Connect",
+        "es": "Hablemos"
+      },
       "paragraphs": [
-        "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the contact methods in the information section above."
+        {
+          "en": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the contact methods in the information section above.",
+          "es": "Siempre estoy abierto a hablar de nuevos proyectos, ideas creativas u oportunidades de formar parte de tu visión. Puedes escribirme por cualquiera de las vías de contacto de la sección de información de arriba."
+        }
       ]
     }
   ]

@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { personalInfo } from '@/lib/constants/information';
+import { getPersonalInfo } from '@/lib/constants/information';
+import { DEFAULT_LOCALE } from '@/lib/i18n';
 
 export default function Information() {
+  const personalInfo = getPersonalInfo(DEFAULT_LOCALE);
+
   return (
     <section id="information" className="min-h-screen flex items-center justify-center py-20 pt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

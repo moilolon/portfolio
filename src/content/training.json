@@ -1,26 +1,161 @@
-[
-  {
-    "institution": "Trailhead Academy",
-    "qualification": "B2C Commerce Developer with SFRA",
-    "year": "2020",
-    "description": "Intensive week program covering the fundamentals of Salesforce B2C Commerce and the SFRA framework."
-  },
-  {
-    "institution": "Indra (internal training)",
-    "qualification": "J2EE Platform",
-    "year": "2016",
-    "description": "Comprehensive courses on building complex applications with Java EE, J2EE Patterns, Spring MVC Web Applications, Spring Boot, Spring Batch, Hibernate, Oracle11g PL/SQL, Microservices, REST, JavaScript and HTML5&CSS3."
-  },
-  {
-    "institution": "University of A Coruña",
-    "qualification": "Engineering in Computer Science",
-    "year": "2014",
-    "description": "Project: Design and implementation of a Java EE Web application with MVC architecture, for PDF generation of electronic tickets."
-  },
-  {
-    "institution": "University of A Coruña",
-    "qualification": "Technical Engineering in Computer Systems",
-    "year": "2012",
-    "description": "Project: Design and implementation of a .NET Web application with MVC architecture for the exchange of experiences and resources of the In-TIC project."
-  }
-]
+{
+  "education": [
+    {
+      "institution": {
+        "en": "University of A Coruña",
+        "es": "Universidade da Coruña"
+      },
+      "qualification": {
+        "en": "Engineering in Computer Science",
+        "es": "Ingeniería Informática"
+      },
+      "period": "2013 – 2014",
+      "description": {
+        "en": "Project: Design and implementation of a Java EE Web application with MVC architecture, for PDF generation of electronic tickets.",
+        "es": "Proyecto: Diseño e implementación de una aplicación Web Java EE con arquitectura MVC, para la generación en PDF de tickets electrónicos."
+      }
+    },
+    {
+      "institution": {
+        "en": "University of A Coruña",
+        "es": "Universidade da Coruña"
+      },
+      "qualification": {
+        "en": "Technical Engineering in Computer Systems",
+        "es": "Ingeniería Técnica en Informática de Sistemas"
+      },
+      "period": "2008 – 2012",
+      "description": {
+        "en": "Project: Design and implementation of a .NET Web application with MVC architecture for the exchange of experiences and resources of the In-TIC project.",
+        "es": "Proyecto: Diseño e implementación de una aplicación Web .NET con arquitectura MVC para el intercambio de experiencias y recursos del proyecto In-TIC."
+      }
+    }
+  ],
+  "courses": [
+    {
+      "organisation": {
+        "en": "3MT Global Services",
+        "es": "3MT Global Services"
+      },
+      "title": {
+        "en": "Salesforce Developer Analyst",
+        "es": "Analista Programador Salesforce"
+      },
+      "period": "2020",
+      "items": [
+        {
+          "en": "B2C Commerce Developer with SFRA (Trailhead Academy)",
+          "es": "B2C Commerce Developer with SFRA (Trailhead Academy)"
+        }
+      ]
+    },
+    {
+      "organisation": {
+        "en": "atSistemas",
+        "es": "atSistemas"
+      },
+      "title": {
+        "en": "Senior Software Engineer",
+        "es": "Ingeniero de Software Senior"
+      },
+      "period": "2016 – 2019",
+      "items": [
+        {
+          "en": "Spring Boot, Microservices, REST and Cloud",
+          "es": "Spring Boot, Microservicios, REST y Cloud"
+        },
+        {
+          "en": "OWASP and PCI regulations",
+          "es": "Normativa OWASP y PCI"
+        }
+      ]
+    },
+    {
+      "organisation": {
+        "en": "Indra",
+        "es": "Indra"
+      },
+      "title": {
+        "en": "Software Engineer",
+        "es": "Ingeniero de Software"
+      },
+      "period": "2014 – 2016",
+      "items": [
+        {
+          "en": "Advanced Web Development with AngularJS",
+          "es": "Desarrollo Avanzado Web con AngularJS"
+        },
+        {
+          "en": "Spring Batch",
+          "es": "Spring Batch"
+        },
+        {
+          "en": "Hibernate JPA Object Persistence",
+          "es": "Persistencia de Objetos con Hibernate JPA"
+        },
+        {
+          "en": "Java EE Application Development",
+          "es": "Desarrollo de Aplicaciones para Java EE"
+        },
+        {
+          "en": "J2EE Patterns",
+          "es": "J2EE Patterns"
+        },
+        {
+          "en": "Spring and Hibernate Application Development",
+          "es": "Desarrollo de Aplicaciones con Spring e Hibernate"
+        },
+        {
+          "en": "Spring MVC Web Applications",
+          "es": "Aplicaciones Web con Spring MVC"
+        },
+        {
+          "en": "HTML5&CSS3 and JavaScript programming",
+          "es": "Programación HTML5&CSS3 y JavaScript"
+        },
+        {
+          "en": "Oracle11g PL/SQL Language",
+          "es": "Oracle11g Lenguaje PL/SQL"
+        }
+      ]
+    },
+    {
+      "organisation": {
+        "en": "University of A Coruña",
+        "es": "Universidade da Coruña"
+      },
+      "title": {
+        "en": "Engineering in Computer Science",
+        "es": "Ingeniería Informática"
+      },
+      "period": "2013 – 2014",
+      "items": [
+        {
+          "en": "PostgreSQL databases",
+          "es": "Bases de datos PostgreSQL"
+        },
+        {
+          "en": "Security Conference 2013",
+          "es": "Jornadas de Seguridad 2013"
+        }
+      ]
+    },
+    {
+      "organisation": {
+        "en": "University of A Coruña",
+        "es": "Universidade da Coruña"
+      },
+      "title": {
+        "en": "Technical Engineering in Computer Systems",
+        "es": "Ingeniería Técnica en Informática de Sistemas"
+      },
+      "period": "2008 – 2012",
+      "items": [
+        {
+          "en": "Security Conference 2008, 2009, 2010 and 2011",
+          "es": "Jornadas de Seguridad 2008, 2009, 2010 y 2011"
+        }
+      ]
+    }
+  ]
+}
