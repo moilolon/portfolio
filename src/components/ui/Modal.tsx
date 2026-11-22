@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { CloseIcon } from '@/components/icons/navigation';
+import { useIsClient } from '@/lib/use-is-client';
 
 interface ModalProps {
   isOpen: boolean;
@@ -15,18 +16,13 @@ interface ModalProps {
 
 export default function Modal({ isOpen, onClose, title, closeLabel, children }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
+  const isClient = useIsClient();
+  // Stays true after closing until the exit transition ends, so the modal can fade out
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsAnimating(true);
-    }
-  }, [isOpen]);
+  if (isOpen && !isAnimating) {
+    setIsAnimating(true);
+  }
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -50,7 +46,7 @@ export default function Modal({ isOpen, onClose, title, closeLabel, children }: 
     };
   }, [isOpen, onClose]);
 
-  if (!isMounted) return null;
+  if (!isClient) return null;
   if (!isOpen && !isAnimating) return null;
 
   const handleAnimationEnd = () => {
