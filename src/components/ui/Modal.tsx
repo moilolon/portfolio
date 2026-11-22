@@ -8,10 +8,12 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  // Text of the close button, for screen readers
+  closeLabel: string;
   children: React.ReactNode;
 }
 
-export default function Modal({ isOpen, onClose, title, children }: ModalProps) {
+export default function Modal({ isOpen, onClose, title, closeLabel, children }: ModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -77,7 +79,7 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
             className="p-1 rounded-md text-foreground/60 hover:text-foreground hover:bg-foreground/10 transition-colors disabled:cursor-not-allowed cursor-pointer"
           >
             <CloseIcon />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{closeLabel}</span>
           </button>
         </div>
         <div className="p-6">

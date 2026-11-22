@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
 import { getPersonalInfo } from '@/lib/constants/information';
-import { DEFAULT_LOCALE } from '@/lib/i18n';
 
 export default function Information() {
-  const personalInfo = getPersonalInfo(DEFAULT_LOCALE);
+  const t = useTranslations('information');
+  const personalInfo = getPersonalInfo(useLocale());
 
   return (
     <section id="information" className="min-h-screen flex items-center justify-center py-20 pt-28">
@@ -16,7 +17,7 @@ export default function Information() {
               <div className="flex items-center justify-center h-full text-white text-6xl font-bold">
                 <Image
                   src={personalInfo.avatar}
-                  alt="Avatar"
+                  alt={t('avatarAlt', { name: personalInfo.name })}
                   fill
                   className="object-cover rounded-full"
                 />
@@ -37,7 +38,7 @@ export default function Information() {
             <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-6">
               {personalInfo.socials.map((social) => (
                 <Link
-                  key={social.name}
+                  key={social.id}
                   href={social.url}
                   target="_blank"
                   className={`flex items-center gap-2 px-4 py-2 rounded-full transition-colors ${social.color}`}
@@ -45,7 +46,7 @@ export default function Information() {
                   <div className="h-5 w-5">
                     {social.icon}
                   </div>
-                  <span>{social.name}</span>
+                  <span>{t(social.id)}</span>
                 </Link>
               ))}
             </div>

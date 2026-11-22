@@ -1,9 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { MoonIcon, SunIcon } from '@/components/icons/navigation';
 import { saveTheme, type Theme } from '@/lib/theme';
 
 export default function ThemeToggle() {
+  const t = useTranslations('nav');
+
   const toggleTheme = () => {
     const root = document.documentElement;
     const next: Theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -17,8 +20,8 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       className="p-2 rounded-md hover:bg-foreground/10 transition-colors cursor-pointer"
-      aria-label="Toggle light and dark theme"
-      title="Toggle theme"
+      aria-label={t('toggleTheme')}
+      title={t('toggleThemeTitle')}
     >
       <MoonIcon className="h-5 w-5 dark:hidden" />
       <SunIcon className="h-5 w-5 hidden dark:block" />
