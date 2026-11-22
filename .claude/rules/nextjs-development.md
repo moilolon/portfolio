@@ -6,7 +6,9 @@
 | ------ | ---- |
 | A job, project, technology, degree, course, language, personal detail or About me text | `src/content/<section>.json`, typed by `src/types/<section>.ts` |
 | The color or icon of a technology, the look of the quick links | `src/lib/constants/technologies.tsx`, `information.tsx` (adapters over `src/content/`) |
-| A project screenshot, the avatar or the CV | `public/projects/`, `public/avatar.jpg`, `public/cv/` |
+| A project screenshot or the avatar | `public/projects/`, `public/avatar.jpg` |
+| What the CV says | the same `src/content/` files; phone and birth date in `src/content/cv.json` |
+| How the CV looks, its section titles | `src/lib/cv/CvDocument.tsx`, the `cv` namespace of `src/messages/` |
 | How a section looks or behaves | `src/components/sections/<Section>.tsx` |
 | A new section | a component in `sections/` rendering `<section id="…">`, added to `src/app/page.tsx`, and a link in `Navbar.tsx` |
 | An icon | `src/components/icons/<section>/<Name>Icon.tsx`, exported from that folder's `index.ts` |
@@ -46,6 +48,18 @@ component, or it ships to the browser.
   language; section anchors are plain `<a href="#id">`.
 - The contact API answers with codes (`ContactApiError`, `ContactErrorCode` in
   `src/lib/contact.ts`), never with text: the form translates them.
+
+## The CV
+
+- `/cv/curriculum_en.pdf` and `/cv/curriculum_es.pdf` are written by
+  `src/app/cv/[file]/route.tsx` at build time (`force-static`) with `@react-pdf/renderer`, from
+  the content of the site. Never commit a PDF: change the content and it follows.
+- The layout mimics the `classic` style of the LaTeX `moderncv` template it replaced: a narrow
+  column of dates, blue section rules, Latin Modern Sans (`src/assets/fonts/`).
+- react-pdf is not the DOM: only its own components (`View`, `Text`, `Image`) and a subset of
+  CSS in `StyleSheet`, no Tailwind. Pass images as a buffer, not as a Windows path.
+- After a change, open both PDFs and read every page: text that grows can move a whole entry
+  to the next page, since entries are never split.
 
 ## Components
 
