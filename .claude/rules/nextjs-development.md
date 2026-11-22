@@ -14,7 +14,7 @@
 | An icon | `src/components/icons/<section>/<Name>Icon.tsx`, exported from that folder's `index.ts` |
 | A text of the interface (menu, heading, button, error) | `src/messages/en.json` **and** `es.json`, read with `useTranslations()` |
 | Colors, theme variables, keyframes | `src/app/globals.css` |
-| Metadata / SEO, fonts, analytics | `src/app/layout.tsx` |
+| Metadata / SEO, fonts, analytics | `src/app/[locale]/layout.tsx` (title, description, `hreflang`, Open Graph), `page.tsx` (JSON-LD of the person), `opengraph-image.tsx`, `src/app/sitemap.ts`, `robots.ts` |
 | Contact flow | `ContactForm.tsx` (client) → `src/app/api/contact/route.ts` (server); rules shared in `src/lib/contact.ts`, email in `src/lib/resend/contact.ts` |
 
 Content is JSON without presentation: keep Tailwind classes, colors and icons out of
