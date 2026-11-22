@@ -56,6 +56,9 @@ project names a technology missing from `technologies.json`, or one without a st
 - Log the error server-side, return a generic message to the client.
 - Contact input is validated with `validateContact()` on both sides, and every visitor value is
   escaped before it goes into the HTML of an email (`src/lib/resend/contact.ts`).
+- The rate limit of `/api/contact` is a Vercel Firewall rule (`Rate limit contact form`: 5 POST
+  per minute per IP, 429), not code: it stops abuse before the function runs. Change it with
+  `vercel firewall rules`, not in the route.
 - The contact route answers 200 when the message is stored even if the email fails: the daily
   cron (`/api/cron/contact`, authorised with `CRON_SECRET`) retries it.
 
