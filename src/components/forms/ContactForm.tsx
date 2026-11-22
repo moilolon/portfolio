@@ -1,11 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Toast from '@/components/ui/Toast';
 import {
   CONTACT_HONEYPOT_FIELD,
   CONTACT_LIMITS,
+  readContactErrors,
   validateContact,
+  type ContactApiError,
   type ContactData,
   type ContactErrors,
   type ContactField,
@@ -22,21 +25,21 @@ const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!;
 
 const EMPTY_FORM: ContactData = { name: '', email: '', subject: '', message: '' };
 
-const GENERIC_ERROR = 'Something went wrong. Please try again in a moment.';
-
 // The single-line fields, in order; the message is a textarea rendered apart
-const INPUTS: { field: Exclude<ContactField, 'message'>; label: string; type: string; autoComplete: string; Icon: typeof UserIcon }[] = [
-  { field: 'name', label: 'Name', type: 'text', autoComplete: 'name', Icon: UserIcon },
-  { field: 'email', label: 'Email', type: 'email', autoComplete: 'email', Icon: EmailIcon },
-  { field: 'subject', label: 'Subject', type: 'text', autoComplete: 'off', Icon: MessageIcon },
+const INPUTS: { field: Exclude<ContactField, 'message'>; type: string; autoComplete: string; Icon: typeof UserIcon }[] = [
+  { field: 'name', type: 'text', autoComplete: 'name', Icon: UserIcon },
+  { field: 'email', type: 'email', autoComplete: 'email', Icon: EmailIcon },
+  { field: 'subject', type: 'text', autoComplete: 'off', Icon: MessageIcon },
 ];
 
 const fieldClass = 'block w-full rounded-lg border bg-foreground/5 shadow-sm focus:outline-none focus:ring-2 transition-colors';
 const fieldStateClass = (hasError: boolean) => hasError
   ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
   : 'border-foreground/10 focus:border-blue-500 focus:ring-blue-500/20';
+const linkClass = 'text-blue-500 hover:text-blue-600';
 
 export default function ContactForm({ onSuccess }: ContactFormProps) {
+  const t = useTranslations('contact');
   const [values, setValues] = useState<ContactData>(EMPTY_FORM);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [honeypot, setHoneypot] = useState('');
@@ -61,6 +64,12 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       clearTimeout(closeTimer.current);
     }
   }, []);
+
+  // The text of the error of a field, in the language of the page
+  const errorText = (field: ContactField) => {
+    const code = errors[field];
+    return code && t(`errors.${code}`, { field: t(`fields.${field}`), max: CONTACT_LIMITS[field] });
+  };
 
   const handleChange = (field: ContactField, value: string) => {
     setValues((current) => ({ ...current, [field]: value }));
@@ -94,7 +103,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       } catch (error) {
         // Usually a content blocker stopping the reCAPTCHA script
         console.error(error);
-        showError('The anti-spam check could not load.', true);
+        showError(t('captchaUnavailable'), true);
         return;
       }
 
@@ -108,24 +117,25 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         }),
       });
 
-      const data: { error?: string; fields?: ContactErrors } = await response.json().catch(() => ({}));
+      // A 429 comes from the Vercel Firewall and has no JSON body
+      const data: { error?: ContactApiError; fields?: unknown } = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        if (data.fields) {
-          setErrors(data.fields);
+        if (response.status === 429) {
+          showError(t('tooMany'), true);
+        } else if (data.error === 'validation') {
+          setErrors(readContactErrors(data.fields));
+          showError(t('checkFields'));
+        } else if (data.error === 'recaptcha_failed' || data.error === 'recaptcha_required') {
+          showError(t('captchaFailed'), true);
+        } else {
+          showError(t('genericError'), true);
         }
-        // 4xx messages are written for the visitor; anything else stays generic
-        const isClientError = response.status >= 400 && response.status < 500;
-        showError((isClientError && data.error) || GENERIC_ERROR, !data.fields);
         return;
       }
 
       // Show success toast
-      setToast({
-        show: true,
-        message: 'Thank you for your message! I will get back to you soon.',
-        type: 'success',
-      });
+      setToast({ show: true, message: t('success'), type: 'success' });
 
       // Reset form
       setValues(EMPTY_FORM);
@@ -137,7 +147,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       }
     } catch (error) {
       console.error(error);
-      showError(GENERIC_ERROR, true);
+      showError(t('genericError'), true);
     } finally {
       setIsSubmitting(false);
     }
@@ -145,10 +155,10 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6 max-w-md mx-auto">
-      {INPUTS.map(({ field, label, type, autoComplete, Icon }) => (
+      {INPUTS.map(({ field, type, autoComplete, Icon }) => (
         <div key={field}>
           <label htmlFor={field} className="block text-sm font-medium text-foreground">
-            {label}
+            {t(`fields.${field}`)}
           </label>
           <div className="mt-1 relative rounded-md shadow-sm">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -170,7 +180,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           </div>
           {errors[field] && (
             <p id={`${field}-error`} className="mt-1 text-sm text-red-600 dark:text-red-400">
-              {errors[field]}
+              {errorText(field)}
             </p>
           )}
         </div>
@@ -179,7 +189,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
       <div>
         <div className="flex items-baseline justify-between">
           <label htmlFor="message" className="block text-sm font-medium text-foreground">
-            Message
+            {t('fields.message')}
           </label>
           <span className="text-xs text-foreground/60" aria-hidden="true">
             {values.message.length} / {CONTACT_LIMITS.message}
@@ -201,7 +211,7 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
         </div>
         {errors.message && (
           <p id="message-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
-            {errors.message}
+            {errorText('message')}
           </p>
         )}
       </div>
@@ -222,11 +232,13 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
 
       {showEmailFallback && (
         <p role="alert" className="rounded-lg border border-red-500/40 bg-red-500/10 p-3 text-sm">
-          Your message could not be sent from here. You can write to me directly at{' '}
-          <a href={`mailto:${contactEmail}`} className="font-medium text-blue-500 hover:text-blue-600">
-            {contactEmail}
-          </a>
-          .
+          {t.rich('fallback', {
+            email: () => (
+              <a href={`mailto:${contactEmail}`} className={`font-medium ${linkClass}`}>
+                {contactEmail}
+              </a>
+            ),
+          })}
         </p>
       )}
 
@@ -239,30 +251,23 @@ export default function ContactForm({ onSuccess }: ContactFormProps) {
           {isSubmitting ? (
             <span className="flex items-center">
               <LoadingSpinnerIcon className="-ml-1 mr-2 text-current" />
-              Sending...
+              {t('sending')}
             </span>
-          ) : 'Send Message'}
+          ) : t('send')}
         </button>
         <small className="block text-xs text-foreground/60 mt-4">
-          This site is protected by reCAPTCHA and the Google{' '}
-          <a
-            href="https://policies.google.com/privacy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-600"
-          >
-            Privacy Policy
-          </a>{' '}
-          and{' '}
-          <a
-            href="https://policies.google.com/terms"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:text-blue-600"
-          >
-            Terms of Service
-          </a>{' '}
-          apply.
+          {t.rich('recaptcha', {
+            privacy: (chunks) => (
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className={linkClass}>
+                {chunks}
+              </a>
+            ),
+            terms: (chunks) => (
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className={linkClass}>
+                {chunks}
+              </a>
+            ),
+          })}
         </small>
       </div>
 

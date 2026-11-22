@@ -1,20 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import ContactModal from '@/components/modals/ContactModal';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import { MenuIcon } from '@/components/icons/navigation';
+import { Link } from '@/i18n/navigation';
 
-const navItems = [
-  { name: 'Technologies', href: '#technologies' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Training', href: '#training' },
-  { name: 'About Me', href: '#about' },
-];
+// The section anchors; their label is the message "nav.<id>"
+const navItems = ['technologies', 'experience', 'projects', 'training', 'about'] as const;
 
 export default function Navbar() {
+  const t = useTranslations('nav');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
@@ -50,24 +48,26 @@ export default function Navbar() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
+                <a
+                  key={item}
+                  href={`#${item}`}
                   className="px-3 py-2 rounded-md text-sm font-medium hover:bg-foreground/10 transition-colors"
                 >
-                  {item.name}
-                </Link>
+                  {t(item)}
+                </a>
               ))}
               <button
                 onClick={() => setIsContactModalOpen(true)}
                 className="px-3 py-2 rounded-md text-sm font-medium hover:bg-foreground/10 transition-colors disabled:cursor-not-allowed cursor-pointer"
               >
-                Contact
+                {t('contact')}
               </button>
+              <LanguageSwitcher />
               <ThemeToggle />
             </div>
           </div>
           <div className="md:hidden flex items-center gap-1">
+            <LanguageSwitcher />
             <ThemeToggle />
             <MobileMenu />
           </div>
@@ -83,6 +83,7 @@ export default function Navbar() {
 }
 
 function MobileMenu() {
+  const t = useTranslations('nav');
   const [isOpen, setIsOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
@@ -91,9 +92,9 @@ function MobileMenu() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="inline-flex items-center justify-center p-2 rounded-md hover:bg-foreground/10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-        aria-expanded="false"
+        aria-expanded={isOpen}
       >
-        <span className="sr-only">Open main menu</span>
+        <span className="sr-only">{t('openMenu')}</span>
         <MenuIcon isOpen={isOpen} />
       </button>
 
@@ -101,14 +102,14 @@ function MobileMenu() {
         <div className="absolute top-16 left-0 right-0 bg-background shadow-lg p-4 dark:border-b dark:border-border">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
+              <a
+                key={item}
+                href={`#${item}`}
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-foreground/10"
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
-              </Link>
+                {t(item)}
+              </a>
             ))}
             <button
               onClick={() => {
@@ -117,7 +118,7 @@ function MobileMenu() {
               }}
               className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-foreground/10"
             >
-              Contact
+              {t('contact')}
             </button>
           </div>
         </div>

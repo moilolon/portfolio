@@ -10,6 +10,7 @@
 | How a section looks or behaves | `src/components/sections/<Section>.tsx` |
 | A new section | a component in `sections/` rendering `<section id="…">`, added to `src/app/page.tsx`, and a link in `Navbar.tsx` |
 | An icon | `src/components/icons/<section>/<Name>Icon.tsx`, exported from that folder's `index.ts` |
+| A text of the interface (menu, heading, button, error) | `src/messages/en.json` **and** `es.json`, read with `useTranslations()` |
 | Colors, theme variables, keyframes | `src/app/globals.css` |
 | Metadata / SEO, fonts, analytics | `src/app/layout.tsx` |
 | Contact flow | `ContactForm.tsx` (client) → `src/app/api/contact/route.ts` (server); rules shared in `src/lib/contact.ts`, email in `src/lib/resend/contact.ts` |
@@ -26,6 +27,26 @@ language, and the adapters expose it as `get<Section>(locale)`. Things that are 
 `src/content/cv.json` (phone, birth date) is for the generated CV only: never import it from a
 component, or it ships to the browser.
 
+## Languages
+
+- The site is served under `/en` and `/es` with next-intl; both are prerendered
+  (`generateStaticParams` + `setRequestLocale` in `src/app/[locale]/`).
+- Two kinds of text, two places: **content** (who I am, jobs, projects) in `src/content/` with both
+  languages side by side; **interface** texts in `src/messages/<locale>.json`. Never hardcode a
+  visible string in a component, not even an `aria-label`.
+- In a component: `useTranslations('<namespace>')` for the interface and
+  `get<Section>(useLocale())` for the content. Both work in server and client components.
+- `src/types/next-intl.d.ts` types the keys after `en.json`: a key missing there fails the build,
+  a key missing only in `es.json` does not, so add both at once.
+- The language is remembered in the cookie `moilolon-lang`, shared with the other moilolon.com
+  sites (`src/lib/lang.ts`), not in next-intl's own cookie, which is turned off. Only the language
+  switcher writes it. `src/middleware.ts` reads it for a URL without language and falls back to
+  the browser's language. A URL with language always wins.
+- Internal links to a page go through `Link` of `src/i18n/navigation.ts`, which adds the
+  language; section anchors are plain `<a href="#id">`.
+- The contact API answers with codes (`ContactApiError`, `ContactErrorCode` in
+  `src/lib/contact.ts`), never with text: the form translates them.
+
 ## Components
 
 - Function components, default-exported, one per file, `PascalCase.tsx`.
@@ -33,10 +54,10 @@ component, or it ships to the browser.
   in `src/types/`.
 - Server components by default. Add `'use client'` only for state, effects, handlers or
   browser APIs — today: Navbar, Experience, Projects, Technologies, ContactForm,
-  ContactModal, Modal, Toast, ThemeToggle.
+  ContactModal, Modal, Toast, ThemeToggle, LanguageSwitcher.
 - Reuse `ui/Modal` and `ui/Toast` instead of writing new overlays or notifications.
-- Images through `next/image`; internal navigation through `next/link`; section anchors are
-  `#<id>` links, smoothed by `scroll-smooth` on `<html>`.
+- Images through `next/image`; section anchors are `#<id>` links, smoothed by `scroll-smooth`
+  on `<html>`.
 
 ## Styling
 
