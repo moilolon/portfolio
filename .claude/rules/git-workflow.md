@@ -37,6 +37,10 @@ Examples: `feature(projects): add filtering by technology`,
 
 ## Pull requests
 
+- Dependabot (`.github/dependabot.yml`) opens its own: one a week with the minor and patch
+  updates of npm, one per major, and the GitHub Actions monthly. Merge them when CI is green; a
+  major deserves a look at its changelog first.
+
 - Title: `type: Description` (e.g. `feat: Add Vercel Analytics and Speed Insights for monitoring`),
   squash-merged into `main` — GitHub appends `(#N)`.
 - Description: what changed, why, how to test; screenshots for UI.
