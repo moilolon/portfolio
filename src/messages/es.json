@@ -56,6 +56,11 @@
   "footer": {
     "rights": "Todos los derechos reservados."
   },
+  "notFound": {
+    "title": "Página no encontrada",
+    "text": "Esta página no existe o ha cambiado de sitio.",
+    "back": "Volver al portfolio"
+  },
   "contact": {
     "title": "Contacto",
     "intro": "¿Tienes una pregunta o quieres que trabajemos juntos? Escríbeme con el formulario de abajo.",
