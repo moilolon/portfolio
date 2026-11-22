@@ -20,7 +20,7 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
 
 ## Stack
 
-- **Next.js 15** (App Router, Turbopack in dev) + **React 19**, **TypeScript** strict.
+- **Next.js 16** (App Router, Turbopack) + **React 19**, **TypeScript** strict.
 - **Tailwind CSS 4** through `@tailwindcss/postcss` — no `tailwind.config.*`; theme tokens
   and custom animations live in `src/app/globals.css`.
 - **next-intl** — the site in English and Spanish, under `/en` and `/es`.
@@ -55,7 +55,7 @@ src/
 │   └── icons/<section>/      # SVG icon components, re-exported by an index.ts per folder
 ├── i18n/                     # next-intl: routing (locales), request (loads the messages), navigation (Link, router)
 ├── messages/                 # the INTERFACE texts, en.json and es.json: menu, headings, form, errors
-├── middleware.ts             # sends a URL without language to /en or /es: shared cookie, then the browser
+├── proxy.ts                  # sends a URL without language to /en or /es: shared cookie, then the browser
 ├── assets/fonts/             # Latin Modern Sans, embedded in the CV
 ├── content/                  # the site's CONTENT as JSON, every text in English and Spanish: profile, technologies,
 │                             #   experience, projects, training, languages, about; cv.json holds what only the CV shows
