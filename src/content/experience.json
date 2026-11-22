@@ -1,6 +1,7 @@
 [
   {
     "company": "3MT Global Services",
+    "location": "A Coruña",
     "title": {
       "en": "Salesforce Developer Analyst",
       "es": "Analista Programador Salesforce"
@@ -58,6 +59,7 @@
   },
   {
     "company": "Altia",
+    "location": "A Coruña",
     "title": {
       "en": "Java Developer Analyst",
       "es": "Analista Programador Java"
@@ -98,6 +100,7 @@
   },
   {
     "company": "atSistemas",
+    "location": "A Coruña",
     "title": {
       "en": "Senior Software Engineer",
       "es": "Ingeniero de Software Senior"
@@ -140,6 +143,7 @@
   },
   {
     "company": "Indra",
+    "location": "A Coruña",
     "title": {
       "en": "Software Engineer",
       "es": "Ingeniero de Software"
