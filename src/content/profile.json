@@ -14,7 +14,10 @@
   },
   "avatar": "/avatar.jpg",
   "email": "moiseslopezlopez@gmail.com",
-  "cv": "/cv/curriculum_en.pdf",
+  "cv": {
+    "en": "/cv/curriculum_en.pdf",
+    "es": "/cv/curriculum_es.pdf"
+  },
   "github": "https://github.com/moilolon",
   "linkedin": "https://linkedin.com/in/moilolon"
 }
