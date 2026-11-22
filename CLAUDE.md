@@ -23,6 +23,7 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
 - **Next.js 15** (App Router, Turbopack in dev) + **React 19**, **TypeScript** strict.
 - **Tailwind CSS 4** through `@tailwindcss/postcss` — no `tailwind.config.*`; theme tokens
   and custom animations live in `src/app/globals.css`.
+- **next-intl** — the site in English and Spanish, under `/en` and `/es`.
 - **Supabase** (`@supabase/supabase-js`) — the `contact_messages` table.
 - **Resend** — email notification for each contact message.
 - **Google reCAPTCHA v3** (script loaded by `src/lib/recaptcha.ts`, no library) — the token
@@ -35,8 +36,8 @@ This file is the entry point. Read the rules **on demand**, guided by the task a
 ```text
 src/
 ├── app/
-│   ├── layout.tsx            # fonts, metadata, theme init script, nav.js, Analytics, SpeedInsights
-│   ├── page.tsx              # composes Navbar + every section
+│   ├── [locale]/layout.tsx   # <html lang>, fonts, metadata per language, theme init script, nav.js, analytics
+│   ├── [locale]/page.tsx     # composes Navbar + every section; prerendered as /en and /es
 │   ├── globals.css           # Tailwind import, CSS variables, animations
 │   ├── api/contact/route.ts  # POST: validate → reCAPTCHA → Supabase insert → Resend email
 │   └── api/cron/contact/route.ts  # GET (Vercel Cron, daily): retry unsent notifications
@@ -45,8 +46,11 @@ src/
 │   ├── sections/             # Information, Technologies, Experience, Projects, Training, AboutMe
 │   ├── modals/ContactModal.tsx
 │   ├── forms/ContactForm.tsx
-│   ├── ui/                   # Modal, Toast, ThemeToggle
+│   ├── ui/                   # Modal, Toast, ThemeToggle, LanguageSwitcher
 │   └── icons/<section>/      # SVG icon components, re-exported by an index.ts per folder
+├── i18n/                     # next-intl: routing (locales), request (loads the messages), navigation (Link, router)
+├── messages/                 # the INTERFACE texts, en.json and es.json: menu, headings, form, errors
+├── middleware.ts             # sends a URL without language to /en or /es: shared cookie, then the browser
 ├── content/                  # the site's CONTENT as JSON, every text in English and Spanish: profile, technologies,
 │                             #   experience, projects, training, languages, about; cv.json holds what only the CV shows
 ├── lib/
@@ -56,6 +60,7 @@ src/
 │   ├── supabase/client.ts    # server only (secret key)
 │   ├── resend/               # client.ts, contact.ts (the notification email, HTML-escaped)
 │   ├── recaptcha.ts          # reCAPTCHA v3 loader + action name shared with the API
+│   ├── lang.ts               # the language cookie shared with the other moilolon.com sites
 │   ├── theme.ts              # inline script that sets <html data-theme> before paint
 │   └── colors.ts             # tint() for technology chip backgrounds
 └── types/                    # one file per content type (experience, projects, …), moilolon-nav.d.ts
@@ -69,8 +74,8 @@ edit the matching JSON in `src/content/` (typed by `src/types/`), not the sectio
 technology also needs its color (and icon) in `src/lib/constants/technologies.tsx`.
 
 Every text in `src/content/` is written in both languages, side by side:
-`"title": { "en": "…", "es": "…" }`. The site still renders English only (`DEFAULT_LOCALE`).
-The same content will feed the generated CV, so the site is the source: there is no second
+`"title": { "en": "…", "es": "…" }`. Interface texts (menu, headings, buttons, errors) are not
+content: they live in `src/messages/<locale>.json`. The same content will feed the generated CV, so the site is the source: there is no second
 wording of a job for the PDF.
 
 ## Commands

@@ -1,13 +1,14 @@
+import { useLocale, useTranslations } from 'next-intl';
 import { getAbout } from '@/lib/constants/about';
-import { DEFAULT_LOCALE } from '@/lib/i18n';
 
 export default function AboutMe() {
-  const about = getAbout(DEFAULT_LOCALE);
+  const t = useTranslations('about');
+  const about = getAbout(useLocale());
 
   return (
     <section id="about" className="py-20 bg-foreground/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">About Me</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">{t('title')}</h2>
 
         <div>
           <div className="bg-card dark:border dark:border-border rounded-lg p-8 shadow-sm">
