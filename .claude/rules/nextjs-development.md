@@ -36,8 +36,8 @@ component, or it ships to the browser.
 - Two kinds of text, two places: **content** (who I am, jobs, projects) in `src/content/` with both
   languages side by side; **interface** texts in `src/messages/<locale>.json`. Never hardcode a
   visible string in a component, not even an `aria-label`.
-- In a component: `useTranslations('<namespace>')` for the interface and
-  `get<Section>(useLocale())` for the content. Both work in server and client components.
+- In a component: `useTranslations('<namespace>')` for the interface, in server and client
+  components alike, and `get<Section>(useLocale())` for the content, in server components only.
 - `src/types/next-intl.d.ts` types the keys after `en.json`: a key missing there fails the build,
   a key missing only in `es.json` does not, so add both at once.
 - The language is remembered in the cookie `moilolon-lang`, shared with the other moilolon.com
@@ -67,8 +67,15 @@ component, or it ships to the browser.
 - Props typed with an `interface <Name>Props` next to the component; shared content types go
   in `src/types/`.
 - Server components by default. Add `'use client'` only for state, effects, handlers or
-  browser APIs — today: Navbar, Experience, Projects, Technologies, ContactForm,
+  browser APIs — today: Navbar, ExperienceCards, ProjectsGrid, TechnologiesTabs, ContactForm,
   ContactModal, Modal, Toast, ThemeToggle, LanguageSwitcher.
+- A section that needs state is split in two: the section itself (`Experience.tsx`, a server
+  component) reads the content of the language and hands it to its client part
+  (`ExperienceCards.tsx`) as props. A client component never imports from `src/content/` or
+  `src/lib/constants/`: that would ship the content in both languages, and the icons, to the
+  browser.
+- Anything that opens or closes is a `<button>` with `aria-expanded` (and `aria-controls` when
+  it owns a panel), never a `<div>` with `onClick`.
 - Reuse `ui/Modal` and `ui/Toast` instead of writing new overlays or notifications.
 - Images through `next/image`; section anchors are `#<id>` links, smoothed by `scroll-smooth`
   on `<html>`.
