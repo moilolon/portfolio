@@ -105,9 +105,18 @@ component, or it ships to the browser.
 - The contact route answers 200 when the message is stored even if the email fails: the daily
   cron (`/api/cron/contact`, authorised with `CRON_SECRET`) retries it.
 
+## Tests
+
+- `npm test` runs `src/**/*.test.ts` with the test runner of Node (`node:test`, `node:assert`):
+  no framework and no build step, Node reads the TypeScript directly.
+- A test file sits next to what it tests and imports it with its extension
+  (`./contact.ts`), which Node requires. For that reason it can only reach modules without
+  `@/` imports or JSX: keep the logic worth testing in plain `.ts` files.
+- Test the rules, not the framework: validation, content helpers, anything with branches.
+
 ## Before calling it done
 
-1. `npm run lint` passes.
+1. `npm run lint` and `npm test` pass.
 2. `npm run build` passes (it is the type check).
 3. UI changes checked in the browser at mobile and desktop widths, light and dark.
 4. `README.md` updated if a feature or the stack changed.
