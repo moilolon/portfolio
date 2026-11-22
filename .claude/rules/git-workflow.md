@@ -29,11 +29,10 @@ Examples: `feature(projects): add filtering by technology`,
 `bugfix(navbar): close the mobile menu after navigation`.
 
 - `npm run lint` must pass before committing.
-- After adding or updating a dependency, regenerate `package-lock.json` with npm 10, the one CI
-  runs (Node 23): `npx npm@10 install --package-lock-only`, then check it with
-  `npx npm@10 ci --dry-run`. A lock file written by a newer local npm can leave out entries
-  npm 10 needs, and `npm ci` fails in CI before the lint runs. Do not run a plain `npm install`
-  with the newer npm afterwards: it rewrites the file back.
+- CI and the local machine must run the same Node major (today 25, with npm 11): the workflows
+  in `.github/workflows/` pin it in `node-version`. A `package-lock.json` written by one npm
+  major can be rejected by `npm ci` on another, and then CI fails before the lint runs. When
+  the local Node changes major, change the workflows too.
 - Commit or push only when the user asks.
 
 ## Pull requests
