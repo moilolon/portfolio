@@ -35,6 +35,9 @@ Examples: `feature(projects): add filtering by technology`,
   `@types/node` stays on that same major. A `package-lock.json` written by one npm
   major can be rejected by `npm ci` on another, and then CI fails before the lint runs. When
   the Node major changes, change the three places together.
+- `package.json` holds exact versions, without `^` or `~` (`.npmrc` sets `save-exact`, so
+  `npm install <package>` writes them that way): Dependabot is what moves a version, and the
+  file says which one is installed without reading the lockfile.
 - Commit or push only when the user asks.
 
 ## Pull requests
