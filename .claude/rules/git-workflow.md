@@ -46,6 +46,12 @@ Examples: `feature(projects): add filtering by technology`,
 - Title: `type: Description` (e.g. `feat: Add Vercel Analytics and Speed Insights for monitoring`),
   squash-merged into `main` — GitHub appends `(#N)`.
 - Description: what changed, why, how to test; screenshots for UI.
+- Every pull request carries at least one label. The `Label pull requests` workflow adds the
+  ones that follow from the changed files (`.github/labeler.yml`), and it only runs once it is
+  on `main`, so check after opening: add by hand what it cannot know (what the change is for,
+  such as accessibility or performance) and whatever is missing. The labels of the repository
+  are the list (`gh label list`); create one when none fits, and give it a rule in
+  `labeler.yml` if it maps to a folder.
 - CI (`Code Review Assistant`) runs the lint, the tests and the build on the branch; it must be
   green. The build runs with placeholder values for the service keys: a module that calls a
   service while it loads would break it.

@@ -1,0 +1,26 @@
+name: "Label pull requests"
+
+# pull_request_target and not pull_request: the token of a pull request opened by Dependabot
+# cannot write labels. It is safe here because the job never checks out the code of the pull
+# request; the labeler reads the changed paths and .github/labeler.yml of main through the API.
+on:
+    pull_request_target:
+        types:
+            - "opened"
+            - "synchronize"
+            - "reopened"
+
+permissions:
+    contents: "read"
+    pull-requests: "write"
+
+jobs:
+    label:
+        name: Label by changed files
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Label"
+              uses: "actions/labeler@v7"
+              with:
+                  # Only adds: a label put by hand stays when later commits touch other files
+                  sync-labels: false

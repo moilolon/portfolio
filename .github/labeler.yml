@@ -1,0 +1,95 @@
+# Labels a pull request by the files it changes (.github/workflows/labeler.yaml).
+# Each key is a label that already exists in the repository. Labels about what a change is for
+# rather than where it is (accessibility, performance) are put by hand.
+
+documentation:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "README.md"
+                - "CLAUDE.md"
+                - ".claude/**"
+                - ".zed/**"
+
+ci:
+    - changed-files:
+          - any-glob-to-any-file:
+                - ".github/**"
+
+dependencies:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "package.json"
+                - "package-lock.json"
+                - ".npmrc"
+
+supabase:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "supabase/**"
+                - "src/lib/supabase/**"
+
+contact:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/app/api/**"
+                - "src/lib/contact*.ts"
+                - "src/components/forms/**"
+                - "src/components/modals/**"
+
+resend:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/lib/resend/**"
+
+recaptcha:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/lib/recaptcha.ts"
+
+i18n:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/messages/**"
+                - "src/i18n/**"
+                - "src/proxy.ts"
+                - "src/lib/i18n*.ts"
+                - "src/lib/lang*.ts"
+
+cv:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/app/cv/**"
+                - "src/lib/cv/**"
+                - "src/content/cv.json"
+                - "src/assets/fonts/**"
+
+seo:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/app/sitemap.ts"
+                - "src/app/robots.ts"
+                - "src/app/*/opengraph-image.tsx"
+                - "src/lib/site.ts"
+
+navbar:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/components/layouts/**"
+
+style:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/app/globals.css"
+                - "src/lib/theme.ts"
+                - "src/lib/colors.ts"
+
+home:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/components/sections/**"
+
+personal information:
+    - changed-files:
+          - any-glob-to-any-file:
+                - "src/content/**"
+                - "public/**"
