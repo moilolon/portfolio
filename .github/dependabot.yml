@@ -19,6 +19,11 @@ updates:
                   - "minor"
                   - "patch"
       # A major update comes alone, in its own pull request: it may need changes in the code
+      ignore:
+          # Follows the Node version of the project (package.json engines), changed by hand with it
+          - dependency-name: "@types/node"
+            update-types:
+                - "version-update:semver-major"
 
     - package-ecosystem: "github-actions"
       directory: "/"
