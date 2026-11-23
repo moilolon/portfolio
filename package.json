@@ -13,7 +13,7 @@
     "@react-pdf/renderer": "^4.9.0",
     "@supabase/supabase-js": "^2.119.2",
     "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
+    "@vercel/speed-insights": "^2.1.0",
     "next": "^16.4.6",
     "next-intl": "^4.15.3",
     "react": "^19.3.1",
