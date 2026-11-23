@@ -9,6 +9,8 @@ updates:
           interval: "weekly"
           day: "monday"
       open-pull-requests-limit: 5
+      # package.json holds exact versions (no ^ or ~): every update rewrites it, not only the lockfile
+      versioning-strategy: "increase"
       commit-message:
           prefix: "chore"
           include: "scope"
