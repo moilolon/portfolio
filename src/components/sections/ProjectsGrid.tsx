@@ -53,8 +53,7 @@ export default function ProjectsGrid({ projects, dailyTechnologies }: ProjectsGr
   }, [projects, dailyTechnologies]);
 
   const visibleFilters = technologyFilters.filter((tech) =>
-    showAllFilters || tech.quick || tech.name === selectedTechnology,
-  );
+    showAllFilters || tech.quick || tech.name === selectedTechnology);
   const hiddenFiltersCount = technologyFilters.length - visibleFilters.length;
 
   const filteredProjects = selectedTechnology
@@ -167,8 +166,7 @@ export default function ProjectsGrid({ projects, dailyTechnologies }: ProjectsGr
                         setExpandedProjects((prev) =>
                           prev.includes(project.name)
                             ? prev.filter((name) => name !== project.name)
-                            : [...prev, project.name],
-                        );
+                            : [...prev, project.name]);
                       }}
                       className="text-sm font-medium hover:underline disabled:cursor-not-allowed cursor-pointer"
                     >

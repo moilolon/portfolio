@@ -18,13 +18,13 @@ export type ContactErrorCode = (typeof CONTACT_ERROR_CODES)[number];
 export type ContactErrors = Partial<Record<ContactField, ContactErrorCode>>;
 
 // Why the API rejected a message: the "error" of its response
-export type ContactApiError
-  = | 'invalid_request'
-    | 'validation'
-    | 'recaptcha_required'
-    | 'recaptcha_failed'
-    | 'store_failed'
-    | 'internal';
+export type ContactApiError =
+  | 'invalid_request'
+  | 'validation'
+  | 'recaptcha_required'
+  | 'recaptcha_failed'
+  | 'store_failed'
+  | 'internal';
 
 // Hidden field that people never see and bots tend to fill
 export const CONTACT_HONEYPOT_FIELD = 'contact_reference';

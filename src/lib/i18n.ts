@@ -12,8 +12,8 @@ export type Localized = Record<Locale, string>;
 export type Localize<T>
   = T extends Localized ? string
     : T extends (infer Item)[] ? Localize<Item>[]
-      : T extends object ? { [Key in keyof T]: Localize<T[Key]> }
-        : T;
+    : T extends object ? { [Key in keyof T]: Localize<T[Key]> }
+    : T;
 
 const isLocalized = (value: object): value is Localized => {
   const keys = Object.keys(value);
