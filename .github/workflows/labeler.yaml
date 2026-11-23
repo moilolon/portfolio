@@ -1,0 +1,28 @@
+name: "Label pull requests"
+
+# pull_request and not pull_request_target: the workflow and .github/labeler.yml are read from
+# the pull request itself, so a change to either is seen working before it is merged.
+on:
+    pull_request:
+        types:
+            - "opened"
+            - "synchronize"
+            - "reopened"
+
+permissions:
+    contents: "read"
+    pull-requests: "write"
+
+jobs:
+    label:
+        name: Label by changed files
+        # The token of a pull request opened by Dependabot cannot write labels, and Dependabot
+        # already puts its own (dependencies, javascript).
+        if: github.event.pull_request.user.login != 'dependabot[bot]'
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Label"
+              uses: "actions/labeler@v7"
+              with:
+                  # Only adds: a label put by hand stays when later commits touch other files
+                  sync-labels: false
