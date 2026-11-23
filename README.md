@@ -113,7 +113,7 @@ vercel firewall publish
 
 ## 🚀 Getting started
 
-**Prerequisites:** Node.js LTS, npm, and accounts for Supabase, Resend and Google reCAPTCHA
+**Prerequisites:** Node.js 26 (the version `package.json` asks for), npm, and accounts for Supabase, Resend and Google reCAPTCHA
 (a **v3** key, managed from a Google Cloud project, with `localhost` among its domains to test locally).
 
 ```bash
