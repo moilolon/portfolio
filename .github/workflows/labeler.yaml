@@ -1,10 +1,9 @@
 name: "Label pull requests"
 
-# pull_request_target and not pull_request: the token of a pull request opened by Dependabot
-# cannot write labels. It is safe here because the job never checks out the code of the pull
-# request; the labeler reads the changed paths and .github/labeler.yml of main through the API.
+# pull_request and not pull_request_target: the workflow and .github/labeler.yml are read from
+# the pull request itself, so a change to either is seen working before it is merged.
 on:
-    pull_request_target:
+    pull_request:
         types:
             - "opened"
             - "synchronize"
@@ -17,6 +16,9 @@ permissions:
 jobs:
     label:
         name: Label by changed files
+        # The token of a pull request opened by Dependabot cannot write labels, and Dependabot
+        # already puts its own (dependencies, javascript).
+        if: github.event.pull_request.user.login != 'dependabot[bot]'
         runs-on: "ubuntu-latest"
         steps:
             - name: "Label"
