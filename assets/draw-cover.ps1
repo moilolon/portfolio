@@ -84,20 +84,12 @@ function Save-Cover($canvas) {
 $canvas = New-Cover '#37D6C4' '#8B7BFF' 'Portfolio' @('Skills, experience and projects', 'in English and Spanish, with a', 'contact form that reaches my inbox.')
 $g = $canvas[1]
 
-# The icon: the favicon every moilolon.com site uses (src/app/icon.svg), a 64-unit square.
-$scale = 120 / 64
-Fill-Rounded $g $ground 118 248 124 124 (16 * $scale + 2)
-Fill-Rounded $g (Get-Color '#08090D') 120 250 120 120 (16 * $scale)
-$mark = New-Object System.Drawing.Drawing2D.LinearGradientBrush((New-Object System.Drawing.PointF 120, 250), (New-Object System.Drawing.PointF 240, 370), (Get-Color '#8B7BFF'), (Get-Color '#37D6C4'))
-$pen = New-Object System.Drawing.Pen($mark, (5.5 * $scale))
-$pen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
-$pen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
-$pen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
-$points = @(@(16, 44), @(16, 22), @(26, 35), @(32, 27), @(38, 35), @(48, 22), @(48, 44)) | ForEach-Object {
-  New-Object System.Drawing.PointF (120 + $_[0] * $scale), (250 + $_[1] * $scale)
-}
-$g.DrawLines($pen, [System.Drawing.PointF[]]$points)
-$mark.Dispose(); $pen.Dispose()
+# The icon: </> in white, on the cover's gradient square.
+$font = New-Object System.Drawing.Font('Consolas', 34, [System.Drawing.FontStyle]::Bold)
+$brush = New-Object System.Drawing.SolidBrush (Get-Color '#ECEFF4')
+$size = $g.MeasureString('</>', $font)
+$g.DrawString('</>', $font, $brush, (180 - $size.Width / 2), (310 - $size.Height / 2))
+$font.Dispose(); $brush.Dispose()
 
 # The page: who I am, the technology chips, the experience cards and the contact button,
 # in the favicon's violet and turquoise.
