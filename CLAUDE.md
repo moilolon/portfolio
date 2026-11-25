@@ -76,6 +76,7 @@ src/
 public/                       # avatar.jpg (also the photo of the CV), projects/*.png|svg
 supabase/migrations/          # NNN_description.sql
 vercel.json                   # the daily cron of the contact messages
+assets/                       # the README cover: cover.png, drawn by draw-cover.ps1 (powershell -NoProfile -File assets/draw-cover.ps1)
 ```
 
 Content is data, not markup: to add a job, project, technology, course or a paragraph of About me,
