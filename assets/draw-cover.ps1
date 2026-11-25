@@ -81,19 +81,30 @@ function Save-Cover($canvas) {
   Write-Output 'cover.png written'
 }
 
-$canvas = New-Cover '#10B981' '#065F46' 'Portfolio' @('Skills, experience and projects', 'in English and Spanish, with a', 'contact form that reaches my inbox.')
+$canvas = New-Cover '#8B7BFF' '#37D6C4' 'Portfolio' @('Skills, experience and projects', 'in English and Spanish, with a', 'contact form that reaches my inbox.')
 $g = $canvas[1]
 
-# The icon: </> in white.
-$font = New-Object System.Drawing.Font('Consolas', 34, [System.Drawing.FontStyle]::Bold)
-$brush = New-Object System.Drawing.SolidBrush (Get-Color '#ECEFF4')
-$size = $g.MeasureString('</>', $font)
-$g.DrawString('</>', $font, $brush, (180 - $size.Width / 2), (310 - $size.Height / 2))
-$font.Dispose(); $brush.Dispose()
+# The icon: the favicon every moilolon.com site uses (src/app/icon.svg), a 64-unit square.
+$scale = 120 / 64
+Fill-Rounded $g $ground 118 248 124 124 (16 * $scale + 2)
+Fill-Rounded $g (Get-Color '#08090D') 120 250 120 120 (16 * $scale)
+$mark = New-Object System.Drawing.Drawing2D.LinearGradientBrush((New-Object System.Drawing.PointF 120, 250), (New-Object System.Drawing.PointF 240, 370), (Get-Color '#8B7BFF'), (Get-Color '#37D6C4'))
+$pen = New-Object System.Drawing.Pen($mark, (5.5 * $scale))
+$pen.StartCap = [System.Drawing.Drawing2D.LineCap]::Round
+$pen.EndCap = [System.Drawing.Drawing2D.LineCap]::Round
+$pen.LineJoin = [System.Drawing.Drawing2D.LineJoin]::Round
+$points = @(@(16, 44), @(16, 22), @(26, 35), @(32, 27), @(38, 35), @(48, 22), @(48, 44)) | ForEach-Object {
+  New-Object System.Drawing.PointF (120 + $_[0] * $scale), (250 + $_[1] * $scale)
+}
+$g.DrawLines($pen, [System.Drawing.PointF[]]$points)
+$mark.Dispose(); $pen.Dispose()
 
-# The page: who I am, the technology chips, the experience cards and the contact button.
+# The page: who I am, the technology chips, the experience cards and the contact button,
+# in the favicon's violet and turquoise.
+$violet = Get-Color '#8B7BFF'
+$turquoise = Get-Color '#37D6C4'
 Fill-Rounded $g $sheet 930 176 520 700 18
-Fill-Gradient $g (Get-Color '#10B981') (Get-Color '#065F46') 962 206 96 96 48
+Fill-Gradient $g $violet $turquoise 962 206 96 96 48
 Fill-Rounded $g (Get-Color '#ECEFF4') 1082 222 220 26 10
 Fill-Rounded $g $line 1082 262 150 14 7
 $chips = @('#3178C6', '#61DAFB', '#06B6D4', '#3FCF8E', '#F7DF1E', '#E34F26', '#8B7BFF', '#EB6E6E')
@@ -104,9 +115,9 @@ for ($i = 0; $i -lt $chips.Count; $i++) {
 for ($i = 0; $i -lt 3; $i++) {
   $y = 450 + $i * 116
   Fill-Rounded $g (Get-Color '#363C49') 962 $y 456 100 14
-  Fill-Rounded $g (Get-Color '#10B981') 986 ($y + 22) 56 56 12
+  Fill-Gradient $g $violet $turquoise 986 ($y + 22) 56 56 12
   Draw-Lines $g 1064 ($y + 28) 330 @(0.75, 0.5) 30
 }
-Fill-Rounded $g (Get-Color '#10B981') 1270 810 148 44 22
+Fill-Gradient $g $violet $turquoise 1270 810 148 44 22
 
 Save-Cover $canvas
