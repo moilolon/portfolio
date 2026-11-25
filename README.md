@@ -1,6 +1,6 @@
 <div align="center">
 
-# <img src="assets/icon.png" alt="" width="40" align="center"> Portfolio for developers
+# <img src="assets/icon.png" alt="" width="40" align="absmiddle"> Portfolio for developers
 
 **A fast, responsive single-page portfolio, in English and Spanish, with a contact form that lands straight in your inbox**
 
