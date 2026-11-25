@@ -12,9 +12,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-<a href="https://portfolio.moilolon.com">
-  <img src="public/projects/portfolio-logo.svg" alt="moilolon portfolio" width="820" />
-</a>
+<img src="assets/cover.png" alt="The name beside a page with the profile, the technology chips, the experience cards and the contact button" width="820">
 
 </div>
 
