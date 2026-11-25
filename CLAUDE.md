@@ -76,7 +76,7 @@ src/
 public/                       # avatar.jpg (also the photo of the CV), projects/*.png|svg
 supabase/migrations/          # NNN_description.sql
 vercel.json                   # the daily cron of the contact messages
-assets/                       # drawing scripts (powershell -NoProfile -File assets/<script>): draw-cover.ps1 → the README cover, cover.png; draw-logo.ps1 → public/projects/moilolon.png, this project's card, from the favicon
+assets/                       # drawing scripts (powershell -NoProfile -File assets/<script>): draw-images.ps1 → the README cover, the icon (also the project's icon in Orca) and the GitHub social preview (uploaded by hand in Settings); draw-logo.ps1 → public/projects/moilolon.png, this project's card, from the favicon
 ```
 
 Content is data, not markup: to add a job, project, technology, course or a paragraph of About me,
