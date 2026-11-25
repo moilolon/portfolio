@@ -19,7 +19,9 @@ history does not already say:
 
 - a new convention or a decision with its reason → the matching rule in `.claude/rules/`;
 - a change in stack, structure or commands → `CLAUDE.md` (and `README.md` if visitors see it);
-- a new feature or a removed one → `README.md` (*Features* / *Upcoming Features*).
+- a new feature or a removed one → `README.md` (*What this is*), which keeps the layout of every
+  moilolon repo: *What this is*, *How it works*, *Getting started* and the shared footer, with no
+  folder tree, long code or roadmap.
 
 Do not keep status logs or "recent changes" lists: git history is the record of what was done,
 and GitHub issues the list of what is next.
