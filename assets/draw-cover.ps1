@@ -81,7 +81,7 @@ function Save-Cover($canvas) {
   Write-Output 'cover.png written'
 }
 
-$canvas = New-Cover '#8B7BFF' '#37D6C4' 'Portfolio' @('Skills, experience and projects', 'in English and Spanish, with a', 'contact form that reaches my inbox.')
+$canvas = New-Cover '#37D6C4' '#8B7BFF' 'Portfolio' @('Skills, experience and projects', 'in English and Spanish, with a', 'contact form that reaches my inbox.')
 $g = $canvas[1]
 
 # The icon: the favicon every moilolon.com site uses (src/app/icon.svg), a 64-unit square.
