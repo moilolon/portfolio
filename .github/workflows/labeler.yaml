@@ -1,5 +1,8 @@
 name: "Label pull requests"
 
+# Also assigns the pull request to the owner when it is opened with no assignee (workbench
+# convention).
+
 # pull_request and not pull_request_target: the workflow and .github/labeler.yml are read from
 # the pull request itself, so a change to either is seen working before it is merged.
 on:
@@ -26,3 +29,11 @@ jobs:
               with:
                   # Only adds: a label put by hand stays when later commits touch other files
                   sync-labels: false
+
+            - name: "Assign the owner"
+              if: github.event.action != 'synchronize'
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  PR: ${{ github.event.pull_request.html_url }}
+                  OWNER: ${{ github.repository_owner }}
+              run: 'gh pr edit "$PR" --add-assignee "$OWNER"'

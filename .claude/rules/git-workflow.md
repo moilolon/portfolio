@@ -49,6 +49,8 @@ Examples: `feature(projects): add filtering by technology`,
 - Title: `type: Description` (e.g. `feat: Add Vercel Analytics and Speed Insights for monitoring`),
   squash-merged into `main` — GitHub appends `(#N)`.
 - Description: what changed, why, how to test; screenshots for UI.
+- Assignee: `moilolon`, always. The labeler workflow assigns a pull request that has none when
+  it is opened; Dependabot's come assigned from `dependabot.yml`.
 - Every pull request carries at least one label. The `Label pull requests` workflow adds the
   ones that follow from the changed files (`.github/labeler.yml`), except on the pull
   requests of Dependabot, which labels its own. Check after opening: add by hand what the
