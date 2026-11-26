@@ -56,6 +56,6 @@ Examples: `feature(projects): add filtering by technology`,
   whatever is missing. The labels of the repository
   are the list (`gh label list`); create one when none fits, and give it a rule in
   `labeler.yml` if it maps to a folder.
-- CI (`Code Review Assistant`) runs the lint, the tests and the build on the branch; it must be
-  green. The build runs with placeholder values for the service keys: a module that calls a
+- CI (`.github/workflows/checks.yml`, job `checks`) runs the lint, the tests and the build on
+  the pull request; it must be green. The build runs with placeholder values for the service keys: a module that calls a
   service while it loads would break it.
