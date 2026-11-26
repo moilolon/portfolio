@@ -1,4 +1,4 @@
-name: checks
+name: Run the checks
 
 # What a pull request must pass (Dependabot's too): lint, tests and build. The job is "checks",
 # the status the main ruleset requires. Two caches, both saved from main and shared with every
