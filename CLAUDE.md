@@ -120,3 +120,17 @@ CI (`.github/workflows/cra.yaml`) runs the lint, the tests and the build on ever
   See `.claude/rules/git-workflow.md`.
 - **Responsive and accessible by default:** every UI change works from mobile to desktop
   and in light/dark (system preference or the manual toggle), with semantic HTML and labelled controls.
+
+## Git
+
+The full workflow is in `.claude/rules/git-workflow.md`; in short:
+
+- **Commits:** conventional, `type(scope): description`, imperative and lowercase, off `main`;
+  a body only when the why is not obvious. No `Co-Authored-By` or other attribution.
+- **Branches:** `<type>/<short-description>`, lowercase kebab-case, off `main`. Types:
+  `feature`, `bugfix`, `hotfix`, `refactor`, `docs`, `style`, `test`, `chore`.
+- **Pull requests:** title `type: Description`, squash-merged into `main` (GitHub appends
+  `(#N)`); body with what changed, why and how to test; at least one label; CI green.
+- **`gh`:** always as `GH_TOKEN=$(gh auth token --user moilolon) gh …`, command by command. gh's
+  active account is the work one, which must not act on this repo; do not switch it. `git`
+  already uses `moilolon` through the `includeIf` of `C:/Developer/PERSONAL/`.
