@@ -1,13 +1,16 @@
 name: "Code Review Assistant"
 
+# The job is "checks", the status the main ruleset requires (workbench convention).
 on:
     push:
         branches-ignore:
             - "main"
 
+permissions:
+    contents: "read"
+
 jobs:
-    run-lint:
-        name: Lint, test and build
+    checks:
         runs-on: "ubuntu-latest"
         steps:
             - name: "Checkout"

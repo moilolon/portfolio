@@ -101,8 +101,8 @@ Tests cover the pure logic only (`validateContact`, `localize`). A change is ver
 `npm run lint`, `npm test`, `npm run build` and, for UI,
 by looking at it in the browser (`npm run dev`).
 
-CI (`.github/workflows/cra.yaml`) runs the lint, the tests and the build on every push to a branch other than
-`main`; `cache.yaml` warms the `node_modules` cache on `main`.
+CI (`.github/workflows/checks.yaml`, job `checks`) runs the lint, the tests and the build on every push to a
+branch other than `main`; `cache.yaml` warms the `node_modules` cache on `main`.
 
 ## Critical conventions (do not skip)
 
