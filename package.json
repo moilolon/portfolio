@@ -15,7 +15,7 @@
     "@vercel/analytics": "2.0.1",
     "@vercel/speed-insights": "2.1.0",
     "next": "16.4.6",
-    "next-intl": "4.15.3",
+    "next-intl": "4.16.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "resend": "6.39.0"
@@ -28,7 +28,7 @@
     "@types/react-dom": "19.3.0",
     "eslint": "10.15.0",
     "eslint-config-next": "16.4.6",
-    "supabase": "3.2.0",
+    "supabase": "3.3.0",
     "tailwindcss": "4.3.5",
     "typescript": "5.8.3"
   },
