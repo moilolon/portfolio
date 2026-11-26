@@ -131,7 +131,8 @@ The full workflow is in `.claude/rules/git-workflow.md`; in short:
 - **Branches:** `<type>/<short-description>`, lowercase kebab-case, off `main`. Types:
   `feature`, `bugfix`, `hotfix`, `refactor`, `docs`, `style`, `test`, `chore`.
 - **Pull requests:** title `type: Description`, squash-merged into `main` (GitHub appends
-  `(#N)`); body with what changed, why and how to test; at least one label; CI green.
+  `(#N)`); body with what changed, why and how to test; assigned to `moilolon`; at least one
+  label; CI green. The labeler workflow puts both if missing (Dependabot's come assigned).
 - **`gh`:** always as `GH_TOKEN=$(gh auth token --user moilolon) gh …`, command by command. gh's
   active account is the work one, which must not act on this repo; do not switch it. `git`
   already uses `moilolon` through the `includeIf` of `C:/Developer/PERSONAL/`.
