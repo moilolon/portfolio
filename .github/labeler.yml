@@ -1,14 +1,25 @@
-# Labels a pull request by the files it changes (.github/workflows/labeler.yaml).
-# Each key is a label that already exists in the repository. Labels about what a change is for
-# rather than where it is (accessibility, performance) are put by hand.
+# Labels a pull request by the files it changes and by its branch (.github/workflows/labeler.yaml).
+# Each key is a label that already exists in the repository. The branch gives the type, as the Git
+# conventions name branches (<type>/<description>). Labels about what a change is for rather than
+# where it is (accessibility, performance) are put by hand. Top-level entries of a label are
+# AND-ed: alternatives go inside "any".
 
 documentation:
-    - changed-files:
-          - any-glob-to-any-file:
-                - "README.md"
-                - "CLAUDE.md"
-                - ".claude/**"
-                - ".zed/**"
+    - any:
+          - changed-files:
+                - any-glob-to-any-file:
+                      - "README.md"
+                      - "CLAUDE.md"
+                      - ".claude/**"
+                      - ".zed/**"
+                      - "LICENSE"
+          - head-branch: ["^docs/"]
+
+bug:
+    - head-branch: ["^bugfix/", "^hotfix/"]
+
+enhancement:
+    - head-branch: ["^feature/"]
 
 ci:
     - changed-files:
